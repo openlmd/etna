@@ -1,0 +1,13 @@
+<package>
+  <name>etna</name>
+  <version>0.0.1</version>
+  <description>
+    This package provides etna packages.
+  </description>
+  <license>TODO</license>
+  <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+ <export>
+   <metapackage/>
+ </export>
+</package>

@@ -1,0 +1,10 @@
+<launch>
+    <param name="frame_width" type="int" value="800" />
+    <param name="frame_height" type="int" value="600" />
+    
+    <node name="camera" pkg="etna_triangulation" type="pub_camera.py" />
+    
+    <node name="viewer" pkg="etna_triangulation" type="viewer.py" />
+    <node name="profile" pkg="etna_triangulation" type="pub_profile.py" />
+</launch>
+
