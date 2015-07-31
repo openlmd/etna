@@ -425,7 +425,7 @@ if __name__ == '__main__':
     import os
     import glob
 
-    dirname = '../data/rdata'
+    dirname = '../data/calib2'
     filenames = os.path.join(dirname, 'frame*.png')
     laser_profile = Profile(axis=1, thr=180, method='pcog')
     laser_calibration = LaserCalibration(grid_size=(7,6), square_size=0.010, profile=laser_profile)
@@ -528,3 +528,4 @@ if __name__ == '__main__':
 #    # TODO: Remove pose (R,t). Replace with homogeneous transformation matrices.
 #    # TODO: Integrate rviz with workcell calibration tools.
 #    # TODO: Modified RAPID script: power, powder, triggers. Check TCP sign.
+
