@@ -1,7 +1,6 @@
 from icv import *
 
 
-
 if __name__ == "__main__":
 
     img1 = read_image('data/pattern1.png')

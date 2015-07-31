@@ -28,7 +28,6 @@ print os.path.join(path, 'data', 'frame*.png')
 laser_calibration.find_calibration_3d(os.path.join(path, 'data', 'frame*.png'))
 laser_calibration.save_parameters(os.path.join(path, 'config', config_file))
 
-
 filenames = sorted(glob.glob('../data/pose*.txt'))
 ks = [int(filename[-8:-4]) for filename in filenames]
 poses_checker, poses_tool = [], []

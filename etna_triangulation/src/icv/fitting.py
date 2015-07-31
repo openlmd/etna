@@ -245,7 +245,12 @@ if __name__=="__main__":
 
     filename = '../data/downsampled.xyz'
     filename = '../data/test4_downsampled.xyz'
+    #filename = '../data/test.xyz'
     cloud = np.loadtxt(filename)
+
+    mplot3d = MPlot3D()
+    mplot3d.draw_cloud(cloud)
+    mplot3d.show()
 
     plane = PlaneFit()
     models = plane.fit(cloud)
