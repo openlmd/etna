@@ -1,5 +1,5 @@
 <launch>
-    <arg name="gui" default="False" />
+    <arg name="gui" default="True" />
 
     <arg name="model" value="$(find etna_workcell)/urdf/abb_workcell.xacro" />
     <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />

@@ -11,11 +11,13 @@ import calculate as calc
 from profile import Profile
 from mlabplot import MPlot3D
 
+np.set_printoptions(precision=4, suppress=True)
+
 
 # ----------------------------------------------------------------------------
 
 class CameraCalibration():
-    def __init__(self, grid_size=(7,6), square_size=10.0):
+    def __init__(self, grid_size=(7, 6), square_size=10.0):
         self.grid_size = grid_size
         self.square_size = square_size
         self.targets = self.get_pattern_points()
@@ -23,7 +25,7 @@ class CameraCalibration():
 
     def get_pattern_points(self):
         points = np.zeros((np.prod(self.grid_size), 2), np.float32)
-        points[:,:2] = np.indices(self.grid_size).T.reshape(-1, 2)
+        points[:, :2] = np.indices(self.grid_size).T.reshape(-1, 2)
         points *= self.square_size
         #points += self.grid_orig
         return points
@@ -37,9 +39,9 @@ class CameraCalibration():
         return data
 
     def save_camera_parameters(self, filename):
-        data = dict(rms = self.rms,
-                    mat = self.camera_mat.tolist(),
-                    coef = self.dist_coef.tolist())
+        data = dict(rms=self.rms,
+                    mat=self.camera_mat.tolist(),
+                    coef=self.dist_coef.tolist())
         with open(filename, 'w') as f:
             f.write(yaml.dump(data))
         return data
@@ -49,7 +51,7 @@ class CameraCalibration():
         grid = None
         found, corners = cv2.findChessboardCorners(gray, self.grid_size)
         if found:
-            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1) # termination criteria
+            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)   # termination criteria
             cv2.cornerSubPix(gray, corners, (5, 5), (-1, -1), term)
             grid = corners.reshape((self.grid_size[0], self.grid_size[1], 2))
         return grid
@@ -80,8 +82,8 @@ class CameraCalibration():
     def get_calibration(self, images):
         """Gets the camera parameters solving the calibration problem."""
         # Arrays to store object points and image points from all the images.
-        obj_points = [] # 3d point in real world space
-        img_points = [] # 2d points in image plane.
+        obj_points = []  # 3d point in real world space
+        img_points = []  # 2d points in image plane.
         self.grids = self.find_patterns(images)
         for grid in self.grids:
             if grid is not None:
@@ -103,7 +105,8 @@ class CameraCalibration():
         """Projects 3D points to image coordinates."""
         R, t = pose
         rvecs, tvecs = cv2.Rodrigues(R)[0], np.float32([t]).T
-        imgpts, jac = cv2.projectPoints(points, rvecs, tvecs, self.camera_mat, self.dist_coef)
+        imgpts, jac = cv2.projectPoints(points, rvecs, tvecs,
+                                        self.camera_mat, self.dist_coef)
         return imgpts.reshape((-1, 2))
 
     def reprojection_error(self, points3d, imgpoints, pose):
@@ -140,8 +143,8 @@ class CameraCalibration():
     def undistort_points(self, points):
         points = cv2.undistortPoints(np.float32([points]), self.camera_mat,
                                      self.dist_coef).reshape((-1, 2))
-        fx, fy = self.camera_matrix[0,0], self.camera_matrix[1,1]
-        cx, cy = self.camera_matrix[0,2], self.camera_matrix[1,2]
+        fx, fy = self.camera_matrix[0, 0], self.camera_matrix[1, 1]
+        cx, cy = self.camera_matrix[0, 2], self.camera_matrix[1, 2]
         # Normalized coordinated are transformed to image coordinates.
         points = points * np.float32([fx, fy]) + np.float32([cx, cy])
         return points
@@ -155,7 +158,7 @@ class CameraCalibration():
 
     def draw_frame(self, img, pose, size=(30, 30, 30)):
         sx, sy, sz = size
-        corners = np.float32([[0, 0, 0], [sx, 0, 0], [0, sy,0], [0, 0, sz]])
+        corners = np.float32([[0, 0, 0], [sx, 0, 0], [0, sy, 0], [0, 0, sz]])
         imgpts = self.project_3d_points(corners, pose)
         cv2.line(img, tuple(imgpts[0]), tuple(imgpts[1]), (0, 0, 255), 5)
         cv2.line(img, tuple(imgpts[0]), tuple(imgpts[2]), (0, 255, 0), 5)
@@ -167,16 +170,16 @@ class CameraCalibration():
                            [0, 0, -1], [0, 1, -1], [1, 1, -1], [1, 0, -1]]) * np.float32(size)
         imgpts = np.int32(self.project_3d_points(axis, pose))
         cv2.drawContours(img, [imgpts[:4]], -1, (0, 255, 0), thickness)
-        for i, j in zip(range(4),range(4,8)):
+        for i, j in zip(range(4), range(4, 8)):
             cv2.line(img, tuple(imgpts[i]), tuple(imgpts[j]), (255, 0, 0), thickness)
-        cv2.drawContours(img, [imgpts[4:]],-1, (0, 0, 255), thickness)
+        cv2.drawContours(img, [imgpts[4:]], -1, (0, 0, 255), thickness)
         return img
 
 
 # ----------------------------------------------------------------------------
 
 class LaserCalibration(CameraCalibration):
-    def __init__(self, grid_size=(7,6), square_size=10.0, profile=Profile()):
+    def __init__(self, grid_size=(7, 6), square_size=10.0, profile=Profile()):
         CameraCalibration.__init__(self, grid_size=grid_size, square_size=square_size)
         self.camera_pose = (np.eye(3), np.zeros(3))
         self.profile = profile
@@ -198,7 +201,8 @@ class LaserCalibration(CameraCalibration):
 
     def find_best_plane(self, points3d):
         plane = fit.PlaneFit()
-        model, inliers = plane.ransac(points3d, plane, int(0.5*len(points3d)), 20)
+        model, inliers = plane.ransac(points3d, plane,
+                                      int(0.5*len(points3d)), 20)
         return model, inliers
 
     def find_plane_transformation(self, plane_pose):
@@ -221,8 +225,8 @@ class LaserCalibration(CameraCalibration):
         vpoints2d, vpoints3d = [], []
         for k in range(len(profile2d)):
             error = self.reprojection_error(np.float32([profile3d[k]]),
-                                                np.float32([profile2d[k]]),
-                                                self.camera_pose)
+                                            np.float32([profile2d[k]]),
+                                            self.camera_pose)
             if error < 1:
                 vpoints2d.append(profile2d[k])
                 vpoints3d.append(profile3d[k])
@@ -292,7 +296,7 @@ class LaserCalibration(CameraCalibration):
         mplot3d.draw_plane(plane, self.profiles3d[inliers])
 
         mplot3d.draw_points(self.profiles3d, color=(1, 1, 0))
-        mplot3d.draw_points(self.profiles3d[inliers], color=(0,0,1))
+        mplot3d.draw_points(self.profiles3d[inliers], color=(0, 0, 1))
         # Draws camera and laser poses
         mplot3d.draw_frame(self.profile.pose, label='laser')
         points3d = calc.transform_points2d(self.targets, self.camera_pose)
@@ -306,7 +310,7 @@ class LaserCalibration(CameraCalibration):
         grid = self.find_chessboard(img)
         if grid is not None:
             img = draw_chessboard(img, grid)
-        text += 'FPS: %.1f\n' %(frame_rate)
+        text += 'FPS: %.1f\n' % (frame_rate)
         profile_points = self.profile.peak_profile(gray)
         img = draw_points(img, profile_points, color=RED, thickness=2)
         img = draw_text(img, (10, 20), text)
@@ -329,7 +333,8 @@ class HandEyeCalibration():
         pass
 
     def _skew(self, v):
-        if len(v) == 4: v = v[:3]/v[3]
+        if len(v) == 4:
+            v = v[:3]/v[3]
         skv = np.roll(np.roll(np.diag(v.flatten()), 1, 1), -1, 0)
         return skv - skv.T
 
@@ -346,13 +351,13 @@ class HandEyeCalibration():
         %        v    - unit rotation axis, |v| = 1
         %
         """
-        q = np.array(q).reshape(3,1)
-        p = np.dot(q.T,q).reshape(1)[0]
+        q = np.array(q).reshape(3, 1)
+        p = np.dot(q.T, q).reshape(1)[0]
         if p > 1:
             print('Warning: quaternion greater than 1')
         w = np.sqrt(1 - p)
         R = np.eye(4)
-        R[:3,:3] = 2*q*q.T + 2*w*self._skew(q) + np.eye(3) - 2*np.diag([p,p,p])
+        R[:3, :3] = 2*q*q.T + 2*w*self._skew(q) + np.eye(3) - 2*np.diag([p, p, p])
         return R
 
     def _rot_to_quat(self, R):
@@ -368,20 +373,20 @@ class HandEyeCalibration():
         %        v    - unit rotation axis, |v| = 1
         %
         """
-        w4 = 2 * np.sqrt(1 + np.trace(R[:3,:3]))
-        q = np.array([(R[2,1] - R[1,2]) / w4,
-                      (R[0,2] - R[2,0]) / w4,
-                      (R[1,0] - R[0,1]) / w4])
+        w4 = 2 * np.sqrt(1 + np.trace(R[:3, :3]))
+        q = np.array([(R[2, 1] - R[1, 2]) / w4,
+                      (R[0, 2] - R[2, 0]) / w4,
+                      (R[1, 0] - R[0, 1]) / w4])
         return q
 
-    def solve(self, Hgs, Hcs): # list of poses
+    def solve(self, Hgs, Hcs):  # list of poses
 
         # // Calculate rotational component
         M = len(Hgs)
         lhs = []
         rhs = []
         for i in range(M):
-            for j in range(i+1,M):
+            for j in range(i+1, M):
                 Hgij = np.dot(la.inv(Hgs[j]), Hgs[i])
                 Pgij = 2 * self._rot_to_quat(Hgij)
                 Hcij = np.dot(Hcs[j], la.inv(Hcs[i]))
@@ -401,11 +406,11 @@ class HandEyeCalibration():
         lhs = []
         rhs = []
         for i in range(M):
-            for j in range(i+1,M):
+            for j in range(i+1, M):
                 Hgij = np.dot(la.inv(Hgs[j]), Hgs[i])
                 Hcij = np.dot(Hcs[j], la.inv(Hcs[i]))
-                lhs.append(Hgij[:3,:3] - np.eye(3))
-                rhs.append(np.dot(Rcg[:3,:3], Hcij[:3,3]) - Hgij[:3,3])
+                lhs.append(Hgij[:3, :3] - np.eye(3))
+                rhs.append(np.dot(Rcg[:3, :3], Hcij[:3, 3]) - Hgij[:3, 3])
         lhs = np.array(lhs)
         lhs = lhs.reshape(lhs.shape[0]*3, 3)
         rhs = np.array(rhs)
@@ -413,41 +418,41 @@ class HandEyeCalibration():
         Tcg, res, rank, sing = np.linalg.lstsq(lhs, rhs)
 
         Hcg = np.eye(4)
-        Hcg[:3,:3] = Rcg[:3,:3]
-        Hcg[:3,3] = Tcg
+        Hcg[:3, :3] = Rcg[:3, :3]
+        Hcg[:3, 3] = Tcg
         return Hcg
 
 
-
 if __name__ == '__main__':
-    np.set_printoptions(precision=4, suppress=True)
-
     import os
     import glob
 
-    dirname = '../data/calib2'
-    filenames = os.path.join(dirname, 'frame*.png')
+    dirname = '../data/calib1'
+    pathname = os.path.join(dirname, 'frame*.png')
+    filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
+    ks = [int(filename[-8:-4]) for filename in filenames]
+    print 'Files numbers:', ks
+
     laser_profile = Profile(axis=1, thr=180, method='pcog')
-    laser_calibration = LaserCalibration(grid_size=(7,6), square_size=0.010, profile=laser_profile)
-    laser_calibration.find_calibration_3d(filenames)
+    laser_calibration = LaserCalibration(grid_size=(7, 6), square_size=0.010,
+                                         profile=laser_profile)
+    laser_calibration.find_calibration_3d(pathname)
 
     images = laser_calibration.images
     grids = laser_calibration.grids
     poses = laser_calibration.locate_patterns(grids)
     profiles = laser_calibration.find_profiles(images)
-    #homographies = laser_calibration.find_homographies(grids)
     lines = laser_calibration.find_lines(profiles)
 
     for k, img in enumerate(images):
-        #imgc = img.copy()
         imgc = laser_calibration.draw_chessboard(img.copy(), grids[k])
-        #cv2.imwrite('board%i.png' %k, imgc)
         if len(profiles[k]) > 0:
             line, inliers = lines[k]
             imgc = draw_points(imgc, profiles[k], color=PURPLE, thickness=2)
             line = ((0, int(line[0] * 0 + line[1])),
                     (int(img.shape[1]), int(line[0] * img.shape[1] + line[1])))
-            imgc = draw_points(imgc, profiles[k][inliers], color=RED, thickness=2)
+            imgc = draw_points(imgc, profiles[k][inliers],
+                               color=RED, thickness=2)
             imgc = draw_line(imgc, line, color=RED, thickness=2)
             #cv2.imwrite('board%i.png' %k, imgc)
         show_images([imgc], wait=500)
@@ -455,25 +460,22 @@ if __name__ == '__main__':
     #laser_calibration.show_calibration_3d(images)
     #laser_calibration.save_parameters('../config/triangulation.yml')
 
-    filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
-    ks = [int(filename[-8:-4]) for filename in filenames]
     poses_checker, poses_tool = [], []
     for k in ks:
-        img = read_image(os.path.join(dirname, 'frame%04i.png' %k))
+        path_frame = os.path.join(dirname, 'frame%04i.png' % k)
+        path_pose = os.path.join(dirname, 'pose%04i.txt' % k)
+        img = read_image(path_frame)
         grid = laser_calibration.find_chessboard(img)
         pose_checker = None
         pose_tool0 = None
         if grid is not None:
             pose_checker = laser_calibration.get_chessboard_pose(grid)
             pose_checker = calc.pose_to_matrix(pose_checker)
-            with open(os.path.join(dirname, 'pose%04i.txt' %k), 'r') as f:
+            with open(path_pose, 'r') as f:
                 pose = eval(f.read())
-                quatpose_tool0 = (np.array(pose[0]), np.array(pose[1]))
-                pose_tool0 = calc.quatpose_to_matrix(*quatpose_tool0)
+                pose_tool0 = calc.quatpose_to_matrix(*(np.array(pose[0]), np.array(pose[1])))
         poses_checker.append(pose_checker)
         poses_tool.append(pose_tool0)
-    #RZ180 = calc.rpypose_to_matrix((0.06,0.05,0), (0, 0, np.pi))
-    #poses_checker = [calc.matrix_compose((pose_checker, RZ180)) for pose_checker in poses_checker]
     print 'Poses:', poses_checker, poses_tool
     pchecker, ptool = [], []
     for k in range(len(poses_checker)):
@@ -503,15 +505,15 @@ if __name__ == '__main__':
     for k, tool_frame in enumerate(poses_tool):
         WC = calc.matrix_compose((tool_frame, T2C))
         mplot3d.draw_transformation(world_frame, tool_frame)
-        mplot3d.draw_transformation(tool_frame, WC, 'tool_pose%i'%k, 'camera_pose%i'%k)
+        mplot3d.draw_transformation(tool_frame, WC, 'tool_pose%i' % k, 'camera_pose%i' % k)
         WK = calc.matrix_compose((WC, poses_checker[k]))
-        print 'Checker %i ->' %k, WK
+        print 'Checker %i ->' % k, WK
         print np.allclose(W2K, WK, atol=0.00001)
         mplot3d.draw_frame(calc.matrix_to_pose(WK))
-        mplot3d.draw_points(calc.points_transformation(WK, laser_calibration.pattern_points), color=(1,1,0))
+        mplot3d.draw_points(calc.points_transformation(WK, laser_calibration.pattern_points), color=(1, 1, 0))
 
         mplot3d.draw_frame(calc.matrix_to_pose(W2K))
-        mplot3d.draw_points(calc.points_transformation(W2K, laser_calibration.pattern_points), color=(1,1,1))
+        mplot3d.draw_points(calc.points_transformation(W2K, laser_calibration.pattern_points), color=(1, 1, 1))
 
         img, grid = images[k], laser_calibration.grids[k]
         if grid is not None:
@@ -522,10 +524,6 @@ if __name__ == '__main__':
 
     mplot3d.show()
 
-#    # TODO: Add hand eye calibration: automatic calibration
-#    # TODO: Change calibration units to meters. (remove millimeters)
 #    # TODO: Standardize transformation functions: halcon inspired.
 #    # TODO: Remove pose (R,t). Replace with homogeneous transformation matrices.
-#    # TODO: Integrate rviz with workcell calibration tools.
 #    # TODO: Modified RAPID script: power, powder, triggers. Check TCP sign.
-

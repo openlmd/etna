@@ -1,0 +1,90 @@
+distance	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def distance(point1, point2):$/;"	function	line:7
+distance2	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def distance2(point1, point2):$/;"	function	line:19
+angle	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def angle(point1, point2, point3):$/;"	function	line:31
+normal_vector	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def normal_vector(point1, point2, point3):$/;"	function	line:40
+line2d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def line2d(point1, point2):$/;"	function	line:47
+vector	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def vector(point1, point2):$/;"	function	line:56
+magnitude2	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def magnitude2(vector):$/;"	function	line:61
+magnitude	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def magnitude(vector):$/;"	function	line:70
+normalize	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def normalize(vector):$/;"	function	line:79
+dot	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def dot(vector1, vector2):$/;"	function	line:91
+cross	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def cross(vector1, vector2):$/;"	function	line:101
+pose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def pose_to_matrix(pose):$/;"	function	line:115
+rpypose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def rpypose_to_matrix(trans, rpy):$/;"	function	line:123
+rpypose_to_pose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def rpypose_to_pose(trans, rpy):$/;"	function	line:130
+rpypose_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def rpypose_to_quatpose(trans, rpy):$/;"	function	line:136
+quatpose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def quatpose_to_matrix(trans, quat):$/;"	function	line:142
+quatpose_to_pose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def quatpose_to_pose(trans, quat):$/;"	function	line:149
+quatpose_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def quatpose_to_rpypose(trans, quat):$/;"	function	line:155
+matrix_to_pose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_to_pose(mat):$/;"	function	line:161
+matrix_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_to_rpypose(mat):$/;"	function	line:168
+matrix_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_to_quatpose(mat):$/;"	function	line:175
+matrix_invert	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_invert(matrix):$/;"	function	line:182
+matrix_compose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_compose(matrices):$/;"	function	line:187
+matrix_transformation	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def matrix_transformation(matrix1, matrix2):$/;"	function	line:195
+points_transformation	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def points_transformation(matrix, points):$/;"	function	line:202
+transform_points2d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def transform_points2d(points, pose):$/;"	function	line:211
+transform_points	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calculate.py	/^def transform_points(pose, points):$/;"	function	line:217
+CameraCalibration	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^class CameraCalibration():$/;"	class	line:19
+__init__	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def __init__(self, grid_size=(7, 6), square_size=10.0):$/;"	member	line:20	class:CameraCalibration
+get_pattern_points	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def get_pattern_points(self):$/;"	member	line:26	class:CameraCalibration
+load_camera_parameters	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def load_camera_parameters(self, filename):$/;"	member	line:33	class:CameraCalibration
+save_camera_parameters	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def save_camera_parameters(self, filename):$/;"	member	line:41	class:CameraCalibration
+find_chessboard	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_chessboard(self, img):$/;"	member	line:49	class:CameraCalibration
+get_chessboard_pose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def get_chessboard_pose(self, grid):$/;"	member	line:59	class:CameraCalibration
+read_filenames	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def read_filenames(self, filenames):$/;"	member	line:67	class:CameraCalibration
+read_images	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def read_images(self, filenames):$/;"	member	line:70	class:CameraCalibration
+find_patterns	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_patterns(self, images):$/;"	member	line:74	class:CameraCalibration
+locate_patterns	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def locate_patterns(self, grids):$/;"	member	line:78	class:CameraCalibration
+get_calibration	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def get_calibration(self, images):$/;"	member	line:82	class:CameraCalibration
+find_transformation	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_transformation(self, object_points, image_points):$/;"	member	line:97	class:CameraCalibration
+project_3d_points	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def project_3d_points(self, points, pose):$/;"	member	line:104	class:CameraCalibration
+reprojection_error	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def reprojection_error(self, points3d, imgpoints, pose):$/;"	member	line:112	class:CameraCalibration
+chessboard_reprojection_error	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def chessboard_reprojection_error(self, grid):$/;"	member	line:126	class:CameraCalibration
+calculate_reprojection_errors	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def calculate_reprojection_errors(self, grids):$/;"	member	line:134	class:CameraCalibration
+undistort_image	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def undistort_image(self, image):$/;"	member	line:139	class:CameraCalibration
+undistort_points	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def undistort_points(self, points):$/;"	member	line:143	class:CameraCalibration
+draw_chessboard	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def draw_chessboard(self, image, corners):$/;"	member	line:152	class:CameraCalibration
+draw_frame	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def draw_frame(self, img, pose, size=(30, 30, 30)):$/;"	member	line:159	class:CameraCalibration
+draw_box	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def draw_box(self, img, pose, size=(30, 30, 30), thickness=3):$/;"	member	line:168	class:CameraCalibration
+LaserCalibration	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^class LaserCalibration(CameraCalibration):$/;"	class	line:181
+__init__	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def __init__(self, grid_size=(7, 6), square_size=10.0, profile=Profile()):$/;"	member	line:182	class:LaserCalibration
+load_parameters	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def load_parameters(self, filename):$/;"	member	line:187	class:LaserCalibration
+save_parameters	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def save_parameters(self, filename):$/;"	member	line:190	class:LaserCalibration
+get_camera_pose	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def get_camera_pose(self, global_points, image_points):$/;"	member	line:193	class:LaserCalibration
+find_best_line2d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_best_line2d(self, points2d):$/;"	member	line:197	class:LaserCalibration
+find_best_plane	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_best_plane(self, points3d):$/;"	member	line:202	class:LaserCalibration
+find_plane_transformation	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_plane_transformation(self, plane_pose):$/;"	member	line:208	class:LaserCalibration
+find_lightplane	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_lightplane(self, points3d):$/;"	member	line:216	class:LaserCalibration
+filter_chessboard_laser	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def filter_chessboard_laser(self, profile3d, profile2d):$/;"	member	line:223	class:LaserCalibration
+get_chessboard_laser	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def get_chessboard_laser(self, img, grid):$/;"	member	line:237	class:LaserCalibration
+find_profiles	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_profiles(self, images):$/;"	member	line:244	class:LaserCalibration
+find_homographies	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_homographies(self, grids):$/;"	member	line:248	class:LaserCalibration
+find_lines	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_lines(self, profiles):$/;"	member	line:256	class:LaserCalibration
+find_calibration_3d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def find_calibration_3d(self, filenames):$/;"	member	line:261	class:LaserCalibration
+show_calibration_3d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def show_calibration_3d(self, images):$/;"	member	line:279	class:LaserCalibration
+draw_location_results	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def draw_location_results(self, img, frame_rate):$/;"	member	line:307	class:LaserCalibration
+HandEyeCalibration	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^class HandEyeCalibration():$/;"	class	line:322
+__init__	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def __init__(self):$/;"	member	line:332	class:HandEyeCalibration
+_skew	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def _skew(self, v):$/;"	member	line:335	class:HandEyeCalibration
+_quat_to_rot	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def _quat_to_rot(self, q):$/;"	member	line:341	class:HandEyeCalibration
+_rot_to_quat	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def _rot_to_quat(self, R):$/;"	member	line:363	class:HandEyeCalibration
+solve	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    def solve(self, Hgs, Hcs):  # list of poses$/;"	member	line:382	class:HandEyeCalibration
+dirname	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    dirname = '..\/data\/calib1'$/;"	variable	line:430	class:HandEyeCalibration
+pathname	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    pathname = os.path.join(dirname, 'frame*.png')$/;"	variable	line:431	class:HandEyeCalibration
+filenames	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))$/;"	variable	line:432	class:HandEyeCalibration
+ks	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    ks = [int(filename[-8:-4]) for filename in filenames]$/;"	variable	line:433	class:HandEyeCalibration
+laser_profile	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    laser_profile = Profile(axis=1, thr=180, method='pcog')$/;"	variable	line:436	class:HandEyeCalibration
+laser_calibration	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    laser_calibration = LaserCalibration(grid_size=(7, 6), square_size=0.010,$/;"	variable	line:437	class:HandEyeCalibration
+images	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    images = laser_calibration.images$/;"	variable	line:441	class:HandEyeCalibration
+grids	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    grids = laser_calibration.grids$/;"	variable	line:442	class:HandEyeCalibration
+poses	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    poses = laser_calibration.locate_patterns(grids)$/;"	variable	line:443	class:HandEyeCalibration
+profiles	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    profiles = laser_calibration.find_profiles(images)$/;"	variable	line:444	class:HandEyeCalibration
+lines	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    lines = laser_calibration.find_lines(profiles)$/;"	variable	line:445	class:HandEyeCalibration
+poses_ichecker	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    poses_ichecker = [calc.matrix_invert(pose_checker) for pose_checker in poses_checker]$/;"	variable	line:486	class:HandEyeCalibration
+poses_itool	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    poses_itool = [calc.matrix_invert(pose_tool) for pose_tool in poses_tool]$/;"	variable	line:487	class:HandEyeCalibration
+tlc	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    tlc = HandEyeCalibration()$/;"	variable	line:490	class:HandEyeCalibration
+T2C	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    T2C = tlc.solve(poses_tool, poses_checker)$/;"	variable	line:491	class:HandEyeCalibration
+W2K	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    W2K = tlc.solve(poses_itool, poses_ichecker)$/;"	variable	line:492	class:HandEyeCalibration
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    mplot3d = MPlot3D(scale=0.005)$/;"	variable	line:502	class:HandEyeCalibration
+world_frame	/home/jorge/catkin_ws/src/etna/etna_triangulation/src/icv/calibration.py	/^    world_frame = calc.rpypose_to_matrix([0, 0, 0], [0, 0, 0])$/;"	variable	line:503	class:HandEyeCalibration

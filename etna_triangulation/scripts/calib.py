@@ -17,6 +17,7 @@ pattern_rows = 7
 pattern_cols = 8
 pattern_size = 0.010
 config_file = 'profile3d.yaml'
+pathname = os.path.join(path, 'data', 'frame*.png')
 
 square_size = pattern_size
 grid_size = (pattern_cols-1, pattern_rows-1)
@@ -24,8 +25,7 @@ grid_size = (pattern_cols-1, pattern_rows-1)
 laser_profile = Profile(axis=1, thr=180, method='pcog')
 camera_calibration = CameraCalibration(grid_size=grid_size, square_size=square_size)
 laser_calibration = LaserCalibration(grid_size=grid_size, square_size=square_size, profile=laser_profile)
-print os.path.join(path, 'data', 'frame*.png')
-laser_calibration.find_calibration_3d(os.path.join(path, 'data', 'frame*.png'))
+laser_calibration.find_calibration_3d(pathname)
 laser_calibration.save_parameters(os.path.join(path, 'config', config_file))
 
 filenames = sorted(glob.glob('../data/pose*.txt'))
@@ -33,8 +33,8 @@ ks = [int(filename[-8:-4]) for filename in filenames]
 poses_checker, poses_tool = [], []
 poses_ichecker, poses_itool = [], []
 for k in ks:
-    print 'Frame: %i' %k
-    img = read_image('../data/frame%04i.png' %k)
+    print 'Frame: %i' % k
+    img = read_image('../data/frame%04i.png' % k)
     grid = camera_calibration.find_chessboard(img)
     pose_checker = None
     if grid is not None:
@@ -42,7 +42,7 @@ for k in ks:
         pose_checker = calc.pose_to_matrix((pose_checker[0], pose_checker[1]))
         img = camera_calibration.draw_chessboard(img, grid)
     show_images([img])
-    with open('../data/pose%04i.txt' %k, 'r') as f:
+    with open('../data/pose%04i.txt' % k, 'r') as f:
         pose = eval(f.read())
         quatpose_tool0 = (np.array(pose[0]), np.array(pose[1]))
         pose_tool0 = calc.quatpose_to_matrix(*quatpose_tool0)
@@ -51,7 +51,7 @@ for k in ks:
         poses_tool.append(pose_tool0)
         poses_ichecker.append(calc.matrix_invert(pose_checker))
         poses_itool.append(calc.matrix_invert(pose_tool0))
-print 'Poses:', len(poses_checker), len(poses_tool), poses_checker, poses_tool
+print 'Poses:', len(poses_checker), len(poses_tool)
 
 print 'Hand Eye Calibration Solution'
 tlc = HandEyeCalibration()
