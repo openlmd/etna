@@ -11,17 +11,21 @@ import calculate as calc
 from profile import Profile
 from mlabplot import MPlot3D
 
+
+RED = (0, 0, 255)
+GREEN = (0, 255, 0)
+BLUE = (255, 0, 0)
+
 np.set_printoptions(precision=4, suppress=True)
 
-
-# ----------------------------------------------------------------------------
 
 class CameraCalibration():
     def __init__(self, grid_size=(7, 6), square_size=10.0):
         self.grid_size = grid_size
         self.square_size = square_size
         self.targets = self.get_pattern_points()
-        self.pattern_points = np.float32([[point[0], point[1], 0] for point in self.targets])
+        self.pattern_points = np.float32([[point[0], point[1], 0]
+                                          for point in self.targets])
 
     def get_pattern_points(self):
         points = np.zeros((np.prod(self.grid_size), 2), np.float32)
@@ -51,7 +55,7 @@ class CameraCalibration():
         grid = None
         found, corners = cv2.findChessboardCorners(gray, self.grid_size)
         if found:
-            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)   # termination criteria
+            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)
             cv2.cornerSubPix(gray, corners, (5, 5), (-1, -1), term)
             grid = corners.reshape((self.grid_size[0], self.grid_size[1], 2))
         return grid
@@ -96,8 +100,10 @@ class CameraCalibration():
 
     def find_transformation(self, object_points, image_points):
         """Finds the rotation and translation transformation."""
-        rvecs, tvecs, inliers = cv2.solvePnPRansac(object_points, image_points,
-                                                   self.camera_mat, self.dist_coef)
+        rvecs, tvecs, inliers = cv2.solvePnPRansac(object_points,
+                                                   image_points,
+                                                   self.camera_mat,
+                                                   self.dist_coef)
         R, t = cv2.Rodrigues(rvecs)[0], tvecs.reshape(-1)
         return R, t
 
@@ -160,19 +166,20 @@ class CameraCalibration():
         sx, sy, sz = size
         corners = np.float32([[0, 0, 0], [sx, 0, 0], [0, sy, 0], [0, 0, sz]])
         imgpts = self.project_3d_points(corners, pose)
-        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[1]), (0, 0, 255), 5)
-        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[2]), (0, 255, 0), 5)
-        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[3]), (255, 0, 0), 5)
+        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[1]), RED, 5)
+        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[2]), GREEN, 5)
+        cv2.line(img, tuple(imgpts[0]), tuple(imgpts[3]), BLUE, 5)
         return img
 
     def draw_box(self, img, pose, size=(30, 30, 30), thickness=3):
         axis = np.float32([[0, 0, 0], [0, 1, 0], [1, 1, 0], [1, 0, 0],
-                           [0, 0, -1], [0, 1, -1], [1, 1, -1], [1, 0, -1]]) * np.float32(size)
+                           [0, 0, -1], [0, 1, -1], [1, 1, -1],
+                           [1, 0, -1]]) * np.float32(size)
         imgpts = np.int32(self.project_3d_points(axis, pose))
-        cv2.drawContours(img, [imgpts[:4]], -1, (0, 255, 0), thickness)
+        cv2.drawContours(img, [imgpts[:4]], -1, GREEN, thickness)
         for i, j in zip(range(4), range(4, 8)):
-            cv2.line(img, tuple(imgpts[i]), tuple(imgpts[j]), (255, 0, 0), thickness)
-        cv2.drawContours(img, [imgpts[4:]], -1, (0, 0, 255), thickness)
+            cv2.line(img, tuple(imgpts[i]), tuple(imgpts[j]), BLUE, thickness)
+        cv2.drawContours(img, [imgpts[4:]], -1, RED, thickness)
         return img
 
 
@@ -214,7 +221,8 @@ class LaserCalibration(CameraCalibration):
         return homography
 
     def find_lightplane(self, points3d):
-        """Calculates the transformation between the image points and the lightplane."""
+        """Calculates the transformation between the image points and the
+        lightplane."""
         plane, inliers = self.find_best_plane(points3d)
         plane_pose = fit.get_plane_pose(plane)
         plane_homography = self.find_plane_transformation(plane_pose)
@@ -238,7 +246,8 @@ class LaserCalibration(CameraCalibration):
         chessboard_pose = self.get_chessboard_pose(grid)
         homography = find_homography(grid.reshape((-1, 2)), self.targets)
         profile3d, profile2d = self.profile.points_profile(img, homography, chessboard_pose)
-        profile3d, profile2d = self.filter_chessboard_laser(profile3d, profile2d)
+        profile3d, profile2d = self.filter_chessboard_laser(profile3d,
+                                                            profile2d)
         return profile3d, profile2d, chessboard_pose
 
     def find_profiles(self, images):
@@ -342,13 +351,13 @@ class HandEyeCalibration():
         """
         Converts a unit quaternion (3x1) to a rotation matrix (3x3).
         %
-        %    R = quat2rot(q)
+        %   R = quat2rot(q)
         %
-        %    q - 3x1 unit quaternion
-        %    R - 4x4 homogeneous rotation matrix (translation component is zero)
-        %        q = sin(theta/2) * v
-        %        teta - rotation angle
-        %        v    - unit rotation axis, |v| = 1
+        %   q - 3x1 unit quaternion
+        %   R - 4x4 homogeneous rotation matrix (translation component is zero)
+        %       q = sin(theta/2) * v
+        %       teta - rotation angle
+        %       v    - unit rotation axis, |v| = 1
         %
         """
         q = np.array(q).reshape(3, 1)
@@ -399,7 +408,6 @@ class HandEyeCalibration():
         rhs = rhs.reshape(rhs.shape[0]*3)
         Pcg_, res, rank, sing = np.linalg.lstsq(lhs, rhs)
         Pcg = 2 * Pcg_ / np.sqrt(1 + np.dot(Pcg_, Pcg_))
-        #Rcg = (1 - 0.5 * np.dot(Pcg, Pcg)) * np.eye(3) + 0.5 * (np.dot(Pcg.reshape(3,1), Pcg.reshape(1,3)) + np.sqrt(4 - np.dot(Pcg, Pcg)) * self._skew(Pcg))
         Rcg = self._quat_to_rot(Pcg / 2)
 
         # // Calculate translational component
@@ -473,7 +481,8 @@ if __name__ == '__main__':
             pose_checker = calc.pose_to_matrix(pose_checker)
             with open(path_pose, 'r') as f:
                 pose = eval(f.read())
-                pose_tool0 = calc.quatpose_to_matrix(*(np.array(pose[0]), np.array(pose[1])))
+                pose_tool0 = calc.quatpose_to_matrix(*(np.array(pose[0]),
+                                                       np.array(pose[1])))
         poses_checker.append(pose_checker)
         poses_tool.append(pose_tool0)
     print 'Poses:', poses_checker, poses_tool
@@ -500,30 +509,35 @@ if __name__ == '__main__':
     #print 'Tool2Camera (rot):', calc.matrix_to_rpypose(T2C)
 
     mplot3d = MPlot3D(scale=0.005)
+    pp = laser_calibration.pattern_points
     world_frame = calc.rpypose_to_matrix([0, 0, 0], [0, 0, 0])
     mplot3d.draw_frame(calc.matrix_to_pose(world_frame), label='world_frame')
     for k, tool_frame in enumerate(poses_tool):
         WC = calc.matrix_compose((tool_frame, T2C))
         mplot3d.draw_transformation(world_frame, tool_frame)
-        mplot3d.draw_transformation(tool_frame, WC, 'tool_pose%i' % k, 'camera_pose%i' % k)
+        mplot3d.draw_transformation(tool_frame, WC, 'tool_pose%i' % k,
+                                                    'camera_pose%i' % k)
         WK = calc.matrix_compose((WC, poses_checker[k]))
         print 'Checker %i ->' % k, WK
         print np.allclose(W2K, WK, atol=0.00001)
         mplot3d.draw_frame(calc.matrix_to_pose(WK))
-        mplot3d.draw_points(calc.points_transformation(WK, laser_calibration.pattern_points), color=(1, 1, 0))
+        mplot3d.draw_points(calc.points_transformation(WK, pp),
+                            color=(1, 1, 0))
 
         mplot3d.draw_frame(calc.matrix_to_pose(W2K))
-        mplot3d.draw_points(calc.points_transformation(W2K, laser_calibration.pattern_points), color=(1, 1, 1))
+        mplot3d.draw_points(calc.points_transformation(W2K, pp),
+                            color=(1, 1, 1))
 
-        img, grid = images[k], laser_calibration.grids[k]
+        img, grid = images[k], os.linesepation.grids[k]
         if grid is not None:
-            profile3d, profile2d, chessboard_pose = laser_calibration.get_chessboard_laser(img, grid)
+            profile3d, profile2d, chessboard_pose = os.linesepation.get_chessboard_laser(img, grid)
             chessboard_pose = calc.matrix_compose((WC, calc.pose_to_matrix(chessboard_pose)))
             if len(profile2d) > 0:
-                mplot3d.draw_points(calc.points_transformation(WC, profile3d), color=(1, 1, 1))
+                mplot3d.draw_points(calc.points_transformation(WC, profile3d),
+                                    color=(1, 1, 1))
 
     mplot3d.show()
 
 #    # TODO: Standardize transformation functions: halcon inspired.
-#    # TODO: Remove pose (R,t). Replace with homogeneous transformation matrices.
+#    # TODO: Remove pose (R,t). Replace with homogeneous transformation matrix.
 #    # TODO: Modified RAPID script: power, powder, triggers. Check TCP sign.

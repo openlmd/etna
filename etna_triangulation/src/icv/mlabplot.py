@@ -1,9 +1,10 @@
+import os
+os.environ['ETS_TOOLKIT'] = 'qt4'
+
 import numpy as np
-
-import calculate as calc
-
 from mayavi import mlab
 
+import calculate as calc
 
 BLACK = (0, 0, 0)
 WHITE = (1, 1, 1)
@@ -38,9 +39,9 @@ class MPlot3D():
         clr = [RED, GREEN, BLUE]
         vectors = [[], [], []]
         for frame in frames:
-            vectors[0].append(frame[:,0])
-            vectors[1].append(frame[:,1])
-            vectors[2].append(frame[:,2])
+            vectors[0].append(frame[:, 0])
+            vectors[1].append(frame[:, 1])
+            vectors[2].append(frame[:, 2])
         vectors[0] = np.array(vectors[0])
         vectors[1] = np.array(vectors[1])
         vectors[2] = np.array(vectors[2])
@@ -90,7 +91,7 @@ class MPlot3D():
 
     def draw_lines(self, points3d, color=WHITE, scale=0.1):
         scale = self.scale * scale
-        mlab.plot3d(points3d[:,0], points3d[:,1], points3d[:,2],
+        mlab.plot3d(points3d[:, 0], points3d[:, 1], points3d[:, 2],
                     color=color, tube_radius=scale)
 
     def draw_camera(self, camera_pose, color=(0.8, 0.8, 1), scale=0.5):
@@ -129,11 +130,11 @@ class MPlot3D():
         scale = self.scale * scale
         vectors = []
         for frame in frames:
-            vectors.append(frame[:,2])
+            vectors.append(frame[:, 2])
         vectors = np.array(vectors)
         points = points - scale * vectors
-        mlab.quiver3d(points[:,0], points[:,1], points[:,2],
-                      vectors[:,0], vectors[:,1], vectors[:,2],
+        mlab.quiver3d(points[:, 0], points[:, 1], points[:, 2],
+                      vectors[:, 0], vectors[:, 1], vectors[:, 2],
                       color=(0, 0, 1), mode='arrow', scale_factor=scale)
 
     def draw_path_frames(self, path):
@@ -188,8 +189,8 @@ class MPlot3D():
                       color=(0.4, 0.5, 0.6), mode='2ddash', scale_factor=1, line_width=5.0)
                       #mode='2ddash', 'arrow', 'cylinder'
         pnts, vctrs = points[np.bitwise_not(processes)], vectors[np.bitwise_not(processes)]
-        mlab.quiver3d(pnts[:,0], pnts[:,1], pnts[:,2],
-                      vctrs[:,0], vctrs[:,1], vctrs[:,2],
+        mlab.quiver3d(pnts[:, 0], pnts[:, 1], pnts[:, 2],
+                      vctrs[:, 0], vctrs[:, 1], vctrs[:, 2],
                       color=(0.8, 0.6, 0.2), mode='2ddash', scale_factor=1, line_width=2.0)
 
     def draw_point_cloud(self, points3d):

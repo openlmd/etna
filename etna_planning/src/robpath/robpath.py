@@ -13,8 +13,8 @@ class RobPath():
         self.mesh = mesh.Mesh(filename)
         # TODO: Change bpoints.
         self.mesh.translate(np.float32([20, 20, 0]))
-        position  = self.mesh.bpoint1 # Rename to position
-        size = self.mesh.bpoint2 - self.mesh.bpoint1 # Change by size
+        position = self.mesh.bpoint1  # Rename to position
+        size = self.mesh.bpoint2 - self.mesh.bpoint1  # Change by size
         print np.vstack(self.mesh.triangles)
 
     def translate_mesh(self, position):
@@ -70,23 +70,3 @@ class RobPath():
         self.rob_parser.save_file(filename, routine)
         self.rob_parser.upload_file(filename, directory)
         print routine
-
-
-
-if __name__ == "__main__":
-    robpath = RobPath()
-    robpath.load_mesh('models/piece5.stl')
-
-    from mlabplot import MPlot3D
-
-    mplot = MPlot3D()
-    mplot.draw_mesh(robpath.mesh)
-    mplot.show()
-
-    import polyline
-    filename = 'models_dxf/curvas_v16.dxf'
-    layers = polyline.read_layers(filename)
-
-    mplot = MPlot3D()
-    mplot.draw_layers(layers)
-    mplot.show()

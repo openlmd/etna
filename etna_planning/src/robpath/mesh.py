@@ -3,7 +3,7 @@ import time
 import struct
 import numpy as np
 
-import calculate as calc
+import icv.calculate as calc
 
 
 def filter_polyline(points, dist=0.1, angl=0.01):
@@ -63,9 +63,9 @@ class Mesh:
     def load_binary_mesh(self, filename):
         try:
             with open(filename, 'rb') as f:
-                data = f.read(84) # skip header
+                data = f.read(84)  # skip header
                 while data != '':
-                    data = f.read(12) # skip the normals entirely
+                    data = f.read(12)  # skip the normals entirely
                     if data != '':
                         tri = np.zeros((3, 3))
                         for j in range(3):
@@ -110,18 +110,25 @@ class Mesh:
             return False
         return True
 
+
     def bounding_box(self):
         bx1, bx2 = 10000, -10000
         by1, by2 = 10000, -10000
         bz1, bz2 = 10000, -10000
         for tri in self.triangles:
             for k in range(3):
-                if tri[k,0] < bx1: bx1 = tri[k,0]
-                if tri[k,0] > bx2: bx2 = tri[k,0]
-                if tri[k,1] < by1: by1 = tri[k,1]
-                if tri[k,1] > by2: by2 = tri[k,1]
-                if tri[k,2] < bz1: bz1 = tri[k,2]
-                if tri[k,2] > bz2: bz2 = tri[k,2]
+                if tri[k, 0] < bx1:
+                    bx1 = tri[k, 0]
+                if tri[k, 0] > bx2:
+                    bx2 = tri[k, 0]
+                if tri[k, 1] < by1:
+                    by1 = tri[k, 1]
+                if tri[k, 1] > by2:
+                    by2 = tri[k, 1]
+                if tri[k, 2] < bz1:
+                    bz1 = tri[k, 2]
+                if tri[k, 2] > bz2:
+                    bz2 = tri[k, 2]
         self.bpoint1 = np.array([bx1, by1, bz1])
         self.bpoint2 = np.array([bx2, by2, bz2])
         self.x_min, self.x_max = bx1, bx2
@@ -145,10 +152,10 @@ class Mesh:
         # Sorting the triangle according to height makes slicing then easier
         # point1, point2, point3 = resort(triangle)
         for k, tri in enumerate(self.triangles):
-            self.triangles[k] = tri[tri[:,2].argsort()]
+            self.triangles[k] = tri[tri[:, 2].argsort()]
 
     def get_z_intersect(self, triangle, z_level):
-        """Gets the line of the triangle which intersects with the plane in Z."""
+        """Gets the intersection line of the triangle with the plane in Z."""
         # Return the intersection of the tringle with the plane.
         # Returns None if the triangle does not intersect.
         point1, point2, point3 = triangle
@@ -182,16 +189,17 @@ class Mesh:
         """Calculates the polygons in the slice for a plane."""
         unsorted_lines = []
         for triangle in self.triangles:
-            if (triangle[0,2] < z_level) and (triangle[2,2] > z_level):
+            if (triangle[0, 2] < z_level) and (triangle[2, 2] > z_level):
                 intersection = self.get_z_intersect(triangle, z_level)
                 unsorted_lines.append(intersection)
-            elif (triangle[0,2] == z_level) and (triangle[2,2] == z_level):
+            elif (triangle[0, 2] == z_level) and (triangle[2, 2] == z_level):
                 print "WARNING: Triangle in z_level!"
         if not unsorted_lines == []:
-            # Arrange the line segments so that each segment leads to the nearest
-            # available segment. This is accomplished by using two list of lines,
-            # and at each step moving the nearest available line segment from the
-            # unsorted pile to the next slot in the sorted pile.
+            # Arrange the line segments so that each segment leads to the
+            # nearest available segment. This is accomplished by using two
+            # list of lines, and at each step moving the nearest available
+            # line segment from the unsorted pile to the next slot in the
+            # sorted pile.
             epsilon = 1e-9
             polygons = []
             point1, point2 = unsorted_lines[0]
@@ -224,6 +232,7 @@ class Mesh:
             return [filter_polyline(polygon, dist=0, angl=0) for polygon in polygons] # Polygons filter
         else:
             return None
+
 
     def get_grated(self, slice, dist):
         fill_lines = []
@@ -291,8 +300,8 @@ class Mesh:
             slice = mesh.get_slice(z_level)
             slices.append(slice)
             t1 = time.time()
-            print '[%.2f%%] Time to slices %.3f s.' %((100.0 * (k + 1)) / len(levels), t1 - t0)
-            if not slice == None:
+            print '[%.2f%%] Time to slices %.3f s.' % ((100.0 * (k + 1)) / len(levels), t1 - t0)
+            if slice is not None:
                 fill_lines = self.get_grated(slice, track_distance)
                 # Reverse the order of the slicer fill lines
                 if pair:
@@ -301,9 +310,8 @@ class Mesh:
                 tool_path = self.get_path_from_fill_lines(fill_lines)
                 path.extend(tool_path)
                 t2 = time.time()
-                print '[%.2f%%] Time to path %.3f s.' %((100.0 * (k + 1)) / len(slices), t2 - t1)
+                print '[%.2f%%] Time to path %.3f s.' % ((100.0 * (k + 1)) / len(slices), t2 - t1)
         return slices, path
-
 
 
 if __name__ == '__main__':
