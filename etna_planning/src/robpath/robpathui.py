@@ -1,26 +1,21 @@
-"""
-This application shows a mesh using Mayavi as a component of a large Qt application.
-"""
-
 import os
 os.environ['ETS_TOOLKIT'] = 'qt4'
 
 # To be able to use PySide or PyQt4 and not run in conflicts with traits,
 # we need to import QtGui and QtCore from pyface.qt
-from pyface.qt import QtGui, QtCore
+#from pyface.qt import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, uic
 
-from mayavi import mlab
+#from mayavi import mlab
 from traits.api import HasTraits, Instance, on_trait_change
 from traitsui.api import View, Item
 from mayavi.core.ui.api import MlabSceneModel, SceneEditor
 from tvtk.pyface.api import Scene
 
-from PyQt4 import QtGui, QtCore, uic
-
 import numpy as np
 
-from mlabplot import MPlot3D
 from robpath import RobPath
+from icv.mlabplot import MPlot3D
 
 
 class Visualization(HasTraits):
@@ -60,7 +55,8 @@ class QMayavi(QtGui.QWidget):
     def drawWorkingArea(self, width=300, height=200):
         self.mlab.clear()
         self.mlab.draw_working_area(width, height)
-        self.mlab.draw_points(np.float32([[0, 0, 0], [height, width, 50]]), scale=0.1) # working area
+        self.mlab.draw_points(np.float32([[0, 0, 0], [height, width, 50]]),
+                              scale=0.1)  # working area
         self.mlab.outline()
 
     def drawMesh(self, mesh):
@@ -148,14 +144,15 @@ class RobPathUI(QtGui.QMainWindow):
     def btnLoadMeshClicked(self):
         self.blockSignals(True)
         try:
-            filename = QtGui.QFileDialog.getOpenFileName(self.plot, 'Open file', './',
+            filename = QtGui.QFileDialog.getOpenFileName(self.plot,
+                                                         'Open file', './',
                                                          'Mesh Files (*.stl)')[0]
-            self.setWindowTitle('Mesh Viewer: %s' %filename)
+            self.setWindowTitle('Mesh Viewer: %s' % filename)
             self.robpath.load_mesh(filename)
             # -----
             # TODO: Change bpoints.
-            self.updatePosition(self.robpath.mesh.bpoint1) # Rename to position
-            self.updateSize(self.robpath.mesh.bpoint2 - self.robpath.mesh.bpoint1) # Change by size
+            self.updatePosition(self.robpath.mesh.bpoint1)
+            self.updateSize(self.robpath.mesh.bpoint2 - self.robpath.mesh.bpoint1)
             self.lblInfo.setText('Info:\n')
             # -----
             self.plot.drawMesh(self.robpath.mesh)
@@ -185,13 +182,13 @@ class RobPathUI(QtGui.QMainWindow):
             self.timer.start(100)
 
     def btnSaveRapidClicked(self):
-        #filename = QtGui.QFileDialog.getOpenFileName(self.plot, 'Save file', './',
-        #                                             'Rapid Modules (*.mod)')[0]
+        #filename = QtGui.QFileDialog.getOpenFileName(self.plot,
+        #                                            'Save file', './',
+        #                                           'Rapid Modules (*.mod)')[0]
         self.robpath.save_rapid()
 
     def btnQuitClicked(self):
         QtCore.QCoreApplication.instance().quit()
-
 
 
 if __name__ == "__main__":
@@ -202,4 +199,3 @@ if __name__ == "__main__":
     robpath = RobPathUI()
     robpath.show()
     app.exec_()
-

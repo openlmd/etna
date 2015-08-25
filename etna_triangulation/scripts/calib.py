@@ -23,8 +23,11 @@ square_size = pattern_size
 grid_size = (pattern_cols-1, pattern_rows-1)
 
 laser_profile = Profile(axis=1, thr=180, method='pcog')
-camera_calibration = CameraCalibration(grid_size=grid_size, square_size=square_size)
-laser_calibration = LaserCalibration(grid_size=grid_size, square_size=square_size, profile=laser_profile)
+camera_calibration = CameraCalibration(grid_size=grid_size,
+                                       square_size=square_size)
+laser_calibration = LaserCalibration(grid_size=grid_size,
+                                     square_size=square_size,
+                                     profile=laser_profile)
 laser_calibration.find_calibration_3d(pathname)
 laser_calibration.save_parameters(os.path.join(path, 'config', config_file))
 

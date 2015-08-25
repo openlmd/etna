@@ -30,10 +30,13 @@ def distance2(point1, point2):
 
 def angle(point1, point2, point3):
     pnt21, pnt23 = point1 - point2, point3 - point2
-    dist21, dist23 = np.sqrt(np.sum(pnt21 * pnt21)), np.sqrt(np.sum(pnt23 * pnt23))
+    dist21 = np.sqrt(np.sum(pnt21 * pnt21))
+    dist23 = np.sqrt(np.sum(pnt23 * pnt23))
     val = np.sum(pnt21 * pnt23) / (dist21 * dist23)
-    if val < -1: val = -1.0
-    elif val > 1: val = 1.0
+    if val < -1:
+        val = -1.0
+    elif val > 1:
+        val = 1.0
     return np.arccos(val)
 
 
@@ -115,7 +118,7 @@ def cross(vector1, vector2):
 def pose_to_matrix(pose):
     """Returns the homogeneous transformation matrix from the pose (R, t)."""
     mat = np.eye(4)
-    mat[:3,: 3] = pose[0]  # R
+    mat[:3, :3] = pose[0]  # R
     mat[:3, 3] = pose[1]  # t
     return mat
 
@@ -208,9 +211,11 @@ def points_transformation(matrix, points):
 
 # ---------------------------------------------------------------------------
 
+
 def transform_points2d(points, pose):
     """Transforms 2D points to world coordinates."""
-    pnts = np.float32([np.dot(pose[0], np.float32([x, y, 0])) + pose[1] for x, y in points])
+    pnts = np.float32([np.dot(pose[0], np.float32([x, y, 0])) + pose[1]
+                       for x, y in points])
     return pnts
 
 
