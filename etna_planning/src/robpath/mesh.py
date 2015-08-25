@@ -25,11 +25,13 @@ def filter_polyline(points, dist=0.1, angl=0.01):
         points = np.array(pnts)
     return points
 
+
 def get_range_values(v_min, v_max, v_dist):
     n_vals = np.round(((v_max - v_min) + v_dist) / v_dist)
     i_min = ((v_max + v_min) - (n_vals * v_dist)) / 2
     i_max = ((v_max + v_min) + (n_vals * v_dist)) / 2
     return np.arange(i_min, i_max + v_dist, v_dist)
+
 
 def get_path_with_frames(path):
     _path = []
@@ -71,7 +73,7 @@ class Mesh:
                         for j in range(3):
                             for i in range(3):
                                 data = f.read(4)
-                                tri[j,i] = struct.unpack('f', data)[0]
+                                tri[j, i] = struct.unpack('f', data)[0]
                     else:
                         break
                     data = f.read(2) # skip the attribute bytes
@@ -109,7 +111,6 @@ class Mesh:
             print "Unable to load text STL"
             return False
         return True
-
 
     def bounding_box(self):
         bx1, bx2 = 10000, -10000
@@ -229,15 +230,15 @@ class Mesh:
                         if not (calc.distance2(polygon[-1], point2) < epsilon):
                             polygon.append(point2)
             polygons.append(np.array(polygon))
-            return [filter_polyline(polygon, dist=0, angl=0) for polygon in polygons] # Polygons filter
+            return [filter_polyline(polygon, dist=0,
+                                    angl=0) for polygon in polygons]  # Polygons filter
         else:
             return None
 
-
     def get_grated(self, slice, dist):
         fill_lines = []
-        x_min = np.min([np.min(poly[:,0]) for poly in slice])
-        x_max = np.max([np.max(poly[:,0]) for poly in slice])
+        x_min = np.min([np.min(poly[:, 0]) for poly in slice])
+        x_max = np.max([np.max(poly[:, 0]) for poly in slice])
         for x in get_range_values(x_min, x_max, dist):
             points = []
             for poly in slice:
@@ -257,7 +258,7 @@ class Mesh:
                 indexes = np.argsort(points[:,1])
                 # ERROR!!!
                 if len(indexes) % 2:
-                    print 'ERROR IMPAR!', len(indexes) # tangent element finded
+                    print 'ERROR IMPAR!', len(indexes)  #tangent element finded
                     indexes = indexes[:len(indexes)-1]
                 #for k in range(0, len(indexes), 2):
                 #    i1, i2 = indexes[k], indexes[k+1]
@@ -316,7 +317,7 @@ class Mesh:
 
 if __name__ == '__main__':
     import sys
-    from mlabplot import MPlot3D
+    from icv.mlabplot import MPlot3D
 
     if len(sys.argv) > 1:
         filename = sys.argv[1]

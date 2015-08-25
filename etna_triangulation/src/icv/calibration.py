@@ -187,7 +187,8 @@ class CameraCalibration():
 
 class LaserCalibration(CameraCalibration):
     def __init__(self, grid_size=(7, 6), square_size=10.0, profile=Profile()):
-        CameraCalibration.__init__(self, grid_size=grid_size, square_size=square_size)
+        CameraCalibration.__init__(self, grid_size=grid_size,
+                                         square_size=square_size)
         self.camera_pose = (np.eye(3), np.zeros(3))
         self.profile = profile
 
@@ -245,7 +246,8 @@ class LaserCalibration(CameraCalibration):
     def get_chessboard_laser(self, img, grid):
         chessboard_pose = self.get_chessboard_pose(grid)
         homography = find_homography(grid.reshape((-1, 2)), self.targets)
-        profile3d, profile2d = self.profile.points_profile(img, homography, chessboard_pose)
+        profile3d, profile2d = self.profile.points_profile(img, homography,
+                                                           chessboard_pose)
         profile3d, profile2d = self.filter_chessboard_laser(profile3d,
                                                             profile2d)
         return profile3d, profile2d, chessboard_pose

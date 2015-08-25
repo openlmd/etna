@@ -1,16 +1,19 @@
 import os
+os.environ['QT_API'] = 'pyqt'
 os.environ['ETS_TOOLKIT'] = 'qt4'
 
 # To be able to use PySide or PyQt4 and not run in conflicts with traits,
 # we need to import QtGui and QtCore from pyface.qt
-#from pyface.qt import QtGui, QtCore
-from PyQt4 import QtGui, QtCore, uic
+from pyface.qt import QtGui, QtCore
 
 #from mayavi import mlab
 from traits.api import HasTraits, Instance, on_trait_change
 from traitsui.api import View, Item
 from mayavi.core.ui.api import MlabSceneModel, SceneEditor
 from tvtk.pyface.api import Scene
+
+#from PyQt4 import QtGui, QtCore, uic
+from PyQt4 import uic
 
 import numpy as np
 
@@ -146,7 +149,8 @@ class RobPathUI(QtGui.QMainWindow):
         try:
             filename = QtGui.QFileDialog.getOpenFileName(self.plot,
                                                          'Open file', './',
-                                                         'Mesh Files (*.stl)')[0]
+                                                         'Mesh Files (*.stl)')
+            print filename
             self.setWindowTitle('Mesh Viewer: %s' % filename)
             self.robpath.load_mesh(filename)
             # -----

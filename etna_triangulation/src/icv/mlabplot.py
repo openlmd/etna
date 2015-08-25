@@ -28,7 +28,7 @@ class MPlot3D():
         R, t = pose
         scale = self.scale * scale
         clr = [RED, GREEN, BLUE]
-        vecs = R[:,0], R[:,1], R[:,2]
+        vecs = R[:, 0], R[:, 1], R[:, 2]
         for k in range(3):
             mlab.quiver3d(t[0], t[1], t[2], vecs[k][0], vecs[k][1], vecs[k][2],
                           color=clr[k], mode='arrow', scale_factor=scale)
@@ -46,8 +46,8 @@ class MPlot3D():
         vectors[1] = np.array(vectors[1])
         vectors[2] = np.array(vectors[2])
         for k in range(3):
-            mlab.quiver3d(points[:,0], points[:,1], points[:,2],
-                          vectors[k][:,0], vectors[k][:,1], vectors[k][:,2],
+            mlab.quiver3d(points[:, 0], points[:, 1], points[:, 2],
+                          vectors[k][:, 0], vectors[k][:, 1], vectors[k][:, 2],
                           color=clr[k], mode='arrow', scale_factor=scale)
 
     def draw_transformation(self, matrix1, matrix2, label1='', label2=''):
@@ -63,7 +63,7 @@ class MPlot3D():
         #xmin, xmax = int(np.min(points3d[:,0])), int(np.max(points3d[:,0]))
         #ymin, ymax = int(np.min(points3d[:,1])), int(np.max(points3d[:,1]))
         ymin, ymax = -0.1, 0.1
-        zmin, zmax = 0, 1.5 * np.max(points3d[:,2])
+        zmin, zmax = 0, 1.5 * np.max(points3d[:, 2])
         #x, z = np.mgrid[xmin:xmax:10, 0:500:10]
         #y = (a * x + c * z + d) / -b
         y, z = np.mgrid[ymin:ymax:0.09, zmin:zmax:0.09]
@@ -78,13 +78,14 @@ class MPlot3D():
 
     def draw_points(self, points3d, color=WHITE, scale=1):
         scale = self.scale * scale
-        mlab.points3d(points3d[:,0], points3d[:,1], points3d[:,2],
+        mlab.points3d(points3d[:, 0], points3d[:, 1], points3d[:, 2],
                       color=color, scale_factor=scale)
 
     def draw_cloud(self, points3d, scale=1):
         scale = self.scale * scale
-        mlab.points3d(points3d[:,0], points3d[:,1], points3d[:,2], points3d[:,2],
-                      colormap='jet', opacity=0.75, scale_factor=scale) #blue-red
+        mlab.points3d(points3d[:, 0], points3d[:, 1],
+                      points3d[:, 2], points3d[:, 2],
+                      colormap='jet', opacity=0.75, scale_factor=scale)
         mlab.outline()
         mlab.colorbar(title='Planar disparity (mm)')
         mlab.axes()
@@ -116,14 +117,14 @@ class MPlot3D():
             self.draw_points(points, color=(0.7, 0.1, 0.3), scale=scale)
 
     def draw_slice(self, slice, scale=0.3):
-        if not slice == None:
+        if slice is not None:
             for points in slice:
                 self.draw_lines(points, color=(0.8, 0.8, 0.8), scale=0.3*scale)
                 self.draw_points(points, color=(0.6, 0.6, 0.6), scale=scale)
 
     def draw_slices(self, slices):
         for slice in slices:
-            if not slice == None:
+            if slice is not None:
                 self.draw_slice(slice)
 
     def draw_tools(self, points, frames, scale=10):
@@ -182,27 +183,31 @@ class MPlot3D():
             points.append(path[k][0])
             vectors.append(path[k-1][0] - path[k][0])
             processes.append(path[k][2])
-        points, vectors, processes = np.array(points), np.array(vectors), np.array(processes)
+        points, vectors = np.array(points), np.array(vectors)
+        processes = np.array(processes)
         pnts, vctrs = points[processes], vectors[processes]
-        mlab.quiver3d(pnts[:,0], pnts[:,1], pnts[:,2],
-                      vctrs[:,0], vctrs[:,1], vctrs[:,2],
-                      color=(0.4, 0.5, 0.6), mode='2ddash', scale_factor=1, line_width=5.0)
-                      #mode='2ddash', 'arrow', 'cylinder'
-        pnts, vctrs = points[np.bitwise_not(processes)], vectors[np.bitwise_not(processes)]
         mlab.quiver3d(pnts[:, 0], pnts[:, 1], pnts[:, 2],
                       vctrs[:, 0], vctrs[:, 1], vctrs[:, 2],
-                      color=(0.8, 0.6, 0.2), mode='2ddash', scale_factor=1, line_width=2.0)
+                      color=(0.3, 0.5, 0.7), mode='2ddash',
+                      scale_factor=1, line_width=5.0)
+                      #mode='2ddash', 'arrow', 'cylinder'
+        pnts = points[np.bitwise_not(processes)]
+        vctrs = vectors[np.bitwise_not(processes)]
+        mlab.quiver3d(pnts[:, 0], pnts[:, 1], pnts[:, 2],
+                      vctrs[:, 0], vctrs[:, 1], vctrs[:, 2],
+                      color=(0.8, 0.6, 0.2), mode='2ddash',
+                      scale_factor=1, line_width=2.0)
 
     def draw_point_cloud(self, points3d):
         mlab.clf()
-        mlab.points3d(points3d[:,0], points3d[:,1], points3d[:,2],
-                      color=(1.0, 0.25, 0.25), opacity=0.75, scale_factor=0.001)
+        mlab.points3d(points3d[:, 0], points3d[:, 1], points3d[:, 2],
+                      color=(1., 0.25, 0.25), opacity=0.75, scale_factor=0.001)
         mlab.outline()
         mlab.axes()
 
     def draw_working_area(self, width, height):
-        color = (0.9,0.9,0.7)
-        x, y = np.mgrid[0:height+1:10,0:width+1:10]
+        color = (0.9, 0.9, 0.7)
+        x, y = np.mgrid[0:height+1:10, 0:width+1:10]
         z = np.zeros(x.shape)
         mlab.surf(x, y, z, color=color, line_width=1.0,
                   representation='wireframe', warp_scale=self.scale)
@@ -216,7 +221,6 @@ class MPlot3D():
 
     def show(self):
         mlab.show()
-
 
 
 if __name__ == '__main__':
