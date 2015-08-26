@@ -10,14 +10,11 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
 )
 
-find_package(OpenCV REQUIRED)
-
 catkin_python_setup()
 
 catkin_package()
 
 include_directories(
-  ${catkin_INCLUDE_DIRS},
-  ${OpenCV_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
