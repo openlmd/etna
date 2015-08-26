@@ -19,4 +19,4 @@ This stack is composed by four packages:
 
 [RobScan Video](./etna_scanning/media/robscan.mp4)
 
-![Alt text](./etna_planning/media/test.png "Scanning test")
+![Alt text](./etna_scanning/media/test.png "Scanning test")
