@@ -8,8 +8,9 @@ from drawing import *
 import fitting as fit
 import calculate as calc
 
-from profile import Profile
 from mlabplot import MPlot3D
+
+from robscan.profile import Profile
 
 
 RED = (0, 0, 255)
@@ -437,7 +438,7 @@ if __name__ == '__main__':
     import os
     import glob
 
-    dirname = '../data/calib1'
+    dirname = '../../data/calib1'
     pathname = os.path.join(dirname, 'frame*.png')
     filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
     ks = [int(filename[-8:-4]) for filename in filenames]
@@ -530,9 +531,9 @@ if __name__ == '__main__':
         mplot3d.draw_points(calc.points_transformation(W2K, pp),
                             color=(1, 1, 1))
 
-        img, grid = images[k], os.linesepation.grids[k]
+        img, grid = images[k], laser_calibration.grids[k]
         if grid is not None:
-            profile3d, profile2d, chessboard_pose = os.linesepation.get_chessboard_laser(img, grid)
+            profile3d, profile2d, chessboard_pose = laser_calibration.get_chessboard_laser(img, grid)
             chessboard_pose = calc.matrix_compose((WC, calc.pose_to_matrix(chessboard_pose)))
             if len(profile2d) > 0:
                 mplot3d.draw_points(calc.points_transformation(WC, profile3d),

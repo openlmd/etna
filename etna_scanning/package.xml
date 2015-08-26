@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package>
-  <name>etna_triangulation</name>
+  <name>etna_scanning</name>
   <version>0.0.1</version>
-  <description>The triangulation package</description>
+  <description>The scanning package</description>
 
-  <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez Araújo</maintainer>
+  <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</maintainer>
   
   <license>BSD</license>
 
-  <author email="jorge.rodriguez@aimen.es">Jorge Rodríguez Araújo</author> -->
+  <author email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
@@ -25,5 +25,5 @@
   <run_depend>opencv2</run_depend>
   <run_depend>cv_bridge</run_depend>
   <run_depend>sensor_msgs</run_depend>
-
+  
 </package>

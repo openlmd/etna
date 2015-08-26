@@ -12,6 +12,11 @@ post-processing.
 
 This stack is composed by four packages:
 - etna_workcell: contains the working cell description files.
-- etna_triangulation: contains the scanning and calibration tools.
+- etna_scanning: contains the on-line scanning tool for LMD monitoring.
+- etna_calib: contains the 3D calibration tools required for scanning.
 - etna_cloud: contains some useful tools used for 3D filtering.
 - etna_planning: contains the off-line path planning tool for LMD automation.
+
+[RobScan Video](./etna_scanning/media/robscan.mp4)
+
+(./etna_planning/media/test.png)

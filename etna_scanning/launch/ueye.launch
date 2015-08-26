@@ -56,7 +56,7 @@
     <param name="image_topic" type="str" value="/camera/image_raw" />
   </node>
   
-  <node name="profile" pkg="triangulation_3d" type="pub_profile.py">
+  <node name="profile" pkg="etna_scanning" type="pub_profile.py">
     <param name="image_topic" type="str" value="/camera/image_raw" />
   </node>
 </launch>

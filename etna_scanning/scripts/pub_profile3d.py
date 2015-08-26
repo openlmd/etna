@@ -15,7 +15,7 @@ import sensor_msgs.point_cloud2 as pc2
 from sensor_msgs.msg import PointCloud2
 
 
-from icv.profile import Profile
+from robscan.profile import Profile
 
 
 class Profile3D():
@@ -37,7 +37,7 @@ class Profile3D():
         rospy.Subscriber(image_topic, Image, self.sub_image_topic, queue_size=1)
 
         self.profile = Profile()
-        path = rospkg.RosPack().get_path('etna_triangulation')
+        path = rospkg.RosPack().get_path('etna_scanning')
         self.profile.load_configuration(os.path.join(path, 'config', config_file))
 
         rospy.spin()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import cv2
 import rospy
-from icv.webcam import Webcam
+from robscan.webcam import Webcam
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
