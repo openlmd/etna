@@ -1,7 +1,7 @@
 import os
 import glob
 
-from icv.profile import Profile
+from robscan.profile import Profile
 from icv.calibration import CameraCalibration
 from icv.calibration import LaserCalibration
 from icv.calibration import HandEyeCalibration
@@ -9,6 +9,7 @@ from icv.calibration import HandEyeCalibration
 from icv.image import *
 import icv.calculate as calc
 
+import numpy as np
 np.set_printoptions(precision=4, suppress=True)
 
 

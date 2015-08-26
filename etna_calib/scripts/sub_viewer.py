@@ -8,7 +8,7 @@ import numpy as np
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
-from icv.profile import Profile
+from robscan.profile import Profile
 from icv.calibration import CameraCalibration
 from icv.calibration import LaserCalibration
 from icv.calibration import HandEyeCalibration
@@ -16,7 +16,7 @@ from icv.calibration import HandEyeCalibration
 import rospkg
 
 rospack = rospkg.RosPack()
-path = rospack.get_path('etna_triangulation')
+path = rospack.get_path('etna_calib')
 
 
 class ImageViewer():
