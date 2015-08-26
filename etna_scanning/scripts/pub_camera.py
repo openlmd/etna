@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import cv2
 import rospy
-from icv.camera import Camera
+from robscan.camera import Camera
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 

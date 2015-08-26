@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
   cv::namedWindow(OPENCV_WINDOW);
 
-  cv::VideoCapture vid_cap(1);
+  cv::VideoCapture vid_cap(0);
     if(!vid_cap.isOpened()){
         std::cout << "could not read file" << std::endl;
         return -1;
