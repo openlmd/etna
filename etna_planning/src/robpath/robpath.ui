@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>924</width>
-    <height>712</height>
+    <height>775</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -64,21 +64,21 @@
     </font>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="6" column="1">
+    <item row="12" column="1">
      <widget class="Line" name="line_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
+    <item row="15" column="1">
      <widget class="Line" name="line">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="15" column="1" rowspan="2">
+    <item row="21" column="1" rowspan="2">
      <layout class="QFormLayout" name="flPowder">
       <property name="fieldGrowthPolicy">
        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
@@ -202,60 +202,48 @@
       </item>
      </layout>
     </item>
-    <item row="22" column="1">
+    <item row="28" column="1">
      <widget class="Line" name="line_4">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="28">
+    <item row="0" column="0" rowspan="34">
      <layout class="QHBoxLayout" name="boxPlot">
       <property name="spacing">
        <number>0</number>
       </property>
      </layout>
     </item>
-    <item row="14" column="1">
+    <item row="20" column="1">
      <widget class="Line" name="line_3">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="btnLoadMesh">
-      <property name="minimumSize">
+    <item row="25" column="1" rowspan="3">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
        <size>
-        <width>200</width>
-        <height>0</height>
+        <width>20</width>
+        <height>40</height>
        </size>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Load Mesh</string>
-      </property>
-     </widget>
+     </spacer>
     </item>
-    <item row="26" column="1">
+    <item row="32" column="1">
      <widget class="Line" name="line_5">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="7" column="1" rowspan="2">
+    <item row="13" column="1" rowspan="2">
      <layout class="QFormLayout" name="flGeometry">
       <property name="fieldGrowthPolicy">
        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
@@ -391,7 +379,7 @@
       </item>
      </layout>
     </item>
-    <item row="27" column="1">
+    <item row="33" column="1">
      <widget class="QPushButton" name="btnQuit">
       <property name="enabled">
        <bool>true</bool>
@@ -437,8 +425,11 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="11" column="1">
      <widget class="QPushButton" name="btnSaveRapid">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="minimumSize">
        <size>
         <width>200</width>
@@ -463,32 +454,7 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QPushButton" name="btnProcessMesh">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Process Mesh</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1" rowspan="4">
+    <item row="16" column="1" rowspan="4">
      <layout class="QFormLayout" name="flLaser">
       <property name="margin">
        <number>6</number>
@@ -580,7 +546,7 @@
       </item>
      </layout>
     </item>
-    <item row="23" column="1" rowspan="3">
+    <item row="29" column="1" rowspan="3">
      <widget class="QGroupBox" name="groupBox">
       <property name="font">
        <font>
@@ -730,7 +696,7 @@ border: 1px solid gray;</string>
             <bool>false</bool>
            </property>
            <property name="decimals">
-            <number>0</number>
+            <number>1</number>
            </property>
            <property name="maximum">
             <double>1000.000000000000000</double>
@@ -864,7 +830,7 @@ border: 1px solid gray;</string>
             <bool>false</bool>
            </property>
            <property name="decimals">
-            <number>0</number>
+            <number>1</number>
            </property>
            <property name="maximum">
             <double>1000.000000000000000</double>
@@ -878,19 +844,6 @@ border: 1px solid gray;</string>
        </item>
       </layout>
      </widget>
-    </item>
-    <item row="19" column="1" rowspan="3">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
     </item>
     <item row="1" column="1">
      <widget class="QLabel" name="lblLogo">
@@ -911,10 +864,79 @@ border: 1px solid gray;</string>
       </property>
      </widget>
     </item>
-    <item row="17" column="1" rowspan="2">
+    <item row="23" column="1" rowspan="2">
      <widget class="Line" name="line_6">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QPushButton" name="btnProcessContours">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Process Contours</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QPushButton" name="btnProcessMesh">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Process Mesh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="btnLoadMesh">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Load Mesh</string>
       </property>
      </widget>
     </item>

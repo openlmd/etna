@@ -284,6 +284,17 @@ class Mesh:
             #tool_path.append([last_point + np.float32([0, offset, 0]), orientation, False])
         return tool_path
 
+    def get_path_from_slices(self, slices):
+        orientation = np.array((0.0, 0.0, 0.0, 1.0))
+        tool_path = []
+        for slice in slices:
+            if slice is not None:
+                contour = slice[0]
+                tool_path.append([contour[0], orientation, False])
+                for point in contour[1:]:
+                    tool_path.append([point, orientation, True])
+        return tool_path
+
     def get_mesh_slices_path(self, layer_height, track_distance):
         slices = []
         path = []
@@ -324,16 +335,23 @@ if __name__ == '__main__':
 
     layer_height, track_distance = 0.50, 1.5
     slices, path = mesh.get_mesh_slices_path(layer_height, track_distance)
+    # Get path from slices
+    path_contour = mesh.get_path_from_slices(slices)
+    print path_contour
+
+    # TODO: Refactor to calculate Contour and Filler tool path.
+    # TODO: Add options to interface (checkboxes).
 
     # Get path with frames
-    _path = []
-    for position, orientation, process in path:
-        frame, t = calc.quatpose_to_pose(position, orientation)
-        _path.append([position, frame, process])
+    #_path = []
+    #for position, orientation, process in path:
+    #    frame, t = calc.quatpose_to_pose(position, orientation)
+    #    _path.append([position, frame, process])
 
     mplot3d = MPlot3D()
     #mplot3d.draw_mesh(mesh)
-    mplot3d.draw_slices(slices)
-    mplot3d.draw_path(path)
-    mplot3d.draw_path_tools(_path)
+    #mplot3d.draw_slices(slices)
+    #mplot3d.draw_path(path)
+    mplot3d.draw_path(path_contour)
+    #mplot3d.draw_path_tools(_path)
     mplot3d.show()

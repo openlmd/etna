@@ -36,7 +36,7 @@ class RobPath():
         self.track_overlap = overlap
         self.track_distance = (1 - overlap) * width
         print 'Track distance:', self.track_distance
-        
+
     def set_powder(self, carrier_gas, stirrer, turntable):
         self.rob_parser.carrier_gas = carrier_gas
         self.rob_parser.stirrer = stirrer
@@ -67,6 +67,17 @@ class RobPath():
             self.path.extend(tool_path)
         self.k = self.k + 1
         print 'k, levels:', self.k, len(self.levels)
+
+    def get_contours_path(self):
+        self.k = 0
+        self.path = []
+        self.slices = []
+        self.pair = False
+        self.levels = mesh.get_range_values(self.mesh.z_min,
+                                            self.mesh.z_max,
+                                            self.track_height)
+        slices = [self.mesh.get_slice(level) for level in self.levels]
+        self.path = self.mesh.get_path_from_slices(slices)
 
     def save_rapid(self):
         filename = 'etna.mod'

@@ -66,6 +66,9 @@ class QMayavi(QtGui.QWidget):
         self.drawWorkingArea()
         self.mlab.draw_mesh(mesh)
 
+    def drawPath(self, path):
+        self.mlab.draw_path(path)
+
     def drawSlice(self, slices, path):
         self.mlab.draw_slice(slices[-1])
         #self.plot.mlab.draw_path(tool_path)
@@ -83,6 +86,7 @@ class RobPathUI(QtGui.QMainWindow):
 
         self.btnLoadMesh.clicked.connect(self.btnLoadMeshClicked)
         self.btnProcessMesh.clicked.connect(self.btnProcessMeshClicked)
+        self.btnProcessContours.clicked.connect(self.btnProcessContoursClicked)
         self.btnSaveRapid.clicked.connect(self.btnSaveRapidClicked)
 
         self.sbPositionX.valueChanged.connect(self.changePosition)
@@ -132,9 +136,11 @@ class RobPathUI(QtGui.QMainWindow):
             self.robpath.update_process()
             self.plot.drawSlice(self.robpath.slices, self.robpath.path)
             self.plot.progress.setValue(100.0 * self.robpath.k / len(self.robpath.levels))
+            self.btnSaveRapid.setEnabled(False)
         else:
             self.processing = False
             self.timer.stop()
+            self.btnSaveRapid.setEnabled(True)
 
     def blockSignals(self, value):
         self.sbPositionX.blockSignals(value)
@@ -160,10 +166,30 @@ class RobPathUI(QtGui.QMainWindow):
             self.lblInfo.setText('Info:\n')
             # -----
             self.plot.drawMesh(self.robpath.mesh)
+            self.btnProcessMesh.setEnabled(True)
+            self.btnProcessContours.setEnabled(True)
         except:
+            #self.btnProcessMesh.setEnabled(False)
+            #self.btnProcessContours.setEnabled(False)
             pass
         self.blockSignals(False)
         self.plot.drawMesh(self.robpath.mesh)
+
+    def update_parameters(self):
+        height = self.sbHeight.value() + 0.00001
+        width = self.sbWidth.value() + 0.00001
+        overlap = 0.01 * self.sbOverlap.value()
+        self.robpath.set_track(height, width, overlap)
+
+        speed = self.sbSpeed.value()
+        power = self.sbPower.value()
+        self.robpath.set_speed(speed)
+        self.robpath.set_power(power)
+
+        carrier_gas = self.sbCarrier.value()
+        stirrer = self.sbStirrer.value()
+        turntable = self.sbTurntable.value()
+        self.robpath.set_powder(carrier_gas, stirrer, turntable)
 
     def btnProcessMeshClicked(self):
         if self.processing:
@@ -172,30 +198,23 @@ class RobPathUI(QtGui.QMainWindow):
         else:
             self.plot.drawWorkingArea()
 
-            height = self.sbHeight.value() + 0.00001
-            width = self.sbWidth.value() + 0.00001
-            overlap = 0.01 * self.sbOverlap.value()
-            self.robpath.set_track(height, width, overlap)
-            speed = self.sbSpeed.value()
-            self.robpath.set_speed(speed)
-            power = self.sbPower.value()
-            self.robpath.set_power(power)
-
-            carrier_gas = self.sbCarrier.value()
-            stirrer = self.sbStirrer.value()
-            turntable = self.sbTurntable.value()
-            self.robpath.set_powder(carrier_gas, stirrer, turntable)
-
+            self.update_parameters()
             self.robpath.init_process()
 
             self.processing = True
             self.timer.start(100)
 
+    def btnProcessContoursClicked(self):
+        self.btnSaveRapid.setEnabled(False)
+        self.plot.drawWorkingArea()
+        self.update_parameters()
+        self.robpath.get_contours_path()
+        self.plot.drawPath(self.robpath.path)
+        self.btnSaveRapid.setEnabled(True)
+
     def btnSaveRapidClicked(self):
-        #filename = QtGui.QFileDialog.getOpenFileName(self.plot,
-        #                                            'Save file', './',
-        #                                           'Rapid Modules (*.mod)')[0]
         self.robpath.save_rapid()
+        QtGui.QMessageBox.information(self, "Export information", "Routine exported to the robot.")
 
     def btnQuitClicked(self):
         QtCore.QCoreApplication.instance().quit()
