@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>650</height>
+    <width>924</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -64,55 +64,203 @@
     </font>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="7" column="1">
+    <item row="6" column="1">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
      <widget class="Line" name="line">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="lblLogo">
-      <property name="text">
-       <string/>
+    <item row="15" column="1" rowspan="2">
+     <layout class="QFormLayout" name="flPowder">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
       </property>
-      <property name="pixmap">
-       <pixmap>logo.jpg</pixmap>
+      <property name="margin">
+       <number>6</number>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="sbCarrier">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>5.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lblStirrer">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string> Stirrer:   </string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="sbStirrer">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <double>50.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>20.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lblTurntable">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string> Turntable:   </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="sbTurntable">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="decimals">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <double>50.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>15.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblCarrier">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string> Carrier Gas:    </string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="22" column="1">
+     <widget class="Line" name="line_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="18" column="1">
-     <widget class="QLabel" name="lblInfo">
+    <item row="0" column="0" rowspan="28">
+     <layout class="QHBoxLayout" name="boxPlot">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+     </layout>
+    </item>
+    <item row="14" column="1">
+     <widget class="Line" name="line_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="btnLoadMesh">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <weight>50</weight>
-        <italic>true</italic>
         <bold>false</bold>
        </font>
       </property>
       <property name="text">
-       <string>Processing time:   ... s</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <string>Load Mesh</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
-     <layout class="QFormLayout" name="formLayout">
+    <item row="26" column="1">
+     <widget class="Line" name="line_5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1" rowspan="2">
+     <layout class="QFormLayout" name="flGeometry">
       <property name="fieldGrowthPolicy">
        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
       </property>
-      <property name="topMargin">
-       <number>6</number>
-      </property>
-      <property name="rightMargin">
-       <number>6</number>
-      </property>
-      <property name="bottomMargin">
+      <property name="margin">
        <number>6</number>
       </property>
       <item row="0" column="0">
@@ -124,12 +272,18 @@
          </font>
         </property>
         <property name="text">
-         <string>  Height:   </string>
+         <string>  Height:           </string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QDoubleSpinBox" name="sbHeight">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>50</weight>
@@ -165,6 +319,12 @@
       </item>
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="sbWidth">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>50</weight>
@@ -200,6 +360,12 @@
       </item>
       <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="sbOverlap">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>50</weight>
@@ -225,64 +391,7 @@
       </item>
      </layout>
     </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="btnProcessMesh">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Process Mesh</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="btnLoadMesh">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Load Mesh</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="21">
-     <layout class="QHBoxLayout" name="boxPlot">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-     </layout>
-    </item>
-    <item row="20" column="1">
+    <item row="27" column="1">
      <widget class="QPushButton" name="btnQuit">
       <property name="enabled">
        <bool>true</bool>
@@ -296,7 +405,7 @@
       <property name="minimumSize">
        <size>
         <width>200</width>
-        <height>0</height>
+        <height>30</height>
        </size>
       </property>
       <property name="maximumSize">
@@ -328,7 +437,7 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="1">
      <widget class="QPushButton" name="btnSaveRapid">
       <property name="minimumSize">
        <size>
@@ -354,15 +463,34 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
-     <layout class="QFormLayout" name="formLayout_2">
-      <property name="topMargin">
-       <number>6</number>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="btnProcessMesh">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
       </property>
-      <property name="rightMargin">
-       <number>6</number>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
       </property>
-      <property name="bottomMargin">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Process Mesh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1" rowspan="4">
+     <layout class="QFormLayout" name="flLaser">
+      <property name="margin">
        <number>6</number>
       </property>
       <item row="0" column="0">
@@ -374,12 +502,18 @@
          </font>
         </property>
         <property name="text">
-         <string>  Speed:      </string>
+         <string>  Speed:            </string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QDoubleSpinBox" name="sbSpeed">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>50</weight>
@@ -415,6 +549,12 @@
       </item>
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="sbPower">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>50</weight>
@@ -440,28 +580,7 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="1">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="Line" name="line_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="1">
-     <widget class="Line" name="line_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="1" rowspan="2">
+    <item row="23" column="1" rowspan="3">
      <widget class="QGroupBox" name="groupBox">
       <property name="font">
        <font>
@@ -508,6 +627,12 @@
          </property>
          <item row="0" column="0">
           <widget class="QDoubleSpinBox" name="sbPositionX">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>50</weight>
@@ -541,7 +666,7 @@ border: 1px solid gray;
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>0</height>
+             <height>22</height>
             </size>
            </property>
            <property name="font">
@@ -582,6 +707,12 @@ border: 1px solid gray;</string>
          </item>
          <item row="0" column="2">
           <widget class="QDoubleSpinBox" name="sbPositionZ">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>50</weight>
@@ -630,6 +761,12 @@ border: 1px solid gray;</string>
          </property>
          <item row="0" column="0">
           <widget class="QDoubleSpinBox" name="sbSizeX">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>50</weight>
@@ -663,7 +800,7 @@ border: 1px solid gray;
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>0</height>
+             <height>22</height>
             </size>
            </property>
            <property name="font">
@@ -704,6 +841,12 @@ border: 1px solid gray;</string>
          </item>
          <item row="0" column="2">
           <widget class="QDoubleSpinBox" name="sbSizeZ">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <weight>50</weight>
@@ -734,6 +877,45 @@ border: 1px solid gray;</string>
         </layout>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="19" column="1" rowspan="3">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="lblLogo">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>logo.jpg</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="1" rowspan="2">
+     <widget class="Line" name="line_6">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
      </widget>
     </item>
    </layout>

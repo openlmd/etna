@@ -243,8 +243,8 @@ if __name__=="__main__":
 
     import calculate as calc
 
-    filename = '../data/downsampled.xyz'
-    filename = '../data/test4_downsampled.xyz'
+    filename = '../../../etna_cloud/data/downsampled.xyz'
+    filename = '../../../etna_cloud/data/test4_downsampled.xyz'
     #filename = '../data/test.xyz'
     cloud = np.loadtxt(filename)
 
@@ -293,6 +293,6 @@ if __name__=="__main__":
     from pylab import *
 
     figure()
-    imshow(zmap, cmap='jet')
+    imshow(zmap, cmap='gray')
     colorbar()
     show()
