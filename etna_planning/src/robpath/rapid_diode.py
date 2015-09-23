@@ -8,9 +8,9 @@ class ABB_Robot():
         self.password = 'anonymous@'
 
         # Powder conditions
-        self.carrier_gas = 3
+        self.carrier_gas = 5
         self.stirrer = 20
-        self.turntable = 20
+        self.turntable = 15
 
         self.power = 1200 # define by layer
         self.track_speed = 8
@@ -21,7 +21,7 @@ class ABB_Robot():
         self.travel_speed = 'v50'
         self.travel_zone = 'z0'
 
-        self.tool = [[215.7, -22.4, 473.8], [0.50, 0.0, -0.8660254, 0.0]] # Tool pose
+        self.tool = [[530, 46.8, 126.6], [0.707107, 0, 0.707107, 0]] # Tool pose
         self.workobject = [[1655, -87, 932], [1, 0, 0, 0]] # Work Object pose
 
     def path2rapid(self, path):
@@ -42,36 +42,39 @@ class ABB_Robot():
         RAPID_TEMPLATE += 'ENDPROC\n'
         RAPID_TEMPLATE += '\n'
         RAPID_TEMPLATE += 'PROC mainEtna()\n'
-        RAPID_TEMPLATE += '    Set Do_RF_MainOn;\n'
-        RAPID_TEMPLATE += '    Set Do_RF_StandByOn;\n'
-        RAPID_TEMPLATE += '    WaitDI DI_RF_LaserBeamReady,1;\n'
-        RAPID_TEMPLATE += '    WaitDI DI_RF_GeneralFault,0;\n'
+        RAPID_TEMPLATE += '    Set doLDLExtern;\n'
+        RAPID_TEMPLATE += '    Set doLDLRequest;\n'
+        RAPID_TEMPLATE += '    Set doLDLLaserON;\n'
+        RAPID_TEMPLATE += '    WaitDI diLDLLaserON,1;\n'
+        RAPID_TEMPLATE += '    Set doLDLStandBy;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    SetGO GO_Program_Rf, 0;\n' # set the program for control of laser power - prog 5    
+        RAPID_TEMPLATE += '    SetGO GoLDL_Prog, 5;\n' # set the program for control of laser power - prog 5
         RAPID_TEMPLATE += '    WaitTime 1;\n'
-        RAPID_TEMPLATE += '    !SetGO GoLDL_Pwr3, %(power)i;\n' # set the laser power - 2200 W
+        RAPID_TEMPLATE += '    SetGO GoLDL_Pwr3, %(power)i;\n' # set the laser power - 2200 W
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    TriggIO laserON, 0\DOp:=Do_RF_ExterGate, 1;\n'
-        RAPID_TEMPLATE += '    TriggIO laserOFF, 0\DOp:=Do_RF_ExterGate, 0;\n'
+        RAPID_TEMPLATE += '    TriggIO laserON, 0\DOp:=doLDLStartST, 1;\n'
+        RAPID_TEMPLATE += '    TriggIO laserOFF, 0\DOp:=doLDLStartST, 0;\n'
         RAPID_TEMPLATE += '\n'
         RAPID_TEMPLATE += '    Set DoWeldGas;\n'
         RAPID_TEMPLATE += '    !MedicoatL2 "OFF", 5, 20, 7.5;\n' # gas de arrastre, stirrer, turntable
         RAPID_TEMPLATE += '    MedicoatL1 "OFF", %(carrier)i, %(stirrer)i, %(turntable)i;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    ConfL \Off;\n'
+        RAPID_TEMPLATE += '    MoveJ [[0.0,0.0,100.0],[0.0,0.0,1.0,0.0],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]],v80,z0,toolEtna\WObj:=wobjEtna;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    MoveL [[0.0,0.0,100.0],[1.0,0.0,0.0,0.0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]],v80,z0,toolEtna\WObj:=wobjEtna;\n'
+        RAPID_TEMPLATE += '    ConfL \Off;\n'
         RAPID_TEMPLATE += '\n'
         RAPID_TEMPLATE += '    cladding;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    MoveL [[0.0,0.0,100.0],[1.0,0.0,0.0,0.0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]],v80,z0,toolEtna\WObj:=wobjEtna;\n'
+        RAPID_TEMPLATE += '    MoveJ [[0.0,0.0,100.0],[0.0,0.0,1.0,0.0],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]],v80,z0,toolEtna\WObj:=wobjEtna;\n'
         RAPID_TEMPLATE += '\n'
         RAPID_TEMPLATE += '    Reset doMdtPL2On;\n'
         RAPID_TEMPLATE += '    Reset doMdtPL1On;\n'
         RAPID_TEMPLATE += '    Reset DoWeldGas;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    Reset Do_RF_StandByOn;\n'
-        RAPID_TEMPLATE += '    !Reset Do_RF_MainOn;\n'
+        RAPID_TEMPLATE += '    Reset doLDLStandBy;\n'
+        RAPID_TEMPLATE += '    Reset doLDLLaserON;\n'
+        RAPID_TEMPLATE += '    Reset doLDLRequest;\n'
+        RAPID_TEMPLATE += '    Reset doLDLExtern;\n'
         RAPID_TEMPLATE += '\n'
         RAPID_TEMPLATE += 'ENDPROC\n'
         RAPID_TEMPLATE += '\n'
@@ -80,7 +83,7 @@ class ABB_Robot():
         targets = ''
         for k in range(len(path)):
             p, q, b = path[k]
-            targets = '\n'.join([targets, '    CONST robtarget T%i:=[[%f,%f,%f],[%f,%f,%f,%f],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];' %(k, p[0], p[1], p[2], q[3], q[0], q[1], q[2])])
+            targets = '\n'.join([targets, '    CONST robtarget T%i:=[[%f,%f,%f],[%f,%f,%f,%f],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];' %(k, p[0], p[1], p[2], q[3], q[0], q[1], q[2])])
         # Movement definition
         moves = '!Reset doLDLStartST;\n'
         for k in range(len(path)):
@@ -97,7 +100,7 @@ class ABB_Robot():
                 #moves = '\n'.join([moves, '    Reset doLDLStartST;'])
                 #moves = '\n'.join([moves, '    MoveL T%i,%s,%s,toolEtna\WObj:=wobjEtna;' %(k, self.travel_speed, self.travel_zone)])
                 moves = '\n'.join([moves, '    TriggL T%i,%s,laserON,%s,toolEtna\WObj:=wobjEtna;' %(k, self.travel_speed, self.travel_zone)])
-        moves = '\n'.join([moves, '\n!Reset doLDLStartST;'])
+        moves = '\n'.join([moves, '\n    Reset doLDLStartST;'])
 
         tool = '[TRUE,[[%.1f,%.1f,%.1f],[%f,%f,%f,%f]],[20,[70,30,123.5],[0,0,1,0],1,0,1]]' %(self.tool[0][0], self.tool[0][1], self.tool[0][2], self.tool[1][0], self.tool[1][1], self.tool[1][2], self.tool[1][3])
         wobj = '[FALSE,TRUE,"",[[%.1f,%.1f,%.1f],[%f,%f,%f,%f]],[[0,0,0],[1,0,0,0]]]' %(self.workobject[0][0], self.workobject[0][1], self.workobject[0][2], self.workobject[1][0], self.workobject[1][1], self.workobject[1][2], self.workobject[1][3])
