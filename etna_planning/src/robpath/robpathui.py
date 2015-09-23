@@ -18,7 +18,7 @@ from PyQt4 import uic
 import numpy as np
 
 from robpath import RobPath
-from icv.mlabplot import MPlot3D
+from mlabplot import MPlot3D
 
 
 class Visualization(HasTraits):
@@ -58,9 +58,9 @@ class QMayavi(QtGui.QWidget):
     def drawWorkingArea(self, width=300, height=200):
         self.mlab.clear()
         self.mlab.draw_working_area(width, height)
-        self.mlab.draw_points(np.float32([[0, 0, 0], [height, width, 50]]),
-                              scale=0.1)  # working area
-        self.mlab.outline()
+        #self.mlab.draw_points(np.float32([[0, 0, 0], [height, width, 100]]),
+        #                      scale=0.1)  # working area
+        #self.mlab.outline()
 
     def drawMesh(self, mesh):
         self.drawWorkingArea()
@@ -163,6 +163,7 @@ class RobPathUI(QtGui.QMainWindow):
         except:
             pass
         self.blockSignals(False)
+        self.plot.drawMesh(self.robpath.mesh)
 
     def btnProcessMeshClicked(self):
         if self.processing:
@@ -179,6 +180,11 @@ class RobPathUI(QtGui.QMainWindow):
             self.robpath.set_speed(speed)
             power = self.sbPower.value()
             self.robpath.set_power(power)
+
+            carrier_gas = self.sbCarrier.value()
+            stirrer = self.sbStirrer.value()
+            turntable = self.sbTurntable.value()
+            self.robpath.set_powder(carrier_gas, stirrer, turntable)
 
             self.robpath.init_process()
 

@@ -47,6 +47,3 @@ target_link_libraries(cloud ${catkin_LIBRARIES})
 add_executable(find_plane src/find_plane.cpp)
 target_link_libraries(find_plane ${catkin_LIBRARIES})
 
-## Add cmake target dependencies of the executable/library
-## as an example, message headers may need to be generated before nodes
-# add_dependencies(etna_cloud_node etna_cloud_generate_messages_cpp)

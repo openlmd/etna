@@ -3,7 +3,7 @@ import time
 import struct
 import numpy as np
 
-import icv.calculate as calc
+import calculate as calc
 
 
 def filter_polyline(points, dist=0.1, angl=0.01):
@@ -33,14 +33,6 @@ def get_range_values(v_min, v_max, v_dist):
     return np.arange(i_min, i_max + v_dist, v_dist)
 
 
-def get_path_with_frames(path):
-    _path = []
-    for position, orientation, process in path:
-        frame = calc.quaternion_to_rotation(orientation)
-        _path.append([position, frame, process])
-    return _path
-
-
 class Mesh:
     def __init__(self, filename):
         # Bounding box
@@ -59,7 +51,7 @@ class Mesh:
             self.valid = True
             self.bounding_box()
         if self.valid:
-            self.translate(np.float32([0, 0, 0])) # translates the piece to the origin
+            self.translate(np.float32([0, 0, 0]))  # translates the piece to the origin
             self.resort_triangles()
 
     def load_binary_mesh(self, filename):
@@ -76,7 +68,7 @@ class Mesh:
                                 tri[j, i] = struct.unpack('f', data)[0]
                     else:
                         break
-                    data = f.read(2) # skip the attribute bytes
+                    data = f.read(2)  # skip the attribute bytes
                     self.triangles.append(tri)
             print "Loaded binary STL:", filename
         except:
@@ -255,7 +247,7 @@ class Mesh:
                         points.append(point)
             if not points == []:
                 points = np.array(points)
-                indexes = np.argsort(points[:,1])
+                indexes = np.argsort(points[:, 1])
                 # ERROR!!!
                 if len(indexes) % 2:
                     print 'ERROR IMPAR!', len(indexes)  #tangent element finded
@@ -268,9 +260,10 @@ class Mesh:
         return fill_lines
 
     def get_path_from_fill_lines(self, fill_lines):
+        orientation = np.array((0.0, 0.0, 0.0, 1.0))
         pnt1, pnt2 = fill_lines[0][0], fill_lines[0][1]
-        tool_path = [[pnt1, np.array((0.0, 1.0, 0.0, 0.0)), False],
-                     [pnt2, np.array((0.0, 1.0, 0.0, 0.0)), True]]
+        tool_path = [[pnt1, orientation, False],
+                     [pnt2, orientation, True]]
         pair = False
         #offset = 10 # Adds an offset on the end of the track
         for line in fill_lines:
@@ -282,13 +275,13 @@ class Mesh:
                 pnt1, pnt2 = line[k], line[k+1]
                 last_point = tool_path[-1][0]
                 if np.all(last_point == pnt1):
-                    tool_path[-1] = [pnt2, np.array((0.0, 1.0, 0.0, 0.0)), True]
+                    tool_path[-1] = [pnt2, orientation, True]
                 else:
-                    tool_path.append([pnt1, np.array((0.0, 1.0, 0.0, 0.0)), False])
-                    tool_path.append([pnt2, np.array((0.0, 1.0, 0.0, 0.0)), True])
+                    tool_path.append([pnt1, orientation, False])
+                    tool_path.append([pnt2, orientation, True])
             # Adds the offset path
             #last_point = tool_path[-1][0]
-            #tool_path.append([last_point + np.float32([0, offset, 0]), np.array((0.0, 1.0, 0.0, 0.0)), False])
+            #tool_path.append([last_point + np.float32([0, offset, 0]), orientation, False])
         return tool_path
 
     def get_mesh_slices_path(self, layer_height, track_distance):
@@ -317,7 +310,7 @@ class Mesh:
 
 if __name__ == '__main__':
     import sys
-    from icv.mlabplot import MPlot3D
+    from mlabplot import MPlot3D
 
     if len(sys.argv) > 1:
         filename = sys.argv[1]
@@ -332,9 +325,15 @@ if __name__ == '__main__':
     layer_height, track_distance = 0.50, 1.5
     slices, path = mesh.get_mesh_slices_path(layer_height, track_distance)
 
+    # Get path with frames
+    _path = []
+    for position, orientation, process in path:
+        frame, t = calc.quatpose_to_pose(position, orientation)
+        _path.append([position, frame, process])
+
     mplot3d = MPlot3D()
     #mplot3d.draw_mesh(mesh)
     mplot3d.draw_slices(slices)
     mplot3d.draw_path(path)
-    #mplot3d.draw_path_tools(get_path_with_frames(tool_path))
+    mplot3d.draw_path_tools(_path)
     mplot3d.show()

@@ -36,6 +36,11 @@ class RobPath():
         self.track_overlap = overlap
         self.track_distance = (1 - overlap) * width
         print 'Track distance:', self.track_distance
+        
+    def set_powder(self, carrier_gas, stirrer, turntable):
+        self.rob_parser.carrier_gas = carrier_gas
+        self.rob_parser.stirrer = stirrer
+        self.rob_parser.turntable = turntable
 
     def init_process(self):
         self.k = 0
