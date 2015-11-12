@@ -1,91 +1,39 @@
 <?xml version="1.0" ?>
 <robot name="abb_workcell" xmlns:xacro="http://ros.org/wiki/xacro">
-    
-    <property name="pi" value="3.141592654" />
-
-  <xacro:property name="tcp_frame">
-    <!--<origin xyz="0.3 0 0.12" rpy="0 -1.5708 0"/>-->
-    <origin xyz="0.530 0.047 0.127" rpy="0 -1.5708 0" />
-  </xacro:property>
+  <property name="pi" value="3.141592654" />
 
   <xacro:property name="workobject_frame">
     <origin xyz="1.655 -0.087 0.932" rpy="0 0 0" />
   </xacro:property>
-  
+
   <xacro:property name="camera_frame">
     <origin xyz="0.2879 -0.0399 0.1267" rpy="1.55420 0.00225 1.59185" />
   </xacro:property>
 
   <link name="world" />
-    
+
   <!-- Robot -->
-  <xacro:include filename="$(find abb_irb4400_support)/urdf/irb4400_macro.xacro"/>
-  <xacro:abb_irb4400 prefix=""/>
-  
-  <joint name="world-irb4400" type="fixed">
+  <xacro:include filename="$(find etna_workcell)/urdf/abb_robot.xacro"/>
+
+  <joint name="world-abb_robot" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
     <origin xyz="0 0 0.067" rpy="0 0 0" />
   </joint>
-  
-  <xacro:include filename="$(find etna_workcell)/urdf/irbp_a250.xacro"/>
-  
-  <joint name="world-irbp_a250/base_link" type="fixed">
-    <parent link="world"/>
-    <child link="irbp_a250/base_link"/>
-    <origin xyz="1.755 0.014 0" rpy="0 0 -${pi/2}" />
-  </joint>
-  
-  <link name="table0">
-    <visual>
-    <geometry>
-      <mesh filename="package://etna_workcell/meshes/table/table.stl"/>
-    </geometry>
-    <material name="gray">
-      <color rgba="0.4 0.4 0.4 0.6"/>
-    </material>
-  </visual>
-  </link>
-  
-  <joint name="tool0-table0" type="fixed">
-    <parent link="irbp_a250/tool0"/>
-    <child link="table0"/>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <axis xyz="0 0 1"/>
-  </joint>
-  
-  <!-- Tool -->
-  <link name="head0">
-  <visual>
-    <geometry>
-      <!--<mesh filename="package://etna_workcell/meshes/head/head.stl"/>-->
-      <mesh filename="package://etna_workcell/meshes/diode/diode.stl" />
-    </geometry>
-    <material name="gray">
-      <color rgba="0.6 0.5 0.4 0.7"/>
-    </material>
-  </visual>
-  </link>
-  
+
+  <!-- Head -->
+  <xacro:include filename="$(find etna_workcell)/urdf/diode_head.xacro"/>
+
   <joint name="tool0-head0" type="fixed">
     <parent link="tool0"/>
     <child link="head0"/>
-    <origin xyz="0 0 0" rpy="0 -1.5708 0" />
-    <axis xyz="0 0 1"/>
-  </joint> 
-  
-  <!-- TCP -->
-  <link name="tcp0"/>
-  <joint name="tool0-tcp0" type="fixed">
-    <parent link="tool0"/>
-    <child link="tcp0"/>
-    <xacro:insert_block name="tcp_frame" />
+    <origin xyz="0 0 0" rpy="0 -${pi/2} 0" />
     <axis xyz="0 0 1"/>
   </joint>
-    
+
   <!-- Workobject -->
   <link name="workobject">
-  <visual>
+  <!--<visual>
     <geometry>
       <box size="0.5 0.5 0.25"/>
     </geometry>
@@ -93,24 +41,24 @@
     <material name="blue">
       <color rgba="0.7 0.1 0.3 0.15"/>
     </material>
-  </visual>
+  </visual>-->
   </link>
-  
+
   <joint name="world-workobject" type="fixed">
     <parent link="base_link" />
     <child link="workobject" />
     <xacro:insert_block name="workobject_frame" />
   </joint>
-    
+
   <!-- Camera -->
   <link name="camera0" />
-  
+
   <joint name="tool0-camera0" type="fixed">
     <parent link="tool0"/>
     <child link="camera0"/>
     <xacro:insert_block name="camera_frame" />
   </joint>
-  
+
   <!-- Cell walls -->
   <link name="walls">
   <visual>
@@ -123,7 +71,7 @@
     </material>
   </visual>
   </link>
-  
+
   <joint name="world_to_walls" type="fixed">
     <parent link="world" />
     <child link="walls" />
@@ -131,4 +79,3 @@
   </joint>
 
 </robot>
-
