@@ -28,9 +28,8 @@ class CameraCalibration():
                                           for point in self.targets])
 
     def get_pattern_points(self):
-        points = np.zeros((np.prod(self.grid_size), 2), np.float32)
-        points[:, :2] = np.indices(self.grid_size).T.reshape(-1, 2)
-        points *= self.square_size
+        points = np.indices(self.grid_size, np.float32).T.reshape(-1, 2)
+        points = np.fliplr(points) * self.square_size
         #points += self.grid_orig
         return points
 
@@ -65,26 +64,17 @@ class CameraCalibration():
 
     def get_chessboard_pose(self, grid):
         """Gets the estimated pose for the calibration chessboard."""
-        if grid is None:
-            return None
-        else:
+        if grid is not None:
             corners = grid.reshape((-1, 2))
             return self.find_transformation(self.pattern_points, corners)
-
-    def find_patterns(self, images):
-        patterns = [self.find_chessboard(img) for img in images]
-        return patterns
-
-    def locate_patterns(self, grids):
-        poses = [self.get_chessboard_pose(grid) for grid in grids]
-        return poses
+        return None
 
     def get_calibration(self, images):
         """Gets the camera parameters solving the calibration problem."""
         # Arrays to store object points and image points from all the images.
         obj_points = []  # 3d point in real world space
         img_points = []  # 2d points in image plane.
-        self.grids = self.find_patterns(images)
+        self.grids = [self.find_chessboard(img) for img in images]
         for grid in self.grids:
             if grid is not None:
                 corners = grid.reshape((-1, 2))
@@ -119,8 +109,6 @@ class CameraCalibration():
         cv2.projectPoints(). Then we calculate the absolute norm between the
         image points. To find the average error we calculate the arithmetical
         mean of the errors calculated."""
-        #tot_error = 0
-        #mean_error = 0
         imgpoints2 = self.project_3d_points(points3d, pose)
         error = cv2.norm(imgpoints, imgpoints2, cv2.NORM_L2) / len(imgpoints2)
         return error
@@ -267,7 +255,7 @@ class LaserCalibration(CameraCalibration):
     def find_calibration_3d(self, images):
         self.get_calibration(images)
         self.images = images
-        self.pattern_poses = self.locate_patterns(self.grids)
+        self.pattern_poses = [self.get_chessboard_pose(grid) for grid in self.grids]
 
         profiles3d = []
         for k, img in enumerate(images):
