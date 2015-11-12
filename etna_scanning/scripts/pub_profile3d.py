@@ -3,7 +3,6 @@ import os
 import cv2
 import rospy
 import rospkg
-import rosparam
 import numpy as np
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
@@ -23,22 +22,26 @@ class Profile3D():
         rospy.init_node('pub_profile3d', anonymous=True)
 
         image_topic = rospy.get_param('~image', '/camera/image')
-        peaks_topic = rospy.get_param('~peaks', '/camera/peaks')
         cloud_topic = rospy.get_param('~cloud', '/camera/cloud')
         config_file = rospy.get_param('~config', 'profile3d.yaml')
 
-        self.image_pub = rospy.Publisher(peaks_topic, Image, queue_size=5)
-        self.cloud_pub = rospy.Publisher(cloud_topic, PointCloud2, queue_size=5)
+        #peaks_topic = rospy.get_param('~peaks', '/camera/peaks')
+        #self.image_pub = rospy.Publisher(peaks_topic, Image, queue_size=5)
+
+        rospy.Subscriber(image_topic, Image, self.sub_image_topic,
+                         queue_size=1)
 
         self.sequence = 0
         self.bridge = CvBridge()
         self.pcloud = PointCloud2()
 
-        rospy.Subscriber(image_topic, Image, self.sub_image_topic, queue_size=1)
+        self.cloud_pub = rospy.Publisher(cloud_topic, PointCloud2,
+                                         queue_size=5)
 
         self.profile = Profile()
         path = rospkg.RosPack().get_path('etna_scanning')
-        self.profile.load_configuration(os.path.join(path, 'config', config_file))
+        self.profile.load_configuration(os.path.join(path, 'config',
+                                                     config_file))
 
         rospy.spin()
 
@@ -70,7 +73,6 @@ class Profile3D():
         try:
             stamp = rospy.Time.now()
             image = self.bridge.imgmsg_to_cv2(data)
-            rospy.loginfo(image.shape)
 
             rospy.loginfo(stamp)
             stamp = data.header.stamp
@@ -83,10 +85,10 @@ class Profile3D():
             #self.pub_camera_frame(stamp)
             if len(profile3d) > 0:
                 self.pub_point_cloud(stamp, profile3d)
-                image = self.profile.draw_points(image, profile2d,
-                                                 color=(0, 0, 255),
-                                                 thickness=2)
-            self.image_pub_peak(stamp, image)
+                #image = self.profile.draw_points(image, profile2d,
+                #                                 color=(0, 0, 255),
+                #                                 thickness=2)
+            #self.image_pub_peak(stamp, image)
         except CvBridgeError, e:
             print e
 

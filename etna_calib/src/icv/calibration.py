@@ -8,8 +8,6 @@ from drawing import *
 import fitting as fit
 import calculate as calc
 
-from mlabplot import MPlot3D
-
 from robscan.profile import Profile
 
 
@@ -438,7 +436,7 @@ if __name__ == '__main__':
     import os
     import glob
 
-    dirname = '../../data/calib1'
+    dirname = '../../data'
     pathname = os.path.join(dirname, 'frame*.png')
     filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
     ks = [int(filename[-8:-4]) for filename in filenames]
