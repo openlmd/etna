@@ -1,0 +1,15 @@
+<launch>
+  <arg name="filename" default="test.bag" />
+  <node name="player" pkg="rosbag" type="play" output="screen" args="$(arg filename)"/>
+
+  <!--<node name="viewer" pkg="image_view" type="image_view" >
+    <remap from="image" to="/camera/image" />
+  </node>-->
+
+  <arg name="model" value="$(find etna_workcell)/urdf/abb_workcell.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find etna_workcell)/config/workcell_visualize.rviz" required="true" />
+</launch>
