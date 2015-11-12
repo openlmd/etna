@@ -463,7 +463,7 @@ if __name__ == '__main__':
         show_images([imgc], wait=1000)
 
     laser_calibration.show_calibration_3d()
-    laser_calibration.save_parameters('../../config/triangulation.yml')
+    laser_calibration.save_parameters('../../config/profile3d.yaml')
 
     poses_checker, poses_tool = [], []
     for k in range(len(tool_poses)):
