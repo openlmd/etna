@@ -56,8 +56,8 @@ class CameraCalibration():
         grid = None
         found, corners = cv2.findChessboardCorners(gray, self.grid_size)
         if found:
-            #term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)
-            #cv2.cornerSubPix(gray, corners, (5, 5), (-1, -1), term)
+            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+            cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), term)
             grid = corners.reshape((self.grid_size[0], self.grid_size[1], 2))
             grid = grid * 2
         return grid
@@ -463,7 +463,7 @@ if __name__ == '__main__':
         show_images([imgc], wait=1000)
 
     laser_calibration.show_calibration_3d()
-    laser_calibration.save_parameters('../../config/triangulation.yml')
+    laser_calibration.save_parameters('../../config/profile3d.yaml')
 
     poses_checker, poses_tool = [], []
     for k in range(len(tool_poses)):
