@@ -225,21 +225,20 @@ def test_fit_plane(filename='../data/downsampled.xyz'):
     #mplot3d.draw_plane(normal, points3d)
     #mplot3d.draw_plane(modelr, points3d[inliers], color=(0,1,0))
     mplot3d.draw_points(points3d)
-    mplot3d.draw_points(points3d[inliers], color=(0,1,0))
+    mplot3d.draw_points(points3d[inliers], color=(0, 1, 0))
     mplot3d.draw_frame(plane_pose)
     mplot3d.show()
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     #test_fit_line()
     #test_fit_plane()
 
     from mlabplot import MPlot3D
 
-    WHITE = (1,1,1)
-    RED = (1,0,0)
-    BLUE = (0,0,1)
+    WHITE = (1, 1, 1)
+    RED = (1, 0, 0)
+    BLUE = (0, 0, 1)
 
     import calculate as calc
 
@@ -273,21 +272,21 @@ if __name__=="__main__":
     mplot3d.draw_points(tcloud[outliers], color=BLUE)
     mplot3d.show()
 
-    print np.std(tcloud[inliers][:,2])
+    print np.std(tcloud[inliers][:, 2])
     #test()
 
     points3d = tcloud[outliers]
     point_min = np.min(points3d, axis=0)
     points_0 = (np.round(points3d - point_min, 3) / 0.0001).astype(np.int32)
-    points_0[:,0] = points_0[:,0] / 10
-    points_0[:,1] = points_0[:,1] / 10
+    points_0[:, 0] = points_0[:, 0] / 10
+    points_0[:, 1] = points_0[:, 1] / 10
     #points_1 = (np.round(points3d_1 - point_min, 3) * 1000).astype(np.int32)
-    x_max = np.max(points_0[:,0])
-    y_max = np.max(points_0[:,1])
+    x_max = np.max(points_0[:, 0])
+    y_max = np.max(points_0[:, 1])
     print 'Points', x_max, y_max
 
     zmap = np.zeros((int(x_max+1), int(y_max+1)))
-    zmap[points_0[:,0],points_0[:,1]] = points_0[:,2]
+    zmap[points_0[:, 0], points_0[:, 1]] = points_0[:, 2]
 
 
     from pylab import *

@@ -1,4 +1,5 @@
-import cv2
+import os
+import glob
 import yaml
 import numpy as np
 import numpy.linalg as la
@@ -51,12 +52,15 @@ class CameraCalibration():
 
     def find_chessboard(self, img):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        h, w = gray.shape[:2]
+        gray = cv2.resize(gray, (w / 2, h / 2))
         grid = None
         found, corners = cv2.findChessboardCorners(gray, self.grid_size)
         if found:
-            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)
-            cv2.cornerSubPix(gray, corners, (5, 5), (-1, -1), term)
+            #term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_COUNT, 30, 0.1)
+            #cv2.cornerSubPix(gray, corners, (5, 5), (-1, -1), term)
             grid = corners.reshape((self.grid_size[0], self.grid_size[1], 2))
+            grid = grid * 2
         return grid
 
     def get_chessboard_pose(self, grid):
@@ -66,13 +70,6 @@ class CameraCalibration():
         else:
             corners = grid.reshape((-1, 2))
             return self.find_transformation(self.pattern_points, corners)
-
-    def read_filenames(self, filenames):
-        return sorted(glob.glob(filenames))
-
-    def read_images(self, filenames):
-        images = [read_image(filename) for filename in filenames]
-        return images
 
     def find_patterns(self, images):
         patterns = [self.find_chessboard(img) for img in images]
@@ -187,7 +184,7 @@ class CameraCalibration():
 class LaserCalibration(CameraCalibration):
     def __init__(self, grid_size=(7, 6), square_size=10.0, profile=Profile()):
         CameraCalibration.__init__(self, grid_size=grid_size,
-                                         square_size=square_size)
+                                   square_size=square_size)
         self.camera_pose = (np.eye(3), np.zeros(3))
         self.profile = profile
 
@@ -242,14 +239,13 @@ class LaserCalibration(CameraCalibration):
         profile3d = np.float32(vpoints3d)
         return profile3d, profile2d
 
-    def get_chessboard_laser(self, img, grid):
-        chessboard_pose = self.get_chessboard_pose(grid)
+    def get_chessboard_laser(self, img, grid, chessboard_pose):
         homography = find_homography(grid.reshape((-1, 2)), self.targets)
         profile3d, profile2d = self.profile.points_profile(img, homography,
                                                            chessboard_pose)
         profile3d, profile2d = self.filter_chessboard_laser(profile3d,
                                                             profile2d)
-        return profile3d, profile2d, chessboard_pose
+        return profile3d, profile2d
 
     def find_profiles(self, images):
         profiles = [self.profile.profile_points(img) for img in images]
@@ -268,17 +264,17 @@ class LaserCalibration(CameraCalibration):
         lines = [self.find_best_line2d(profile2d) for profile2d in profiles]
         return lines
 
-    def find_calibration_3d(self, filenames):
-        filenames = self.read_filenames(filenames)
-        images = self.read_images(filenames)
+    def find_calibration_3d(self, images):
         self.get_calibration(images)
         self.images = images
+        self.pattern_poses = self.locate_patterns(self.grids)
 
         profiles3d = []
         for k, img in enumerate(images):
-            grid = self.grids[k]
+            grid, pattern_pose = self.grids[k], self.pattern_poses[k]
             if grid is not None:
-                profile3d, profile2d, chessboard_pose = self.get_chessboard_laser(img, grid)
+                profile3d, profile2d = self.get_chessboard_laser(img, grid,
+                                                                 pattern_pose)
                 if len(profile2d) > 0:
                     line, inliers = self.find_best_line2d(profile2d)
                     profiles3d.append(profile3d[inliers])
@@ -286,7 +282,7 @@ class LaserCalibration(CameraCalibration):
 
         self.profile.pose, self.profile.homography = self.find_lightplane(self.profiles3d)
 
-    def show_calibration_3d(self, images):
+    def show_calibration_3d(self):
         print 'Camera calibration'
         print self.camera_mat, self.dist_coef
 
@@ -294,12 +290,13 @@ class LaserCalibration(CameraCalibration):
         print self.profile.pose, self.profile.homography
 
         mplot3d = MPlot3D(scale=0.005)
-        for k, img in enumerate(images):
-            grid = self.grids[k]
+        for k, img in enumerate(self.images):
+            grid, pattern_pose = self.grids[k], self.pattern_poses[k]
             if grid is not None:
-                profile3d, profile2d, chessboard_pose = self.get_chessboard_laser(img, grid)
+                profile3d, profile2d = self.get_chessboard_laser(img, grid,
+                                                                 pattern_pose)
                 if len(profile2d) > 0:
-                    mplot3d.draw_frame(chessboard_pose)
+                    mplot3d.draw_frame(pattern_pose)
                     mplot3d.draw_points(profile3d, color=(1, 1, 1))
 
         plane, inliers = self.find_best_plane(self.profiles3d)
@@ -432,29 +429,40 @@ class HandEyeCalibration():
         return Hcg
 
 
+def read_poses(filename):
+    with open(filename, 'r') as f:
+        pose = eval(f.read())
+        tool_pose = calc.quatpose_to_matrix(*(np.array(pose[0]),
+                                              np.array(pose[1])))
+    return tool_pose
+
+
+def read_calibration_data(dirname):
+    frame_filenames = sorted(glob.glob(os.path.join(dirname, 'frame*.png')))
+    pose_filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
+    images = [read_image(filename) for filename in frame_filenames]
+    tool_poses = [read_poses(filename) for filename in pose_filenames]
+    return images, tool_poses
+
+
 if __name__ == '__main__':
-    import os
-    import glob
+    from mlabplot import MPlot3D
 
     dirname = '../../data'
-    pathname = os.path.join(dirname, 'frame*.png')
-    filenames = sorted(glob.glob(os.path.join(dirname, 'pose*.txt')))
-    ks = [int(filename[-8:-4]) for filename in filenames]
-    print 'Files numbers:', ks
+    images, tool_poses = read_calibration_data(dirname)
 
     laser_profile = Profile(axis=1, thr=180, method='pcog')
     laser_calibration = LaserCalibration(grid_size=(7, 6), square_size=0.010,
                                          profile=laser_profile)
-    laser_calibration.find_calibration_3d(pathname)
+    laser_calibration.find_calibration_3d(images)
 
-    images = laser_calibration.images
-    grids = laser_calibration.grids
-    poses = laser_calibration.locate_patterns(grids)
+    pattern_poses = laser_calibration.pattern_poses
     profiles = laser_calibration.find_profiles(images)
     lines = laser_calibration.find_lines(profiles)
 
     for k, img in enumerate(images):
-        imgc = laser_calibration.draw_chessboard(img.copy(), grids[k])
+        grid = laser_calibration.grids[k]
+        imgc = laser_calibration.draw_chessboard(img.copy(), grid)
         if len(profiles[k]) > 0:
             line, inliers = lines[k]
             imgc = draw_points(imgc, profiles[k], color=PURPLE, thickness=2)
@@ -464,50 +472,35 @@ if __name__ == '__main__':
                                color=RED, thickness=2)
             imgc = draw_line(imgc, line, color=RED, thickness=2)
             #cv2.imwrite('board%i.png' %k, imgc)
-        show_images([imgc], wait=500)
+        show_images([imgc], wait=1000)
 
-    #laser_calibration.show_calibration_3d(images)
-    #laser_calibration.save_parameters('../config/triangulation.yml')
+    laser_calibration.show_calibration_3d()
+    laser_calibration.save_parameters('../../config/triangulation.yml')
 
     poses_checker, poses_tool = [], []
-    for k in ks:
-        path_frame = os.path.join(dirname, 'frame%04i.png' % k)
-        path_pose = os.path.join(dirname, 'pose%04i.txt' % k)
-        img = read_image(path_frame)
-        grid = laser_calibration.find_chessboard(img)
-        pose_checker = None
-        pose_tool0 = None
-        if grid is not None:
-            pose_checker = laser_calibration.get_chessboard_pose(grid)
-            pose_checker = calc.pose_to_matrix(pose_checker)
-            with open(path_pose, 'r') as f:
-                pose = eval(f.read())
-                pose_tool0 = calc.quatpose_to_matrix(*(np.array(pose[0]),
-                                                       np.array(pose[1])))
+    for k in range(len(tool_poses)):
+        pose_checker, pose_tool0 = None, None
+        if pattern_poses[k] is not None:
+            pose_checker = calc.pose_to_matrix(pattern_poses[k])
+            pose_tool0 = tool_poses[k]
         poses_checker.append(pose_checker)
         poses_tool.append(pose_tool0)
-    print 'Poses:', poses_checker, poses_tool
+
     pchecker, ptool = [], []
     for k in range(len(poses_checker)):
         if poses_checker[k] is not None:
             pchecker.append(poses_checker[k])
             ptool.append(poses_tool[k])
     poses_checker, poses_tool = pchecker, ptool
-    poses_ichecker = [calc.matrix_invert(pose_checker) for pose_checker in poses_checker]
-    poses_itool = [calc.matrix_invert(pose_tool) for pose_tool in poses_tool]
+    poses_ichecker = [calc.matrix_invert(pose) for pose in poses_checker]
+    poses_itool = [calc.matrix_invert(pose) for pose in poses_tool]
 
     print 'Hand Eye Calibration Solution'
     tlc = HandEyeCalibration()
     T2C = tlc.solve(poses_tool, poses_checker)
     W2K = tlc.solve(poses_itool, poses_ichecker)
-#    Htc = tlc.solve([WT1, WT2, WT3], [CK1, CK2, CK3])
-#    Hwk = tlc.solve([TW1, TW2, TW3], [KC1, KC2, KC3])
-#    T2C, W2K = Htc, Hwk
     print 'Tool2Camera:', calc.matrix_to_rpypose(T2C)
     print 'World2Checker:', calc.matrix_to_rpypose(W2K)
-
-    #T2C = calc.matrix_compose((T2C, RZ180))
-    #print 'Tool2Camera (rot):', calc.matrix_to_rpypose(T2C)
 
     mplot3d = MPlot3D(scale=0.005)
     pp = laser_calibration.pattern_points
@@ -524,21 +517,14 @@ if __name__ == '__main__':
         mplot3d.draw_frame(calc.matrix_to_pose(WK))
         mplot3d.draw_points(calc.points_transformation(WK, pp),
                             color=(1, 1, 0))
-
         mplot3d.draw_frame(calc.matrix_to_pose(W2K))
         mplot3d.draw_points(calc.points_transformation(W2K, pp),
                             color=(1, 1, 1))
-
         img, grid = images[k], laser_calibration.grids[k]
         if grid is not None:
-            profile3d, profile2d, chessboard_pose = laser_calibration.get_chessboard_laser(img, grid)
-            chessboard_pose = calc.matrix_compose((WC, calc.pose_to_matrix(chessboard_pose)))
+            chessboard_pose = pattern_poses[k]
+            profile3d, profile2d = laser_calibration.get_chessboard_laser(img, grid, chessboard_pose)
             if len(profile2d) > 0:
                 mplot3d.draw_points(calc.points_transformation(WC, profile3d),
                                     color=(1, 1, 1))
-
     mplot3d.show()
-
-#    # TODO: Standardize transformation functions: halcon inspired.
-#    # TODO: Remove pose (R,t). Replace with homogeneous transformation matrix.
-#    # TODO: Modified RAPID script: power, powder, triggers. Check TCP sign.
