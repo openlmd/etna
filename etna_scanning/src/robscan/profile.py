@@ -30,26 +30,26 @@ class Profile():
         return data
 
     def save_configuration(self, filename):
-        data = dict(thr = self.thr,
-                    axis = self.axis,
-                    method = self.method,
-                    homo = self.homography.tolist(),
-                    pose = dict(R = self.pose[0].tolist(),
-                                t = self.pose[1].tolist()))
+        data = dict(thr=self.thr,
+                    axis=self.axis,
+                    method=self.method,
+                    homo=self.homography.tolist(),
+                    pose=dict(R=self.pose[0].tolist(),
+                              t=self.pose[1].tolist()))
         with open(filename, 'w') as f:
             f.write(yaml.dump(data))
         return data
 
     def threshold_image(self, image, channel=2):
         if len(image.shape) > 2:
-            img = image[:,:,channel].copy()
-            img[image[:,:,channel] < self.thr] = 0
+            img = image[:, :, channel].copy()
+            img[image[:, :, channel] < self.thr] = 0
         else:
             img = image.copy()
             img[image < self.thr] = 0
         return img
 
-    def peak_max_profile(self, img):#camera = Camera()
+    def peak_max_profile(self, img):
         """Returns the profile defined by maximum values."""
         if self.axis == 0:
             y = np.argmax(img, axis=self.axis)
@@ -94,19 +94,22 @@ class Profile():
 
     def profile_points(self, image):
         blur = cv2.blur(image, (3, 3))
-        gray  = self.threshold_image(blur)
+        gray = self.threshold_image(blur)
         profile = self.peak_profile(gray)
         return profile
 
     def profile_to_points3d(self, profile, homography, pose, minz=0, maxz=1000):
-        """Transforms the profile image points of the laser using the homography
-        and the pose of the laser plane to get the points in the camera frame."""
+        """Transforms the profile image points of the laser using the
+        homography and the pose of the laser plane to get the points
+        in the camera frame."""
         if len(profile) > 0:
-            pnts = np.float32([np.dot(homography, np.float32([x, y, 1])) for x, y in profile])
+            pnts = np.float32([np.dot(homography,
+                                      np.float32([x, y, 1])) for x, y in profile])
             points = np.float32([pnt / pnt[2] for pnt in pnts])
-            points3d = np.float32([np.dot(pose[0], np.float32([x, y, 0])) + pose[1] for x, y in points[:,:2]])
-            points3d = points3d[points3d[:,2]>minz]
-            points3d = points3d[points3d[:,2]<maxz]
+            points3d = np.float32([np.dot(pose[0],
+                                   np.float32([x, y, 0])) + pose[1] for x, y in points[:, :2]])
+            #points3d = points3d[points3d[:, 2] > minz]
+            #points3d = points3d[points3d[:, 2] < maxz]
         else:
             points3d = []
         return points3d
@@ -116,15 +119,16 @@ class Profile():
         profile detection in the image. Projects the laser profile on a plane.
         """
         blur = cv2.blur(image, (3, 3))
-        gray  = self.threshold_image(blur)
+        gray = self.threshold_image(blur)
         profile = self.peak_profile(gray)
         if homography is None or pose is None:
-            points3d = self.profile_to_points3d(profile, self.homography, self.pose)
+            points3d = self.profile_to_points3d(profile,
+                                                self.homography, self.pose)
         else:
             points3d = self.profile_to_points3d(profile, homography, pose)
         return points3d, profile
 
-    def draw_points(self, image, points, color=(0,0,0), thickness=1):
+    def draw_points(self, image, points, color=(0, 0, 0), thickness=1):
         if not points.dtype == np.int32:
             points = np.round(points, 0).astype(np.int32)
         for cx, cy in points:
@@ -133,14 +137,15 @@ class Profile():
 
     def profile_measurement(self, frame):
         points3d, profile = self.points_profile(frame)
-        frame = self.draw_points(frame, profile, color=(0,0,255), thickness=2)
+        frame = self.draw_points(frame, profile,
+                                 color=(0, 0, 255), thickness=2)
         if len(points3d) > 0:
             print points3d
             point3d = points3d[len(points3d)/5]
-            cv2.putText(frame, '%s' %point3d, (11, 22), cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 255, 255),
+            cv2.putText(frame, '%s' % point3d, (11, 22),
+                        cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 255, 255),
                         thickness=1, lineType=cv2.CV_AA)
         return frame
-
 
 
 if __name__ == '__main__':
