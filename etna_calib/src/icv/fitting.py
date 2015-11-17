@@ -1,28 +1,28 @@
-import pylab
 import numpy as np
 
 
 def best_fitLTSQ(data):
-    """Returns the best linear model for the input data in terms of least-squares."""
+    """Returns the best linear model for input data in terms of least-squares."""
     G = data.copy()
-    G[:,-1] = 1
-    Z = data[:,-1]
+    G[:, -1] = 1
+    Z = data[:, -1]
     model, resid, rank, s = np.linalg.lstsq(G, Z)
-    r2 = 1 - resid / (Z.size * Z.var())
+    #r2 = 1 - resid / (Z.size * Z.var())
     #print 'r2', r2
     return model, resid
 
+
 def best_fitSVD(data):
     """Returns the best linear model for the input data using the SVD method."""
-    p = (np.ones((len(data), 1)))
-    AB = np.hstack([data, p])
-    [u, d, v] = np.linalg.svd(AB)
-    return v[-1,:] # Solution is last column of v.
+    [u, d, v] = np.linalg.svd(data)
+    return v[-1, :]  # Solution is last column of v.
+
 
 def fit_line2d(points2d):
     """Best 2D line fitting using the least-squares method."""
     model, resid = best_fitLTSQ(points2d)
     return model
+
 
 def fit_planeLTSQ(points3d):
     """Fits a plane to a point cloud where Z = aX + bY + c."""
@@ -37,6 +37,7 @@ def fit_planeLTSQ(points3d):
     nn = np.linalg.norm(model[:3])
     model = model / nn
     return model
+
 
 def fit_line3d(points3d):
     """Fit a line to a point cloud where z = mx + ny + c."""
@@ -55,6 +56,7 @@ def fit_line3d(points3d):
     linepts += datamean
     return linepts
 
+
 def fit_plane(points3d):
     """Plane fitting."""
     # Set up constraint equations of the form  AB = 0,
@@ -67,11 +69,37 @@ def fit_plane(points3d):
     return normal
 
 
+def fit_transformation(points2d, points3d):
+    u, v, p = points2d[:, 0], points2d[:, 1], np.ones(len(points2d))
+    X, Y, Z = points3d[:, 0], points3d[:, 1], points3d[:, 2]
+    A1 = np.vstack((X, -u, -v, -p)).T
+    B1 = best_fitSVD(A1)
+    T1 = B1[1:] / B1[0]
+    A2 = np.vstack((Y, -u, -v, -p)).T
+    B2 = best_fitSVD(A2)
+    T2 = B2[1:] / B2[0]
+    A3 = np.vstack((Z, -u, -v, -p)).T
+    B3 = best_fitSVD(A3)
+    T3 = B3[1:] / B3[0]
+    A4 = np.vstack((p, -u, -v, -p)).T
+    B4 = best_fitSVD(A4)
+    T4 = B4[1:] / B4[0]
+    T = np.vstack((T1, T2, T3, T4))
+    return T
+
+
+def apply_transformation(T, points2d):
+    pnts2d = np.hstack((points2d, np.ones((len(points2d), 1))))
+    pnts3d = np.vstack([np.dot(T, pnt2d) for pnt2d in pnts2d])
+    pnts3d = pnts3d[:, :3] / pnts3d[:, 3].reshape(len(pnts3d), 1)
+    return pnts3d
+
 
 def cross(vector1, vector2):
     """Calculates the cross product of both vectors."""
     (u1, v1, w1), (u2, v2, w2) = vector1, vector2
     return np.array([v1 * w2 - w1 * v2, w1 * u2 - u1 * w2, u1 * v2 - v1 * u2])
+
 
 def normalize(vector):
     """Scales each component of the vector to have a magnitude value of 1."""
@@ -79,6 +107,7 @@ def normalize(vector):
     if m:
         vector = vector / m
     return vector
+
 
 def get_plane_pose(plane):
     """Gets the pose of the plane."""
@@ -134,7 +163,7 @@ class Fit():
             sample = data[np.random.randint(0, data.shape[0], 2)]
             sample_model = model_class.fit(sample)
             sample_model_residua = model_class.residuals(sample_model, data)
-            sample_model_inliers = data_idx[sample_model_residua<threshold]
+            sample_model_inliers = data_idx[sample_model_residua < threshold]
             inlier_num = sample_model_inliers.shape[0]
             if inlier_num > best_inlier_num:
                 best_inlier_num = inlier_num
@@ -142,6 +171,7 @@ class Fit():
         if best_inliers is not None:
             best_model = model_class.fit(data[best_inliers])
         return best_model, best_inliers
+
 
 class LineFit(Fit):
     def function(self, x, model):
@@ -155,8 +185,9 @@ class LineFit(Fit):
 
     def residuals(self, model, data):
         m, b = model
-        d = (m * data[:,0] + b - data[:,1]) / (m + 0.00001)
+        d = (m * data[:, 0] + b - data[:, 1]) / (m + 0.00001)
         return np.abs(d)
+
 
 class PlaneFit(Fit):
     def function(self, x, y, model):
@@ -170,10 +201,8 @@ class PlaneFit(Fit):
 
     def residuals(self, model, data):
         a, b, c, d = model
-        D = (a * data[:,0] + b * data[:,1] + c * data[:,2] + d) / np.sqrt(a**2 + b**2 + c**2)
+        D = (a * data[:, 0] + b * data[:, 1] + c * data[:, 2] + d) / np.sqrt(a**2 + b**2 + c**2)
         return np.abs(D)
-
-
 
 
 def generate_test_line_data(point0, point1, samples=200):
@@ -188,6 +217,7 @@ def generate_test_line_data(point0, point1, samples=200):
         data[:30] += np.array([0, 50]) * np.random.random(size=(30,2))
     return data
 
+
 def generate_test_plane_data(point0, point1, samples=20):
     x = np.linspace(point0[0], point1[0], samples)
     y = np.linspace(point0[1], point1[1], samples)
@@ -196,7 +226,7 @@ def generate_test_plane_data(point0, point1, samples=20):
     xx, zz = np.meshgrid(x, z)
     points3d = np.vstack((xx.ravel(), yy.ravel(), zz.ravel())).T
     points3d += np.random.normal(size=points3d.shape) * 0.4
-    points3d[:2] += np.array([0, 0, 10]) * np.random.random(size=(2,3))
+    points3d[:2] += np.array([0, 0, 10]) * np.random.random(size=(2, 3))
     return points3d
 
 
@@ -207,6 +237,7 @@ def test_fit_line():
     mplot3d = MPlot3D()
     mplot3d.draw_line(model, points3d)
     mplot3d.show()
+
 
 def test_fit_plane(filename='../data/downsampled.xyz'):
     points3d = np.loadtxt(filename)
