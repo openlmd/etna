@@ -80,8 +80,8 @@ class Profile3D():
 
             profile3d, profile2d = self.profile.points_profile(image)
 
-            if data.encoding == 'mono8':
-                image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+            #if data.encoding == 'mono8':
+            #    image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
             #self.pub_camera_frame(stamp)
             if len(profile3d) > 0:
                 self.pub_point_cloud(stamp, profile3d)

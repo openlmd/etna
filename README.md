@@ -21,4 +21,3 @@ This meta-package is composed by four packages:
 
 [![Robscan Video](./etna_scanning/media/robscan.png)](./etna_scanning/media/robscan.mp4)
 
-![Alt text](./etna_scanning/media/test.png "Scanning test")

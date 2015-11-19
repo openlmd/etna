@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 os.environ['QT_API'] = 'pyqt'
 os.environ['ETS_TOOLKIT'] = 'qt4'
@@ -17,8 +19,8 @@ from PyQt4 import uic
 
 import numpy as np
 
-from robpath import RobPath
-from mlabplot import MPlot3D
+from robpath.robpath import RobPath
+from robpath.mlabplot import MPlot3D
 
 
 class Visualization(HasTraits):
@@ -78,7 +80,8 @@ class QMayavi(QtGui.QWidget):
 class RobPathUI(QtGui.QMainWindow):
     def __init__(self):
         super(RobPathUI, self).__init__()
-        uic.loadUi('robpath.ui', self)
+        path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        uic.loadUi(os.path.join(path, 'resources', 'robpath.ui'), self)
 
         self.plot = QMayavi()
         self.boxPlot.addWidget(self.plot)

@@ -277,10 +277,7 @@ class LaserCalibration(CameraCalibration):
         points2d = points2d[inliers]
         print 'l', len(points3d), len(points2d)
         print '> search transformation from 2d to 3d'
-        T = fit.fit_transformation(points2d, points3d)
-        pnts3d = fit.apply_transformation(T, points2d)
-        self.T = T
-        print 'Points', points3d, pnts3d
+        self.profile.trans = fit.fit_transformation(points2d, points3d)
         self.profile.pose, self.profile.homography = self.find_lightplane(self.profiles3d)
 
     def show_calibration_3d(self):
@@ -297,7 +294,8 @@ class LaserCalibration(CameraCalibration):
                 if len(profile2d) > 0:
                     mplot3d.draw_frame(pattern_pose)
                     mplot3d.draw_points(profile3d, color=(1, 1, 1))
-                    mplot3d.draw_points(fit.apply_transformation(self.T, profile2d), color=(0, 1, 1))
+                    mplot3d.draw_points(fit.apply_transformation(
+                        self.profile.trans, profile2d), color=(0, 1, 1))
         plane, inliers = self.find_best_plane(self.profiles3d)
         mplot3d.draw_plane(plane, self.profiles3d[inliers])
         plane_pose = fit.get_plane_pose(plane)
@@ -534,7 +532,7 @@ if __name__ == '__main__':
                 #                                              laser_profile.pose)
                 # print points3d, laser_profile.pose, laser_profile.homography
                 # mplot3d.draw_points(calc.points_transformation(WC, points3d[0:-1:50]), color=(1, 0, 0))
-                points3d = fit.apply_transformation(laser_calibration.T, profiles[k])
-                print points3d, laser_calibration.T
+                points3d = fit.apply_transformation(laser_profile.trans, profiles[k])
+                print points3d, laser_profile.trans
                 mplot3d.draw_points(calc.points_transformation(WC, points3d[0:-1:25]), color=(0, 1, 0))
     mplot3d.show()
