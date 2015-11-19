@@ -75,18 +75,6 @@ def show_images(images, wait=500, scale=0.5):
 
 # Color filters
 
-def bgr2gray(image):
-    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-
-def rgb2gray(image):
-    return cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-
-
-def blur(image, ksize=(3, 3)):
-    return cv2.GaussianBlur(image, ksize, 0)
-
-
 def threshold(image, thr=39):
     return cv2.threshold(image, thr, 255, cv2.THRESH_BINARY)[1]
 

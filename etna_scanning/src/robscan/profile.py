@@ -15,6 +15,7 @@ class Profile():
         self.thr = thr
         self.axis = axis
         self.method = method
+        self.trans = np.zeros((4, 3))
         self.homography = np.eye(3)
         self.pose = (np.eye(3), np.zeros(3))
 
@@ -24,6 +25,7 @@ class Profile():
         self.thr = data['thr']
         self.axis = data['axis']
         self.method = data['method']
+        self.trans = np.array(data['trans'])
         self.homography = np.array(data['homo'])
         self.pose = (np.array(data['pose']['R']),
                      np.array(data['pose']['t']))
@@ -33,6 +35,7 @@ class Profile():
         data = dict(thr=self.thr,
                     axis=self.axis,
                     method=self.method,
+                    trans=self.trans.tolist(),
                     homo=self.homography.tolist(),
                     pose=dict(R=self.pose[0].tolist(),
                               t=self.pose[1].tolist()))
@@ -102,6 +105,7 @@ class Profile():
         """Transforms the profile image points of the laser using the
         homography and the pose of the laser plane to get the points
         in the camera frame."""
+        points3d = []
         if len(profile) > 0:
             pnts = np.float32([np.dot(homography,
                                       np.float32([x, y, 1])) for x, y in profile])
@@ -110,8 +114,15 @@ class Profile():
                                    np.float32([x, y, 0])) + pose[1] for x, y in points[:, :2]])
             #points3d = points3d[points3d[:, 2] > minz]
             #points3d = points3d[points3d[:, 2] < maxz]
-        else:
-            points3d = []
+        return points3d
+
+    def transform_profile(self, profile):
+        points3d = []
+        if len(profile):
+            points = np.hstack((profile, np.ones((len(profile), 1))))
+            pnts3d = np.vstack([np.dot(self.trans, point) for point in points])
+            print self.trans, pnts3d
+            points3d = pnts3d[:, :3] / pnts3d[:, 3].reshape(len(pnts3d), 1)
         return points3d
 
     def points_profile(self, image, homography=None, pose=None):
@@ -122,8 +133,7 @@ class Profile():
         gray = self.threshold_image(blur)
         profile = self.peak_profile(gray)
         if homography is None or pose is None:
-            points3d = self.profile_to_points3d(profile,
-                                                self.homography, self.pose)
+            points3d = self.transform_profile(profile)
         else:
             points3d = self.profile_to_points3d(profile, homography, pose)
         return points3d, profile
