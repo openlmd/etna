@@ -289,10 +289,10 @@ class Mesh:
         tool_path = []
         for slice in slices:
             if slice is not None:
-                contour = slice[0]
-                tool_path.append([contour[0], orientation, False])
-                for point in contour[1:]:
-                    tool_path.append([point, orientation, True])
+                for contour in slice:
+                    tool_path.append([contour[0], orientation, False])
+                    for point in contour[1:]:
+                        tool_path.append([point, orientation, True])
         return tool_path
 
     def get_mesh_slices_path(self, layer_height, track_distance):
@@ -307,13 +307,14 @@ class Mesh:
             t1 = time.time()
             print '[%.2f%%] Time to slices %.3f s.' % ((100.0 * (k + 1)) / len(levels), t1 - t0)
             if slice is not None:
-                fill_lines = self.get_grated(slice, track_distance)
-                # Reverse the order of the slicer fill lines
-                if pair:
-                    fill_lines.reverse()
-                pair = not pair
-                tool_path = self.get_path_from_fill_lines(fill_lines)
-                path.extend(tool_path)
+                for contour in slice:
+                    fill_lines = self.get_grated(slice, track_distance)
+                    # Reverse the order of the slicer fill lines
+                    if pair:
+                        fill_lines.reverse()
+                    pair = not pair
+                    tool_path = self.get_path_from_fill_lines(fill_lines)
+                    path.extend(tool_path)
                 t2 = time.time()
                 print '[%.2f%%] Time to path %.3f s.' % ((100.0 * (k + 1)) / len(slices), t2 - t1)
         return slices, path
@@ -326,12 +327,29 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         filename = sys.argv[1]
     else:
-        filename = './models/test.stl'
-        filename = './models/sled2.stl'
-        filename = './models_stl/piece0.stl'
+        filename = '../../data/models_stl/aimen.stl'
+        #filename = '../../data/models_stl/piece0.stl'
 
     # Triangle mesh is composed by a set of faces (triangles)
     mesh = Mesh(filename)
+
+    t0 = time.time()
+    slice = mesh.get_slice(0.1)
+    t1 = time.time()
+    print 'Time for slice:', t1 - t0
+
+    mplot3d = MPlot3D()
+    mplot3d.draw_slice(slice)
+    mplot3d.show()
+
+    t0 = time.time()
+    path = mesh.get_path_from_slices([slice])
+    t1 = time.time()
+    print 'Time for path:', t1 - t0
+
+    mplot3d = MPlot3D()
+    mplot3d.draw_path(path)
+    mplot3d.show()
 
     layer_height, track_distance = 0.50, 1.5
     slices, path = mesh.get_mesh_slices_path(layer_height, track_distance)

@@ -116,9 +116,9 @@ class RobPathUI(QtGui.QMainWindow):
         self.plot.drawMesh(self.robpath.mesh)
 
     def changeSize(self):
-        sx = self.sbSizeX.value() + 0.00001
-        sy = self.sbSizeY.value() + 0.00001
-        sz = self.sbSizeZ.value() + 0.00001
+        sx = self.sbSizeX.value() + 0.001
+        sy = self.sbSizeY.value() + 0.001
+        sz = self.sbSizeZ.value() + 0.001
         self.robpath.resize_mesh(np.float32([sx, sy, sz]))
         self.changePosition()
 
@@ -137,7 +137,8 @@ class RobPathUI(QtGui.QMainWindow):
     def updateProcess(self):
         if self.robpath.k < len(self.robpath.levels):
             self.robpath.update_process()
-            self.plot.drawSlice(self.robpath.slices, self.robpath.path)
+            #self.plot.drawSlice(self.robpath.slices, self.robpath.path)
+            self.plot.drawPath(self.robpath.path)
             self.plot.progress.setValue(100.0 * self.robpath.k / len(self.robpath.levels))
             self.btnSaveRapid.setEnabled(False)
         else:
@@ -194,7 +195,7 @@ class RobPathUI(QtGui.QMainWindow):
         turntable = self.sbTurntable.value()
         self.robpath.set_powder(carrier_gas, stirrer, turntable)
 
-    def btnProcessMeshClicked(self):
+    def __process_shape(self):
         if self.processing:
             self.timer.stop()
             self.processing = False
@@ -207,13 +208,19 @@ class RobPathUI(QtGui.QMainWindow):
             self.processing = True
             self.timer.start(100)
 
+    def btnProcessMeshClicked(self):
+        self.robpath.filled = True
+        self.__process_shape()
+
     def btnProcessContoursClicked(self):
-        self.btnSaveRapid.setEnabled(False)
-        self.plot.drawWorkingArea()
-        self.update_parameters()
-        self.robpath.get_contours_path()
-        self.plot.drawPath(self.robpath.path)
-        self.btnSaveRapid.setEnabled(True)
+        self.robpath.filled = False
+        self.__process_shape()
+        # self.btnSaveRapid.setEnabled(False)
+        # self.plot.drawWorkingArea()
+        # self.update_parameters()
+        # self.robpath.get_contours_path()
+        # self.plot.drawPath(self.robpath.path)
+        # self.btnSaveRapid.setEnabled(True)
 
     def btnSaveRapidClicked(self):
         self.robpath.save_rapid()
