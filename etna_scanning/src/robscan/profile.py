@@ -121,7 +121,6 @@ class Profile():
         if len(profile):
             points = np.hstack((profile, np.ones((len(profile), 1))))
             pnts3d = np.vstack([np.dot(self.trans, point) for point in points])
-            print self.trans, pnts3d
             points3d = pnts3d[:, :3] / pnts3d[:, 3].reshape(len(pnts3d), 1)
         return points3d
 
