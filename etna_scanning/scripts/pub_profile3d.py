@@ -75,14 +75,14 @@ class Profile3D():
             image = self.bridge.imgmsg_to_cv2(data)
 
             rospy.loginfo(stamp)
-            stamp = data.header.stamp
-            rospy.loginfo(stamp)
+            #stamp = data.header.stamp
+            #rospy.loginfo(stamp)
 
             profile3d, profile2d = self.profile.points_profile(image)
 
             #if data.encoding == 'mono8':
             #    image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
-            #self.pub_camera_frame(stamp)
+            self.pub_camera_frame(stamp)
             if len(profile3d) > 0:
                 self.pub_point_cloud(stamp, profile3d)
                 #image = self.profile.draw_points(image, profile2d,
