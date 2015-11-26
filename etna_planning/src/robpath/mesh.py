@@ -262,8 +262,7 @@ class Mesh:
     def get_path_from_fill_lines(self, fill_lines):
         orientation = np.array((0.0, 0.0, 0.0, 1.0))
         pnt1, pnt2 = fill_lines[0][0], fill_lines[0][1]
-        tool_path = [[pnt1, orientation, False],
-                     [pnt2, orientation, True]]
+        tool_path = []
         pair = False
         #offset = 10 # Adds an offset on the end of the track
         for line in fill_lines:
@@ -273,9 +272,13 @@ class Mesh:
             pair = not pair
             for k in range(0, len(line), 2):
                 pnt1, pnt2 = line[k], line[k+1]
-                last_point = tool_path[-1][0]
-                if np.all(last_point == pnt1):
-                    tool_path[-1] = [pnt2, orientation, True]
+                if len(tool_path):
+                    last_point = tool_path[-1][0]
+                    if np.all(last_point == pnt1):
+                        tool_path[-1] = [pnt2, orientation, True]
+                    else:
+                        tool_path.append([pnt1, orientation, False])
+                        tool_path.append([pnt2, orientation, True])
                 else:
                     tool_path.append([pnt1, orientation, False])
                     tool_path.append([pnt2, orientation, True])
@@ -327,16 +330,19 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         filename = sys.argv[1]
     else:
-        filename = '../../data/models_stl/aimen.stl'
-        #filename = '../../data/models_stl/piece0.stl'
+        #filename = '../../data/models_stl/aimen.stl'
+        filename = '../../data/models_stl/piece0.stl'
 
     # Triangle mesh is composed by a set of faces (triangles)
     mesh = Mesh(filename)
 
     t0 = time.time()
     slice = mesh.get_slice(0.1)
+    lines = mesh.get_grated(slice, 1.5)
     t1 = time.time()
     print 'Time for slice:', t1 - t0
+    print slice
+    print lines
 
     mplot3d = MPlot3D()
     mplot3d.draw_slice(slice)
@@ -344,8 +350,10 @@ if __name__ == '__main__':
 
     t0 = time.time()
     path = mesh.get_path_from_slices([slice])
+    #path = mesh.get_path_from_fill_lines(lines)
     t1 = time.time()
     print 'Time for path:', t1 - t0
+    print 'Path:', path
 
     mplot3d = MPlot3D()
     mplot3d.draw_path(path)
