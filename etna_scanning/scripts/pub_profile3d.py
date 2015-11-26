@@ -75,10 +75,12 @@ class Profile3D():
             image = self.bridge.imgmsg_to_cv2(data)
 
             rospy.loginfo(stamp)
-            stamp = data.header.stamp
-            rospy.loginfo(stamp)
+            #stamp = data.header.stamp
+            #rospy.loginfo(stamp)
 
             profile3d, profile2d = self.profile.points_profile(image)
+
+            print 'Profile3d:', profile3d
 
             #if data.encoding == 'mono8':
             #    image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
