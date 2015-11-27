@@ -350,7 +350,7 @@ if __name__ == '__main__':
 
     t0 = time.time()
     path = mesh.get_path_from_slices([slice])
-    #path = mesh.get_path_from_fill_lines(lines)
+    path = mesh.get_path_from_fill_lines(lines)
     t1 = time.time()
     print 'Time for path:', t1 - t0
     print 'Path:', path
