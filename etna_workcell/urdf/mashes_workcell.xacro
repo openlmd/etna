@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<robot name="mashes_workcell" xmlns:xacro="http://ros.org/wiki/xacro">
+  <property name="pi" value="3.141592654" />
+
+  <xacro:property name="workobject_frame">
+    <origin xyz="1.655 -0.087 0.932" rpy="0 0 0" />
+  </xacro:property>
+
+  <xacro:property name="camera_frame">
+    <origin xyz="0.0555 0.1699 0.3963" rpy="-1.161231 0.274247 -2.063781" />
+  </xacro:property>
+
+  <link name="world" />
+
+  <!-- Robot -->
+  <xacro:include filename="$(find etna_workcell)/urdf/abb_robot.xacro"/>
+
+  <joint name="world-abb_robot" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.067" rpy="0 0 0" />
+  </joint>
+
+  <!-- Head -->
+  <xacro:include filename="$(find etna_workcell)/urdf/wt03_head.xacro"/>
+
+  <joint name="tool0-head0" type="fixed">
+    <parent link="tool0"/>
+    <child link="head0"/>
+    <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Workobject -->
+  <link name="workobject">
+  <!--<visual>
+    <geometry>
+      <box size="0.5 0.5 0.25"/>
+    </geometry>
+    <origin xyz="0.25 0.25 0.125"/>
+    <material name="blue">
+      <color rgba="0.7 0.1 0.3 0.15"/>
+    </material>
+  </visual>-->
+  </link>
+
+  <joint name="world-workobject" type="fixed">
+    <parent link="base_link" />
+    <child link="workobject" />
+    <xacro:insert_block name="workobject_frame" />
+  </joint>
+
+  <!-- Camera -->
+  <link name="camera0" />
+
+  <joint name="tool0-camera0" type="fixed">
+    <parent link="tool0"/>
+    <child link="camera0"/>
+    <xacro:insert_block name="camera_frame" />
+  </joint>
+
+  <!-- Cell walls -->
+  <link name="walls">
+  <visual>
+    <geometry>
+      <mesh filename="package://etna_workcell/meshes/cell/cell.stl"/>
+    </geometry>
+    <origin xyz="0 0 0" />
+    <material name="white">
+      <color rgba="1 1 1 0.75"/>
+    </material>
+  </visual>
+  </link>
+
+  <joint name="world_to_walls" type="fixed">
+    <parent link="world" />
+    <child link="walls" />
+    <origin xyz="0 0 0" />
+  </joint>
+
+</robot>

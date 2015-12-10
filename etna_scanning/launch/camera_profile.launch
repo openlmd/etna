@@ -2,14 +2,16 @@
   <node name="camera" pkg="etna_scanning" type="pub_camera.py">
     <param name="image" type="str" value="/camera/image" />
     <param name="width" type="int" value="1280" />
-    <param name="height" type="int" value="960" />
+    <param name="height" type="int" value="1024" />
   </node>
-  
-  <node name="profile0" pkg="etna_scanning" type="pub_profile3d.py">
+
+  <node name="viewer" pkg="image_view" type="image_view">
+    <remap from="image" to="/camera/image" />
+  </node>
+
+  <node name="profile" pkg="etna_scanning" type="pub_profile3d.py">
     <param name="image" type="str" value="/camera/image" />
-    <param name="peaks" type="str" value="/camera/peaks" />
     <param name="cloud" type="str" value="/camera/cloud" />
     <param name="config" type="str" value="camera_profile3d.yaml" />
   </node>
 </launch>
-
