@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import cv2
 import rospy
 from robscan.camera import Camera
 from sensor_msgs.msg import Image
@@ -11,15 +10,15 @@ def camera():
 
     image_topic = rospy.get_param('~image', '/camera/image')
     image_pub = rospy.Publisher(image_topic, Image, queue_size=5)
-        
+
     bridge = CvBridge()
-    
+
     width = rospy.get_param('width', 640)
     height = rospy.get_param('height', 480)
-    
+
     camera = Camera(pixel_clock=50, exposure_time=8)
     #camera.configure(width=width, height=height)
-    
+
     while not rospy.is_shutdown():
         try:
             frame = camera.capture()
@@ -32,9 +31,7 @@ def camera():
             image_pub.publish(image_msg)
         except CvBridgeError, e:
             print e
-        
-            
+
 
 if __name__ == '__main__':
     camera()
-    

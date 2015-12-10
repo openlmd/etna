@@ -22,14 +22,11 @@ from sensor_msgs.msg import PointCloud2, PointField
 from markers import MeshMarker, TriangleListMarker
 from robpath import RobPath
 
-import rospkg
-rp = rospkg.RosPack()
-path = rp.get_path('etna_planning')
-
 
 class MyViz(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
+        path = rospkg.RosPack().get_path('etna_planning')
 
         ## rviz.VisualizationFrame is the main container widget of the
         ## regular RViz application. In this example, we disable everything
@@ -100,23 +97,24 @@ class MyViz(QtGui.QWidget):
                 return
         print("Did not find view named %s." % view_name)
 
-    def onOrbitButtonClick( self ):
+    def onOrbitButtonClick(self):
         self.switchToView("Orbit View")
 
-    def onFrontButtonClick( self ):
+    def onFrontButtonClick(self):
         self.switchToView("Front View")
 
-    def onRightButtonClick( self ):
+    def onRightButtonClick(self):
         self.switchToView("Right View")
 
-    def onTopButtonClick( self ):
+    def onTopButtonClick(self):
         self.switchToView("Top View")
 
 
 class RobPathUI(QtGui.QMainWindow):
     def __init__(self):
         super(RobPathUI, self).__init__()
-        loadUi(os.path.join(path, 'resource', 'robviz.ui'), self)
+        path = rospkg.RosPack().get_path('etna_planning')
+        loadUi(os.path.join(path, 'resources', 'robviz.ui'), self)
 
         self.boxPlot.addWidget(MyViz())
 
@@ -308,7 +306,6 @@ class RobPathUI(QtGui.QMainWindow):
 
     def btnQuitClicked(self):
         QtCore.QCoreApplication.instance().quit()
-
 
 
 if __name__ == '__main__':

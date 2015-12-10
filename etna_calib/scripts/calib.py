@@ -8,6 +8,7 @@ from icv.calibration import HandEyeCalibration
 
 from icv.image import *
 import icv.calculate as calc
+from icv.calibration import read_calibration_data
 
 import numpy as np
 np.set_printoptions(precision=4, suppress=True)
@@ -18,7 +19,9 @@ pattern_rows = 7
 pattern_cols = 8
 pattern_size = 0.010
 config_file = 'profile3d.yaml'
-pathname = os.path.join(path, 'data', 'frame*.png')
+
+dirname = '../data'
+images, tool_poses = read_calibration_data(dirname)
 
 square_size = pattern_size
 grid_size = (pattern_cols-1, pattern_rows-1)
@@ -29,7 +32,7 @@ camera_calibration = CameraCalibration(grid_size=grid_size,
 laser_calibration = LaserCalibration(grid_size=grid_size,
                                      square_size=square_size,
                                      profile=laser_profile)
-laser_calibration.find_calibration_3d(pathname)
+laser_calibration.find_calibration_3d(images)
 laser_calibration.save_parameters(os.path.join(path, 'config', config_file))
 
 filenames = sorted(glob.glob('../data/pose*.txt'))

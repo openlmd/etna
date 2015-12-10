@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<robot name="wt03_head" xmlns:xacro="http://ros.org/wiki/xacro">
+  <property name="pi" value="3.141592654" />
+
+  <xacro:property name="tcp_frame">
+    <origin xyz="0.216 -0.022 0.474" rpy="${pi} -1.047197555 ${pi}" />
+  </xacro:property>
+
+  <!-- Head -->
+  <link name="head0">
+    <visual>
+      <geometry>
+        <mesh filename="package://etna_workcell/meshes/head_wt03/visual/head_wt03.stl" />
+      </geometry>
+      <material name="dark_gray">
+        <color rgba="0.3 0.4 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://etna_workcell/meshes/head_wt03/collision/head_wt03.stl" />
+      </geometry>
+      <material name="yellow">
+        <color rgba="0 1 1 1" />
+      </material>
+    </collision>
+  </link>
+
+  <!-- TCP -->
+  <link name="tcp0"/>
+  <joint name="tool0-tcp0" type="fixed">
+    <parent link="tool0"/>
+    <child link="tcp0"/>
+    <xacro:insert_block name="tcp_frame" />
+    <axis xyz="0 0 1"/>
+  </joint>
+</robot>
