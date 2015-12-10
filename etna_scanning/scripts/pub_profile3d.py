@@ -45,15 +45,6 @@ class Profile3D():
 
         rospy.spin()
 
-    def pub_camera_frame(self, stamp):
-#        filename = os.path.join(path, 'config/pose3d.yaml')
-#        data = rosparam.load_file(filename)[0]
-#        print type(data[0]), data[0]
-        br = tf.TransformBroadcaster()
-        br.sendTransform((0.35, -0.10, 0.12),
-                         tfs.quaternion_from_euler(0, np.deg2rad(90), 0),
-                         stamp, '/camera0', '/tool0')
-
     def pub_point_cloud(self, stamp, profile3d):
         # ERROR: Calibration done in meters
         #cloud = profile3d * 0.001 # Conversion from milimeters to meters
@@ -84,7 +75,6 @@ class Profile3D():
 
             #if data.encoding == 'mono8':
             #    image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
-            self.pub_camera_frame(stamp)
             if len(profile3d) > 0:
                 self.pub_point_cloud(stamp, profile3d)
                 #image = self.profile.draw_points(image, profile2d,
