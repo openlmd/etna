@@ -1,9 +1,0 @@
-<launch>
-  <include file="$(find etna_workcell)/launch/mashes_workcell.launch">
-    <arg name="gui" value="true" />    
-  </include>
-
-  <include file="$(find etna_scanning)/launch/ueye_profile.launch">
-    
-  </include>
-</launch>
