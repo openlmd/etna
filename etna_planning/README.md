@@ -2,7 +2,8 @@
 
 RobPath is a simple off-line path planning tool for direct manufacturing through robotized LMD.
 Based on conventional processing strategies, this tool automatically generates the robot tool
-path from the 3D part model, following the next steps:
+path from the 3D part model, assuming constant parameters during the process, following the next
+steps:
 
 - Loading the 3D model from a mesh described in STL format.
 - Slicing the mesh in different layers with a fixed thick.
@@ -24,8 +25,8 @@ can be resized and located on the required place to be manufactured.
 
 *Picture shown the reference of the virtual grid in the real laser cell.*
 
-When the model is placed, another button is used to process the model with set parameters. Taking
-in consideration track width, overlap, and track height, the system calculates the tool path.
+When the model is placed, another button is used to process the model with the set parameters.
+Assuming constant track width, overlap, and track height, the system calculates the tool path.
 Besides this parameters, the interface also allow to set on the lateral panel the process
 parameters (e.g. velocity, laser power, powder feed rate). The third button is required to export
 the robot routine to the robot control unit.
