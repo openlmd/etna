@@ -1,0 +1,722 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+d	/home/jorge/catkin_ws/src/etna/etna_planning/setup.py	/^d = generate_distutils_setup($/;"	variable	line:4
+packages	/home/jorge/catkin_ws/src/etna/etna_planning/setup.py	/^    packages=['robpath'],$/;"	variable	line:5
+package_dir	/home/jorge/catkin_ws/src/etna/etna_planning/setup.py	/^    package_dir={'': 'src'}$/;"	variable	line:6
+talker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/path_publisher.py	/^def talker():$/;"	function	line:12
+ShapeMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class ShapeMarker():$/;"	class	line:8
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self, frame_id="\/world"):$/;"	member	line:9	class:ShapeMarker
+set_color	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_color(self, color=(1.0,1.0,1.0,1.0)):$/;"	member	line:19	class:ShapeMarker
+set_scale	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_scale(self, scale=(1.0,1.0,1.0)):$/;"	member	line:25	class:ShapeMarker
+set_position	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_position(self, position=(0.0,0.0,0.0)):$/;"	member	line:30	class:ShapeMarker
+set_orientation	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_orientation(self, orientation=(0.0,0.0,0.0,1.0)):$/;"	member	line:35	class:ShapeMarker
+ArrowMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class ArrowMarker(ShapeMarker):$/;"	class	line:42
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self, length):$/;"	member	line:43	class:ArrowMarker
+set_length	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_length(self, length):$/;"	member	line:48	class:ArrowMarker
+CubeMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class CubeMarker(ShapeMarker):$/;"	class	line:51
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self):$/;"	member	line:52	class:CubeMarker
+SphereMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class SphereMarker(ShapeMarker):$/;"	class	line:56
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self):$/;"	member	line:57	class:SphereMarker
+CylinderMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class CylinderMarker(ShapeMarker):$/;"	class	line:61
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self):$/;"	member	line:62	class:CylinderMarker
+LinesMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class LinesMarker(ShapeMarker):$/;"	class	line:66
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self):$/;"	member	line:67	class:LinesMarker
+set_size	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_size(self, size=0.010):$/;"	member	line:73	class:LinesMarker
+PointsMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class PointsMarker(ShapeMarker):$/;"	class	line:76
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self):$/;"	member	line:77	class:PointsMarker
+set_size	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_size(self, size=0.025):$/;"	member	line:83	class:PointsMarker
+TextMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class TextMarker(ShapeMarker):$/;"	class	line:86
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self, text):$/;"	member	line:87	class:TextMarker
+set_text	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_text(self, text):$/;"	member	line:93	class:TextMarker
+set_size	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_size(self, size=0.1):$/;"	member	line:96	class:TextMarker
+MeshMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class MeshMarker(ShapeMarker):$/;"	class	line:99
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self, mesh_resource="package:\/\/etna_triangulation\/meshes\/robot.dae", frame_id='\/world'):$/;"	member	line:100	class:MeshMarker
+TriangleListMarker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^class TriangleListMarker(ShapeMarker):$/;"	class	line:106
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def __init__(self, frame_id='\/world'):$/;"	member	line:107	class:TriangleListMarker
+set_points	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    def set_points(self, points):$/;"	member	line:114	class:TriangleListMarker
+publisher	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    publisher = rospy.Publisher('visualization_marker', Marker, queue_size=10)$/;"	variable	line:120
+mesh_marker	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/markers.py	/^    mesh_marker = TriangleListMarker()$/;"	variable	line:123
+MyViz	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^class MyViz(QtGui.QWidget):$/;"	class	line:26
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def __init__(self, parent=None):$/;"	member	line:27	class:MyViz
+switchToView	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def switchToView(self, view_name):$/;"	member	line:92	class:MyViz
+onOrbitButtonClick	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def onOrbitButtonClick(self):$/;"	member	line:100	class:MyViz
+onFrontButtonClick	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def onFrontButtonClick(self):$/;"	member	line:103	class:MyViz
+onRightButtonClick	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def onRightButtonClick(self):$/;"	member	line:106	class:MyViz
+onTopButtonClick	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def onTopButtonClick(self):$/;"	member	line:109	class:MyViz
+RobPathUI	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^class RobPathUI(QtGui.QMainWindow):$/;"	class	line:113
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def __init__(self):$/;"	member	line:114	class:RobPathUI
+changeSpeed	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def changeSpeed(self):$/;"	member	line:154	class:RobPathUI
+changePower	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def changePower(self):$/;"	member	line:158	class:RobPathUI
+updatePosition	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def updatePosition(self, position):$/;"	member	line:162	class:RobPathUI
+updateSize	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def updateSize(self, size):$/;"	member	line:168	class:RobPathUI
+updateProcess	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def updateProcess(self):$/;"	member	line:174	class:RobPathUI
+blockSignals	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def blockSignals(self, value):$/;"	member	line:183	class:RobPathUI
+btnLoadClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnLoadClicked(self):$/;"	member	line:191	class:RobPathUI
+btnProcessMeshClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnProcessMeshClicked(self):$/;"	member	line:223	class:RobPathUI
+point_cloud_to_world	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def point_cloud_to_world(self, stamp, points3d):$/;"	member	line:231	class:RobPathUI
+callback_point_cloud	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def callback_point_cloud(self, data):$/;"	member	line:244	class:RobPathUI
+btnRecordClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnRecordClicked(self):$/;"	member	line:259	class:RobPathUI
+changePosition	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def changePosition(self):$/;"	member	line:268	class:RobPathUI
+changeSize	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def changeSize(self):$/;"	member	line:277	class:RobPathUI
+btnProcessMeshClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnProcessMeshClicked(self):$/;"	member	line:285	class:RobPathUI
+btnSaveRapidClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnSaveRapidClicked(self):$/;"	member	line:302	class:RobPathUI
+btnQuitClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    def btnQuitClicked(self):$/;"	member	line:307	class:RobPathUI
+app	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    app = QtGui.QApplication(sys.argv)$/;"	variable	line:314
+robpath	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robviz.py	/^    robpath = RobPathUI()$/;"	variable	line:315
+Visualization	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^class Visualization(HasTraits):$/;"	class	line:26
+scene	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    scene = Instance(MlabSceneModel, ())$/;"	variable	line:27	class:Visualization
+update_plot	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def update_plot(self):$/;"	member	line:30	class:Visualization
+view	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    view = View(Item('scene', editor=SceneEditor(scene_class=Scene),$/;"	variable	line:37	class:Visualization
+QMayavi	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^class QMayavi(QtGui.QWidget):$/;"	class	line:41
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def __init__(self, parent=None):$/;"	member	line:42	class:QMayavi
+drawWorkingArea	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def drawWorkingArea(self, width=300, height=200):$/;"	member	line:60	class:QMayavi
+drawMesh	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def drawMesh(self, mesh):$/;"	member	line:67	class:QMayavi
+drawPath	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def drawPath(self, path):$/;"	member	line:71	class:QMayavi
+drawSlice	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def drawSlice(self, slices, path):$/;"	member	line:74	class:QMayavi
+RobPathUI	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^class RobPathUI(QtGui.QMainWindow):$/;"	class	line:80
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def __init__(self):$/;"	member	line:81	class:RobPathUI
+changePosition	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def changePosition(self):$/;"	member	line:111	class:RobPathUI
+changeSize	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def changeSize(self):$/;"	member	line:118	class:RobPathUI
+updatePosition	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def updatePosition(self, position):$/;"	member	line:125	class:RobPathUI
+updateSize	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def updateSize(self, size):$/;"	member	line:131	class:RobPathUI
+updateProcess	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def updateProcess(self):$/;"	member	line:137	class:RobPathUI
+blockSignals	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def blockSignals(self, value):$/;"	member	line:149	class:RobPathUI
+btnLoadMeshClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def btnLoadMeshClicked(self):$/;"	member	line:157	class:RobPathUI
+update_parameters	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def update_parameters(self):$/;"	member	line:182	class:RobPathUI
+__process_shape	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def __process_shape(self):$/;"	member	line:198	class:RobPathUI	file:
+btnProcessMeshClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def btnProcessMeshClicked(self):$/;"	member	line:211	class:RobPathUI
+btnProcessContoursClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def btnProcessContoursClicked(self):$/;"	member	line:215	class:RobPathUI
+btnSaveRapidClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def btnSaveRapidClicked(self):$/;"	member	line:225	class:RobPathUI
+btnQuitClicked	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    def btnQuitClicked(self):$/;"	member	line:229	class:RobPathUI
+app	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    app = QtGui.QApplication.instance()$/;"	variable	line:237
+robpath	/home/jorge/catkin_ws/src/etna/etna_planning/scripts/robpathui.py	/^    robpath = RobPathUI()$/;"	variable	line:238
+version	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      version="0.2.0",$/;"	variable	line:4
+description	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      description="Robot Path Planner for Laser Metal Deposition",$/;"	variable	line:5
+author	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      author="Jorge Rodriguez-Araujo",$/;"	variable	line:6
+author_email	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      author_email="jorge.rodriguez@aimen.es",$/;"	variable	line:7
+url	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      url="http:\/\/www.aimen.es",$/;"	variable	line:8
+packages	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      packages=["robpath"],$/;"	variable	line:9
+data_files	/home/jorge/catkin_ws/src/etna/etna_planning/src/setup.py	/^      data_files=[('ui', ['..\/resources\/robpath.ui']),$/;"	variable	line:10
+ABB_Robot	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^class ABB_Robot():$/;"	class	line:4
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    def __init__(self):$/;"	member	line:5	class:ABB_Robot
+path2rapid	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    def path2rapid(self, path):$/;"	member	line:27	class:ABB_Robot
+save_file	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    def save_file(self, filename, routine):$/;"	member	line:118	class:ABB_Robot
+upload_file	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    def upload_file(self, filename, directory):$/;"	member	line:125	class:ABB_Robot
+rob	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    rob = ABB_Robot()$/;"	variable	line:139	class:ABB_Robot
+path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    path = [([0, 0, 0], [0, 0, 0, 1], False),$/;"	variable	line:140	class:ABB_Robot
+filename	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    filename = 'etna.mod'$/;"	variable	line:143	class:ABB_Robot
+routine	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid_diode.py	/^    routine = rob.path2rapid(path)$/;"	variable	line:144	class:ABB_Robot
+ABB_Robot	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^class ABB_Robot():$/;"	class	line:4
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    def __init__(self):$/;"	member	line:5	class:ABB_Robot
+path2rapid	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    def path2rapid(self, path):$/;"	member	line:27	class:ABB_Robot
+save_file	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    def save_file(self, filename, routine):$/;"	member	line:115	class:ABB_Robot
+upload_file	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    def upload_file(self, filename, directory):$/;"	member	line:122	class:ABB_Robot
+rob	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    rob = ABB_Robot()$/;"	variable	line:136	class:ABB_Robot
+path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    path = [([0, 0, 0], [0, 0, 0, 1], False),$/;"	variable	line:137	class:ABB_Robot
+filename	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    filename = 'etna.mod'$/;"	variable	line:140	class:ABB_Robot
+routine	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/rapid.py	/^    routine = rob.path2rapid(path)$/;"	variable	line:141	class:ABB_Robot
+distance	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def distance(point1, point2):$/;"	function	line:7
+distance2	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def distance2(point1, point2):$/;"	function	line:19
+angle	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def angle(point1, point2, point3):$/;"	function	line:31
+normal_vector	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def normal_vector(point1, point2, point3):$/;"	function	line:43
+line2d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def line2d(point1, point2):$/;"	function	line:50
+vector	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def vector(point1, point2):$/;"	function	line:59
+magnitude2	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def magnitude2(vector):$/;"	function	line:64
+magnitude	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def magnitude(vector):$/;"	function	line:73
+normalize	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def normalize(vector):$/;"	function	line:82
+dot	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def dot(vector1, vector2):$/;"	function	line:94
+cross	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def cross(vector1, vector2):$/;"	function	line:104
+pose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def pose_to_matrix(pose):$/;"	function	line:118
+rpypose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def rpypose_to_matrix(trans, rpy):$/;"	function	line:126
+rpypose_to_pose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def rpypose_to_pose(trans, rpy):$/;"	function	line:133
+rpypose_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def rpypose_to_quatpose(trans, rpy):$/;"	function	line:139
+quatpose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def quatpose_to_matrix(trans, quat):$/;"	function	line:145
+quatpose_to_pose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def quatpose_to_pose(trans, quat):$/;"	function	line:152
+quatpose_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def quatpose_to_rpypose(trans, quat):$/;"	function	line:158
+matrix_to_pose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_to_pose(mat):$/;"	function	line:164
+matrix_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_to_rpypose(mat):$/;"	function	line:171
+matrix_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_to_quatpose(mat):$/;"	function	line:178
+matrix_invert	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_invert(matrix):$/;"	function	line:185
+matrix_compose	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_compose(matrices):$/;"	function	line:190
+matrix_transformation	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def matrix_transformation(matrix1, matrix2):$/;"	function	line:198
+points_transformation	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def points_transformation(matrix, points):$/;"	function	line:205
+transform_points2d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def transform_points2d(points, pose):$/;"	function	line:215
+transform_points	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/calculate.py	/^def transform_points(pose, points):$/;"	function	line:222
+filter_polyline	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^def filter_polyline(points, dist=0.1, angl=0.01):$/;"	function	line:9
+get_range_values	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^def get_range_values(v_min, v_max, v_dist):$/;"	function	line:29
+Mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^class Mesh:$/;"	class	line:36
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def __init__(self, filename):$/;"	member	line:37	class:Mesh
+load_binary_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def load_binary_mesh(self, filename):$/;"	member	line:57	class:Mesh
+load_text_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def load_text_mesh(self, filename):$/;"	member	line:79	class:Mesh
+bounding_box	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def bounding_box(self):$/;"	member	line:107	class:Mesh
+translate	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def translate(self, point):$/;"	member	line:132	class:Mesh
+scale	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def scale(self, scale):$/;"	member	line:138	class:Mesh
+resort_triangles	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def resort_triangles(self):$/;"	member	line:143	class:Mesh
+get_z_intersect	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_z_intersect(self, triangle, z_level):$/;"	member	line:150	class:Mesh
+get_slice	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_slice(self, z_level):$/;"	member	line:181	class:Mesh
+get_grated	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_grated(self, slice, dist):$/;"	member	line:230	class:Mesh
+get_path_from_fill_lines	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_path_from_fill_lines(self, fill_lines):$/;"	member	line:262	class:Mesh
+get_path_from_slices	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_path_from_slices(self, slices):$/;"	member	line:290	class:Mesh
+get_mesh_slices_path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    def get_mesh_slices_path(self, layer_height, track_distance):$/;"	member	line:301	class:Mesh
+mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    mesh = Mesh(filename)$/;"	variable	line:337	class:Mesh
+t0	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    t0 = time.time()$/;"	variable	line:339	class:Mesh
+slice	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    slice = mesh.get_slice(0.1)$/;"	variable	line:340	class:Mesh
+lines	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    lines = mesh.get_grated(slice, 1.5)$/;"	variable	line:341	class:Mesh
+t1	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    t1 = time.time()$/;"	variable	line:342	class:Mesh
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    mplot3d = MPlot3D()$/;"	variable	line:347	class:Mesh
+t0	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    t0 = time.time()$/;"	variable	line:351	class:Mesh
+path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    path = mesh.get_path_from_slices([slice])$/;"	variable	line:352	class:Mesh
+path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    path = mesh.get_path_from_fill_lines(lines)$/;"	variable	line:353	class:Mesh
+t1	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    t1 = time.time()$/;"	variable	line:354	class:Mesh
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    mplot3d = MPlot3D()$/;"	variable	line:358	class:Mesh
+path_contour	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    path_contour = mesh.get_path_from_slices(slices)$/;"	variable	line:365	class:Mesh
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mesh.py	/^    mplot3d = MPlot3D()$/;"	variable	line:377	class:Mesh
+RobPath	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^class RobPath():$/;"	class	line:7
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def __init__(self):$/;"	member	line:8	class:RobPath
+load_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def load_mesh(self, filename):$/;"	member	line:13	class:RobPath
+translate_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def translate_mesh(self, position):$/;"	member	line:21	class:RobPath
+resize_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def resize_mesh(self, size):$/;"	member	line:24	class:RobPath
+set_power	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def set_power(self, power):$/;"	member	line:28	class:RobPath
+set_speed	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def set_speed(self, speed):$/;"	member	line:31	class:RobPath
+set_track	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def set_track(self, height, width, overlap):$/;"	member	line:34	class:RobPath
+set_powder	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def set_powder(self, carrier_gas, stirrer, turntable):$/;"	member	line:41	class:RobPath
+init_process	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def init_process(self):$/;"	member	line:46	class:RobPath
+update_process	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def update_process(self):$/;"	member	line:55	class:RobPath
+get_contours_path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def get_contours_path(self):$/;"	member	line:74	class:RobPath
+save_rapid	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/robpath.py	/^    def save_rapid(self):$/;"	member	line:85	class:RobPath
+__docformat__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^__docformat__ = "restructuredtext en"$/;"	variable	line:177
+identity_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def identity_matrix():$/;"	function	line:180
+translation_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def translation_matrix(direction):$/;"	function	line:195
+translation_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def translation_from_matrix(matrix):$/;"	function	line:208
+reflection_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def reflection_matrix(point, normal):$/;"	function	line:220
+reflection_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def reflection_from_matrix(matrix):$/;"	function	line:246
+rotation_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def rotation_matrix(angle, direction, point=None):$/;"	function	line:275
+rotation_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def rotation_from_matrix(matrix):$/;"	function	line:319
+scale_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def scale_matrix(factor, origin=None, direction=None):$/;"	function	line:359
+scale_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def scale_from_matrix(matrix):$/;"	function	line:396
+projection_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def projection_matrix(point, normal, direction=None,$/;"	function	line:437
+projection_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def projection_from_matrix(matrix, pseudo=False):$/;"	function	line:499
+clip_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def clip_matrix(left, right, bottom, top, near, far, perspective=False):$/;"	function	line:572
+shear_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def shear_matrix(angle, direction, point, normal):$/;"	function	line:624
+shear_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def shear_from_matrix(matrix):$/;"	function	line:655
+decompose_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def decompose_matrix(matrix):$/;"	function	line:700
+compose_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def compose_matrix(scale=None, shear=None, angles=None, translate=None,$/;"	function	line:785
+orthogonalization_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def orthogonalization_matrix(lengths, angles):$/;"	function	line:838
+superimposition_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def superimposition_matrix(v0, v1, scaling=False, usesvd=True):$/;"	function	line:866
+euler_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def euler_matrix(ai, aj, ak, axes='sxyz'):$/;"	function	line:968
+euler_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def euler_from_matrix(matrix, axes='sxyz'):$/;"	function	line:1031
+euler_from_quaternion	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def euler_from_quaternion(quaternion, axes='sxyz'):$/;"	function	line:1089
+quaternion_from_euler	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_from_euler(ai, aj, ak, axes='sxyz'):$/;"	function	line:1100
+quaternion_about_axis	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_about_axis(angle, axis):$/;"	function	line:1157
+quaternion_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_matrix(quaternion):$/;"	function	line:1174
+quaternion_from_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_from_matrix(matrix):$/;"	function	line:1196
+quaternion_multiply	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_multiply(quaternion1, quaternion0):$/;"	function	line:1228
+quaternion_conjugate	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_conjugate(quaternion):$/;"	function	line:1245
+quaternion_inverse	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_inverse(quaternion):$/;"	function	line:1258
+quaternion_slerp	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def quaternion_slerp(quat0, quat1, fraction, spin=0, shortestpath=True):$/;"	function	line:1270
+random_quaternion	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def random_quaternion(rand=None):$/;"	function	line:1311
+random_rotation_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def random_rotation_matrix(rand=None):$/;"	function	line:1341
+Arcball	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^class Arcball(object):$/;"	class	line:1356
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def __init__(self, initial=None):$/;"	member	line:1380	class:Arcball
+place	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def place(self, center, radius):$/;"	member	line:1407	class:Arcball
+setaxes	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def setaxes(self, *axes):$/;"	member	line:1420	class:Arcball
+setconstrain	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def setconstrain(self, constrain):$/;"	member	line:1427	class:Arcball
+getconstrain	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def getconstrain(self):$/;"	member	line:1431	class:Arcball
+down	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def down(self, point):$/;"	member	line:1435	class:Arcball
+drag	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def drag(self, point):$/;"	member	line:1446	class:Arcball
+next	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def next(self, acceleration=0.0):$/;"	member	line:1462	class:Arcball
+matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^    def matrix(self):$/;"	member	line:1467	class:Arcball
+arcball_map_to_sphere	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def arcball_map_to_sphere(point, center, radius):$/;"	function	line:1472
+arcball_constrain_to_axis	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def arcball_constrain_to_axis(point, axis):$/;"	function	line:1485
+arcball_nearest_axis	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def arcball_nearest_axis(point, axes):$/;"	function	line:1501
+_EPS	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^_EPS = numpy.finfo(float).eps * 4.0$/;"	variable	line:1515
+_NEXT_AXIS	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^_NEXT_AXIS = [1, 2, 0, 1]$/;"	variable	line:1518
+_AXES2TUPLE	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^_AXES2TUPLE = {$/;"	variable	line:1521
+_TUPLE2AXES	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^_TUPLE2AXES = dict((v, k) for k, v in _AXES2TUPLE.items())$/;"	variable	line:1531
+vector_norm	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def vector_norm(data, axis=None, out=None):$/;"	function	line:1535
+unit_vector	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def unit_vector(data, axis=None, out=None):$/;"	function	line:1574
+random_vector	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def random_vector(size):$/;"	function	line:1618
+inverse_matrix	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def inverse_matrix(matrix):$/;"	function	line:1633
+concatenate_matrices	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def concatenate_matrices(*matrices):$/;"	function	line:1649
+is_same_transform	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def is_same_transform(matrix0, matrix1):$/;"	function	line:1665
+_import_module	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/transformations.py	/^def _import_module(module_name, warn=True, prefix='_py_', ignore='_'):$/;"	function	line:1681
+BLACK	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^BLACK = (0, 0, 0)$/;"	variable	line:9
+WHITE	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^WHITE = (1, 1, 1)$/;"	variable	line:10
+RED	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^RED = (1, 0, 0)$/;"	variable	line:11
+GREEN	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^GREEN = (0, 1, 0)$/;"	variable	line:12
+BLUE	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^BLUE = (0, 0, 1)$/;"	variable	line:13
+MPlot3D	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^class MPlot3D():$/;"	class	line:16
+__init__	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def __init__(self, mlab=None, scale=1.0):$/;"	member	line:17	class:MPlot3D
+_new_figure	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def _new_figure(self):$/;"	member	line:22	class:MPlot3D
+draw_frame	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_frame(self, pose, scale=10, label=''):$/;"	member	line:27	class:MPlot3D
+draw_frames	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_frames(self, points, frames, scale=10):$/;"	member	line:37	class:MPlot3D
+draw_transformation	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_transformation(self, matrix1, matrix2, label1='', label2=''):$/;"	member	line:53	class:MPlot3D
+draw_plane	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_plane(self, plane, points3d, color=(1, 0.1, 0)):$/;"	member	line:59	class:MPlot3D
+draw_line	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_line(self, point0, point1, color=WHITE, scale=0.25):$/;"	member	line:74	class:MPlot3D
+draw_points	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_points(self, points3d, color=WHITE, scale=1):$/;"	member	line:79	class:MPlot3D
+draw_cloud	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_cloud(self, points3d, scale=1):$/;"	member	line:84	class:MPlot3D
+draw_lines	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_lines(self, points3d, color=WHITE, scale=0.1):$/;"	member	line:93	class:MPlot3D
+draw_camera	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_camera(self, camera_pose, color=(0.8, 0.8, 1), scale=0.5):$/;"	member	line:98	class:MPlot3D
+draw_layers	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_layers(self, layers, scale=1.5):$/;"	member	line:113	class:MPlot3D
+draw_slice	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_slice(self, slice, scale=0.3):$/;"	member	line:119	class:MPlot3D
+draw_slices	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_slices(self, slices):$/;"	member	line:125	class:MPlot3D
+draw_tools	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_tools(self, points, frames, scale=10):$/;"	member	line:130	class:MPlot3D
+draw_path_frames	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_path_frames(self, path):$/;"	member	line:141	class:MPlot3D
+draw_path_tools	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_path_tools(self, path):$/;"	member	line:150	class:MPlot3D
+_get_triangular_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def _get_triangular_mesh(self, mesh):$/;"	member	line:159	class:MPlot3D
+draw_mesh	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_mesh(self, mesh, color=WHITE, opacity=0.7):$/;"	member	line:169	class:MPlot3D
+draw_path	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_path(self, path):$/;"	member	line:180	class:MPlot3D
+draw_point_cloud	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_point_cloud(self, points3d):$/;"	member	line:201	class:MPlot3D
+draw_working_area	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def draw_working_area(self, width, height):$/;"	member	line:208	class:MPlot3D
+outline	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def outline(self):$/;"	member	line:215	class:MPlot3D
+clear	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def clear(self):$/;"	member	line:218	class:MPlot3D
+show	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    def show(self):$/;"	member	line:222	class:MPlot3D
+frame	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    frame = np.float32([[1, 0, 0],$/;"	variable	line:230
+point	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    point = np.float32([0, 0, 0])$/;"	variable	line:233
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    mplot3d = MPlot3D(scale=2)$/;"	variable	line:235
+cloud	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    cloud = np.loadtxt('..\/data\/test.xyz')$/;"	variable	line:240
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_planning/src/robpath/mlabplot.py	/^    mplot3d = MPlot3D(scale=0.002)$/;"	variable	line:241
+Etna	/home/jorge/catkin_ws/src/etna/README.md	/^# Etna$/;"	function	line:1
+Contents	/home/jorge/catkin_ws/src/etna/README.md	/^## Contents$/;"	function	line:18
+3D scanning	/home/jorge/catkin_ws/src/etna/README.md	/^## 3D scanning$/;"	function	line:34
+d	/home/jorge/catkin_ws/src/etna/etna_scanning/setup.py	/^d = generate_distutils_setup($/;"	variable	line:4
+packages	/home/jorge/catkin_ws/src/etna/etna_scanning/setup.py	/^    packages=['robscan'],$/;"	variable	line:5
+package_dir	/home/jorge/catkin_ws/src/etna/etna_scanning/setup.py	/^    package_dir={'': 'src'}$/;"	variable	line:7
+camera	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_webcam.py	/^def camera():$/;"	function	line:9
+camera	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_camera.py	/^def camera():$/;"	function	line:8
+Profile3D	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_profile3d.py	/^class Profile3D():$/;"	class	line:20
+__init__	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_profile3d.py	/^    def __init__(self):$/;"	member	line:21	class:Profile3D
+pub_point_cloud	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_profile3d.py	/^    def pub_point_cloud(self, stamp, profile3d):$/;"	member	line:48	class:Profile3D
+image_pub_peak	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_profile3d.py	/^    def image_pub_peak(self, stamp, image):$/;"	member	line:58	class:Profile3D
+sub_image_topic	/home/jorge/catkin_ws/src/etna/etna_scanning/scripts/pub_profile3d.py	/^    def sub_image_topic(self, data):$/;"	member	line:63	class:Profile3D
+axis	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^axis: 1$/;"	function	line:1
+thr	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^thr: 180$/;"	function	line:2
+method	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^method: pcog$/;"	function	line:3
+homo	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^homo:$/;"	function	line:4
+pose	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^pose:$/;"	function	line:8
+R	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^  R:$/;"	function	line:9
+t	/home/jorge/catkin_ws/src/etna/etna_scanning/config/webcam_profile3d.yaml	/^  t: [0.0, 0.0, 573.7693481445312]$/;"	function	line:13
+axis	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^axis: 1$/;"	function	line:1
+homo	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^homo:$/;"	function	line:2
+method	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^method: pcog$/;"	function	line:6
+pose	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^pose:$/;"	function	line:7
+R	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^  R:$/;"	function	line:8
+t	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^  t: [0.0, 0.0, 0.19218216836452484]$/;"	function	line:12
+thr	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^thr: 180$/;"	function	line:13
+trans	/home/jorge/catkin_ws/src/etna/etna_scanning/config/camera_profile3d.yaml	/^trans:$/;"	function	line:14
+OPENCV_WINDOW	/home/jorge/catkin_ws/src/etna/etna_scanning/src/pub_webcam.cpp	/^static const std::string OPENCV_WINDOW = "Image window";$/;"	variable	line:9	file:
+main	/home/jorge/catkin_ws/src/etna/etna_scanning/src/pub_webcam.cpp	/^int main(int argc, char** argv)$/;"	function	line:18	signature:(int argc, char** argv)
+Webcam	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^class Webcam():$/;"	class	line:6
+__init__	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def __init__(self, device=0):$/;"	member	line:7	class:Webcam
+configure	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def configure(self, width=640, height=480):$/;"	member	line:23	class:Webcam
+get_size	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def get_size(self):$/;"	member	line:26	class:Webcam
+set_size	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def set_size(self, (width, height)):$/;"	member	line:31	class:Webcam
+get_parameters	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def get_parameters(self):$/;"	member	line:35	class:Webcam
+set_parameters	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def set_parameters(self, brightness, contrast, saturation):$/;"	member	line:44	class:Webcam
+sensor_size	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def sensor_size(self):$/;"	member	line:49	class:Webcam
+frame_rate	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def frame_rate(self):$/;"	member	line:56	class:Webcam
+frame_count	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def frame_count(self):$/;"	member	line:60	class:Webcam
+capture	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def capture(self):$/;"	member	line:63	class:Webcam
+snapshoot	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def snapshoot(self, filename):$/;"	member	line:70	class:Webcam
+on_mouse	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def on_mouse(self, event, x, y, flags, params):$/;"	member	line:74	class:Webcam
+run	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    def run(self, callback=None):$/;"	member	line:85	class:Webcam
+size	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    size = (800, 600)$/;"	variable	line:112	class:Webcam
+webcam	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/webcam.py	/^    webcam = Webcam(device=1)$/;"	variable	line:118	class:Webcam
+Profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^class Profile():$/;"	class	line:13
+__init__	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def __init__(self, axis=1, thr=180, method='max'):$/;"	member	line:14	class:Profile
+load_configuration	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def load_configuration(self, filename):$/;"	member	line:22	class:Profile
+save_configuration	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def save_configuration(self, filename):$/;"	member	line:34	class:Profile
+threshold_image	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def threshold_image(self, image, channel=2):$/;"	member	line:46	class:Profile
+peak_max_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def peak_max_profile(self, img):$/;"	member	line:55	class:Profile
+peak_cog_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def peak_cog_profile(self, img):$/;"	member	line:68	class:Profile
+peak_pcog_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def peak_pcog_profile(self, img):$/;"	member	line:82	class:Profile
+peak_diff_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def peak_diff_profile(self, img):$/;"	member	line:85	class:Profile
+peak_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def peak_profile(self, img):$/;"	member	line:88	class:Profile
+profile_points	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def profile_points(self, image):$/;"	member	line:98	class:Profile
+profile_to_points3d	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def profile_to_points3d(self, profile, homography, pose, minz=0, maxz=1000):$/;"	member	line:104	class:Profile
+transform_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def transform_profile(self, profile):$/;"	member	line:119	class:Profile
+points_profile	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def points_profile(self, image, homography=None, pose=None):$/;"	member	line:127	class:Profile
+draw_points	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def draw_points(self, image, points, color=(0, 0, 0), thickness=1):$/;"	member	line:140	class:Profile
+profile_measurement	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    def profile_measurement(self, frame):$/;"	member	line:147	class:Profile
+img	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    img = image.read_image('..\/data\/utest9.png')$/;"	variable	line:163	class:Profile
+profile0	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/profile.py	/^    profile0 = Profile(axis=1, thr=180, method='pcog')$/;"	variable	line:164	class:Profile
+Camera	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^class Camera():$/;"	class	line:7
+__init__	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    def __init__(self, pixel_clock=50, exposure_time=5):$/;"	member	line:8	class:Camera
+configure	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    def configure(self, binning=2):$/;"	member	line:17	class:Camera
+capture	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    def capture(self):$/;"	member	line:29	class:Camera
+snapshoot	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    def snapshoot(self, filename):$/;"	member	line:36	class:Camera
+run	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    def run(self, callback=None):$/;"	member	line:40	class:Camera
+camera	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/camera.py	/^    camera = Camera()$/;"	variable	line:60	class:Camera
+horizontal_cog_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^cdef horizontal_cog_detector(np.ndarray[np.float32_t, ndim=2] img):$/;"	function	line:8
+vertical_cog_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^cdef vertical_cog_detector(np.ndarray[np.float32_t, ndim=2] img):$/;"	function	line:45
+cog_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^def cog_detector(img, axis=0):$/;"	function	line:81
+horizontal_peak_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^cdef horizontal_peak_detector(np.ndarray[np.float32_t, ndim=2] img):$/;"	function	line:97
+vertical_peak_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^cdef vertical_peak_detector(np.ndarray[np.float32_t, ndim=2] img):$/;"	function	line:127
+peak_detector	/home/jorge/catkin_ws/src/etna/etna_scanning/src/robscan/cpeak.pyx	/^def peak_detector(img, axis=0):$/;"	function	line:155
+OPENCV_WINDOW	/home/jorge/catkin_ws/src/etna/etna_scanning/src/sub_webcam.cpp	/^static const std::string OPENCV_WINDOW = "Image window";$/;"	variable	line:9	file:
+imageCallback	/home/jorge/catkin_ws/src/etna/etna_scanning/src/sub_webcam.cpp	/^void imageCallback(const sensor_msgs::ImageConstPtr& msg)$/;"	function	line:53	signature:(const sensor_msgs::ImageConstPtr& msg)
+main	/home/jorge/catkin_ws/src/etna/etna_scanning/src/sub_webcam.cpp	/^int main(int argc, char **argv)$/;"	function	line:70	signature:(int argc, char **argv)
+d	/home/jorge/catkin_ws/src/etna/etna_calib/setup.py	/^d = generate_distutils_setup($/;"	variable	line:4
+packages	/home/jorge/catkin_ws/src/etna/etna_calib/setup.py	/^    packages=['icv'],$/;"	variable	line:5
+package_dir	/home/jorge/catkin_ws/src/etna/etna_calib/setup.py	/^    package_dir={'': 'src'}$/;"	variable	line:7
+rospack	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^rospack = rospkg.RosPack()$/;"	variable	line:18
+path	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^path = rospack.get_path('etna_calib')$/;"	variable	line:19
+ImageViewer	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^class ImageViewer():$/;"	class	line:22
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^    def __init__(self):$/;"	member	line:23	class:ImageViewer
+on_shutdown_hook	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^    def on_shutdown_hook(self):$/;"	member	line:52	class:ImageViewer
+on_mouse	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^    def on_mouse(self, event, x, y, flags, params):$/;"	member	line:60	class:ImageViewer
+callback	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/sub_viewer.py	/^    def callback(self, data):$/;"	member	line:76	class:ImageViewer
+path	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^path = '..\/'$/;"	variable	line:17
+pattern_rows	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^pattern_rows = 7$/;"	variable	line:18
+pattern_cols	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^pattern_cols = 8$/;"	variable	line:19
+pattern_size	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^pattern_size = 0.010$/;"	variable	line:20
+config_file	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^config_file = 'profile3d.yaml'$/;"	variable	line:21
+dirname	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^dirname = '..\/data'$/;"	variable	line:23
+square_size	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^square_size = pattern_size$/;"	variable	line:26
+grid_size	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^grid_size = (pattern_cols-1, pattern_rows-1)$/;"	variable	line:27
+laser_profile	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^laser_profile = Profile(axis=1, thr=180, method='pcog')$/;"	variable	line:29
+camera_calibration	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^camera_calibration = CameraCalibration(grid_size=grid_size,$/;"	variable	line:30
+square_size	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^                                       square_size=square_size)$/;"	variable	line:31
+laser_calibration	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^laser_calibration = LaserCalibration(grid_size=grid_size,$/;"	variable	line:32
+square_size	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^                                     square_size=square_size,$/;"	variable	line:33
+profile	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^                                     profile=laser_profile)$/;"	variable	line:34
+filenames	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^filenames = sorted(glob.glob('..\/data\/pose*.txt'))$/;"	variable	line:38
+ks	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^ks = [int(filename[-8:-4]) for filename in filenames]$/;"	variable	line:39
+img	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^    img = read_image('..\/data\/frame%04i.png' % k)$/;"	variable	line:44
+grid	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^    grid = camera_calibration.find_chessboard(img)$/;"	variable	line:45
+pose_checker	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^    pose_checker = None$/;"	variable	line:46
+pose_checker	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        pose_checker = laser_calibration.get_chessboard_pose(grid)$/;"	variable	line:48
+pose_checker	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        pose_checker = calc.pose_to_matrix((pose_checker[0], pose_checker[1]))$/;"	variable	line:49
+img	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        img = camera_calibration.draw_chessboard(img, grid)$/;"	variable	line:50
+pose	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        pose = eval(f.read())$/;"	variable	line:53
+quatpose_tool0	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        quatpose_tool0 = (np.array(pose[0]), np.array(pose[1]))$/;"	variable	line:54
+pose_tool0	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^        pose_tool0 = calc.quatpose_to_matrix(*quatpose_tool0)$/;"	variable	line:55
+tlc	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^tlc = HandEyeCalibration()$/;"	variable	line:64
+T2C	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^T2C = tlc.solve(poses_tool, poses_checker)$/;"	variable	line:65
+W2K	/home/jorge/catkin_ws/src/etna/etna_calib/scripts/calib.py	/^W2K = tlc.solve(poses_itool, poses_ichecker)$/;"	variable	line:66
+coef	/home/jorge/catkin_ws/src/etna/etna_calib/config/camera.yaml	/^coef:$/;"	function	line:1
+mat	/home/jorge/catkin_ws/src/etna/etna_calib/config/camera.yaml	/^mat:$/;"	function	line:4
+rms	/home/jorge/catkin_ws/src/etna/etna_calib/config/camera.yaml	/^rms: 0.27592079815807435$/;"	function	line:8
+axis	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^axis: 1$/;"	function	line:1
+homo	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^homo:$/;"	function	line:2
+method	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^method: pcog$/;"	function	line:6
+pose	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^pose:$/;"	function	line:7
+R	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^  R:$/;"	function	line:8
+t	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^  t: [0.0, 0.0, 0.19218216836452484]$/;"	function	line:12
+thr	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^thr: 180$/;"	function	line:13
+trans	/home/jorge/catkin_ws/src/etna/etna_calib/config/profile3d.yaml	/^trans:$/;"	function	line:14
+distance	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def distance(point1, point2):$/;"	function	line:7
+distance2	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def distance2(point1, point2):$/;"	function	line:19
+angle	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def angle(point1, point2, point3):$/;"	function	line:31
+normal_vector	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def normal_vector(point1, point2, point3):$/;"	function	line:43
+line2d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def line2d(point1, point2):$/;"	function	line:50
+vector	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def vector(point1, point2):$/;"	function	line:59
+magnitude2	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def magnitude2(vector):$/;"	function	line:64
+magnitude	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def magnitude(vector):$/;"	function	line:73
+normalize	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def normalize(vector):$/;"	function	line:82
+dot	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def dot(vector1, vector2):$/;"	function	line:94
+cross	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def cross(vector1, vector2):$/;"	function	line:104
+pose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def pose_to_matrix(pose):$/;"	function	line:118
+rpypose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def rpypose_to_matrix(trans, rpy):$/;"	function	line:126
+rpypose_to_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def rpypose_to_pose(trans, rpy):$/;"	function	line:133
+rpypose_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def rpypose_to_quatpose(trans, rpy):$/;"	function	line:139
+quatpose_to_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def quatpose_to_matrix(trans, quat):$/;"	function	line:145
+quatpose_to_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def quatpose_to_pose(trans, quat):$/;"	function	line:152
+quatpose_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def quatpose_to_rpypose(trans, quat):$/;"	function	line:158
+matrix_to_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_to_pose(mat):$/;"	function	line:164
+matrix_to_rpypose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_to_rpypose(mat):$/;"	function	line:171
+matrix_to_quatpose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_to_quatpose(mat):$/;"	function	line:178
+matrix_invert	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_invert(matrix):$/;"	function	line:185
+matrix_compose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_compose(matrices):$/;"	function	line:190
+matrix_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def matrix_transformation(matrix1, matrix2):$/;"	function	line:198
+points_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def points_transformation(matrix, points):$/;"	function	line:205
+transform_points2d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def transform_points2d(points, pose):$/;"	function	line:215
+transform_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calculate.py	/^def transform_points(pose, points):$/;"	function	line:222
+RED	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^RED = (0, 0, 255)$/;"	variable	line:15
+GREEN	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^GREEN = (0, 255, 0)$/;"	variable	line:16
+BLUE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^BLUE = (255, 0, 0)$/;"	variable	line:17
+find_homography	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^def find_homography(points, targets):$/;"	function	line:24
+homography_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^def homography_points(points2d, homography):$/;"	function	line:30
+CameraCalibration	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^class CameraCalibration():$/;"	class	line:40
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def __init__(self, grid_size=(7, 6), square_size=10.0):$/;"	member	line:41	class:CameraCalibration
+get_pattern_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def get_pattern_points(self):$/;"	member	line:48	class:CameraCalibration
+load_camera_parameters	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def load_camera_parameters(self, filename):$/;"	member	line:54	class:CameraCalibration
+save_camera_parameters	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def save_camera_parameters(self, filename):$/;"	member	line:62	class:CameraCalibration
+find_chessboard	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_chessboard(self, img):$/;"	member	line:70	class:CameraCalibration
+get_chessboard_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def get_chessboard_pose(self, grid):$/;"	member	line:83	class:CameraCalibration
+get_calibration	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def get_calibration(self, images):$/;"	member	line:90	class:CameraCalibration
+find_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_transformation(self, object_points, image_points):$/;"	member	line:105	class:CameraCalibration
+project_3d_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def project_3d_points(self, points, pose):$/;"	member	line:114	class:CameraCalibration
+reprojection_error	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def reprojection_error(self, points3d, imgpoints, pose):$/;"	member	line:122	class:CameraCalibration
+chessboard_reprojection_error	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def chessboard_reprojection_error(self, grid):$/;"	member	line:134	class:CameraCalibration
+calculate_reprojection_errors	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def calculate_reprojection_errors(self, grids):$/;"	member	line:142	class:CameraCalibration
+undistort_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def undistort_image(self, image):$/;"	member	line:147	class:CameraCalibration
+undistort_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def undistort_points(self, points):$/;"	member	line:151	class:CameraCalibration
+draw_chessboard	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def draw_chessboard(self, image, corners):$/;"	member	line:160	class:CameraCalibration
+draw_frame	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def draw_frame(self, img, pose, size=(30, 30, 30)):$/;"	member	line:167	class:CameraCalibration
+draw_box	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def draw_box(self, img, pose, size=(30, 30, 30), thickness=3):$/;"	member	line:176	class:CameraCalibration
+LaserCalibration	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^class LaserCalibration(CameraCalibration):$/;"	class	line:190
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def __init__(self, grid_size=(7, 6), square_size=10.0, profile=Profile()):$/;"	member	line:191	class:LaserCalibration
+load_parameters	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def load_parameters(self, filename):$/;"	member	line:197	class:LaserCalibration
+save_parameters	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def save_parameters(self, filename):$/;"	member	line:200	class:LaserCalibration
+find_best_line2d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_best_line2d(self, points2d):$/;"	member	line:203	class:LaserCalibration
+find_best_plane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_best_plane(self, points3d):$/;"	member	line:208	class:LaserCalibration
+find_plane_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_plane_transformation(self, plane_pose):$/;"	member	line:214	class:LaserCalibration
+find_lightplane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_lightplane(self, points3d):$/;"	member	line:221	class:LaserCalibration
+filter_chessboard_laser	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def filter_chessboard_laser(self, profile3d, profile2d):$/;"	member	line:231	class:LaserCalibration
+get_chessboard_laser	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def get_chessboard_laser(self, img, grid, chessboard_pose):$/;"	member	line:245	class:LaserCalibration
+find_calibration_3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def find_calibration_3d(self, images):$/;"	member	line:253	class:LaserCalibration
+show_calibration_3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def show_calibration_3d(self):$/;"	member	line:283	class:LaserCalibration
+draw_location_results	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def draw_location_results(self, img, frame_rate):$/;"	member	line:311	class:LaserCalibration
+HandEyeCalibration	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^class HandEyeCalibration():$/;"	class	line:326
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def __init__(self):$/;"	member	line:336	class:HandEyeCalibration
+_skew	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def _skew(self, v):$/;"	member	line:339	class:HandEyeCalibration
+_quat_to_rot	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def _quat_to_rot(self, q):$/;"	member	line:345	class:HandEyeCalibration
+_rot_to_quat	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def _rot_to_quat(self, R):$/;"	member	line:367	class:HandEyeCalibration
+solve	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    def solve(self, Hgs, Hcs):  # list of poses$/;"	member	line:386	class:HandEyeCalibration
+read_poses	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^def read_poses(filename):$/;"	function	line:429
+read_calibration_data	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^def read_calibration_data(dirname):$/;"	function	line:437
+dirname	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    dirname = '..\/..\/data'$/;"	variable	line:448
+laser_profile	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    laser_profile = Profile(axis=1, thr=180, method='pcog')$/;"	variable	line:451
+laser_calibration	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    laser_calibration = LaserCalibration(grid_size=(7, 6),$/;"	variable	line:452
+square_size	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                                         square_size=0.010,$/;"	variable	line:453
+profile	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                                         profile=laser_profile)$/;"	variable	line:454
+pattern_poses	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    pattern_poses = laser_calibration.pattern_poses$/;"	variable	line:457
+profiles	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    profiles = [laser_profile.profile_points(img)$/;"	variable	line:458
+lines	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    lines = [laser_calibration.find_best_line2d(profile2d)$/;"	variable	line:460
+grid	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^        grid = laser_calibration.grids[k]$/;"	variable	line:464
+imgc	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^        imgc = laser_calibration.draw_chessboard(img.copy(), grid)$/;"	variable	line:465
+imgc	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            imgc = draw_points(imgc, profiles[k], color=PURPLE, thickness=2)$/;"	variable	line:468
+line	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            line = ((0, int(line[0] * 0 + line[1])),$/;"	variable	line:469
+imgc	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            imgc = draw_points(imgc, profiles[k][inliers],$/;"	variable	line:471
+imgc	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            imgc = draw_line(imgc, line, color=RED, thickness=2)$/;"	variable	line:473
+pose_checker	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            pose_checker = calc.pose_to_matrix(pattern_poses[k])$/;"	variable	line:484
+pose_tool0	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            pose_tool0 = tool_poses[k]$/;"	variable	line:485
+poses_ichecker	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    poses_ichecker = [calc.matrix_invert(pose) for pose in poses_checker]$/;"	variable	line:495
+poses_itool	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    poses_itool = [calc.matrix_invert(pose) for pose in poses_tool]$/;"	variable	line:496
+tlc	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    tlc = HandEyeCalibration()$/;"	variable	line:499
+T2C	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    T2C = tlc.solve(poses_tool, poses_checker)$/;"	variable	line:500
+W2K	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    W2K = tlc.solve(poses_itool, poses_ichecker)$/;"	variable	line:501
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    mplot3d = MPlot3D(scale=0.0025)$/;"	variable	line:505
+pp	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    pp = laser_calibration.pattern_points$/;"	variable	line:506
+world_frame	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^    world_frame = calc.rpypose_to_matrix([0, 0, 0], [0, 0, 0])$/;"	variable	line:507
+WC	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^        WC = calc.matrix_compose((tool_frame, T2C))$/;"	variable	line:510
+WK	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^        WK = calc.matrix_compose((WC, poses_checker[k]))$/;"	variable	line:514
+color	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                            color=(1, 1, 0))$/;"	variable	line:519
+color	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                            color=(1, 1, 1))$/;"	variable	line:522
+chessboard_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^            chessboard_pose = pattern_poses[k]$/;"	variable	line:525
+color	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                                    color=(1, 1, 1))$/;"	variable	line:529
+points3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/calibration.py	/^                points3d = fit.apply_transformation(laser_profile.trans, profiles[k])$/;"	variable	line:535
+best_fitLTSQ	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def best_fitLTSQ(data):$/;"	function	line:4
+best_fitSVD	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def best_fitSVD(data):$/;"	function	line:15
+fit_line2d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def fit_line2d(points2d):$/;"	function	line:21
+fit_planeLTSQ	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def fit_planeLTSQ(points3d):$/;"	function	line:27
+fit_line3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def fit_line3d(points3d):$/;"	function	line:42
+fit_plane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def fit_plane(points3d):$/;"	function	line:60
+fit_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def fit_transformation(points2d, points3d):$/;"	function	line:72
+apply_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def apply_transformation(T, points2d):$/;"	function	line:91
+cross	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def cross(vector1, vector2):$/;"	function	line:98
+normalize	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def normalize(vector):$/;"	function	line:104
+get_plane_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def get_plane_pose(plane):$/;"	function	line:112
+Fit	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^class Fit():$/;"	class	line:133
+ransac	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def ransac(self, data, model_class, min_samples, threshold, max_trials=10000):$/;"	member	line:134	class:Fit
+LineFit	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^class LineFit(Fit):$/;"	class	line:176
+function	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def function(self, x, model):$/;"	member	line:177	class:LineFit
+fit	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def fit(self, data):$/;"	member	line:182	class:LineFit
+residuals	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def residuals(self, model, data):$/;"	member	line:186	class:LineFit
+PlaneFit	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^class PlaneFit(Fit):$/;"	class	line:192
+function	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def function(self, x, y, model):$/;"	member	line:193	class:PlaneFit
+fit	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def fit(self, data):$/;"	member	line:198	class:PlaneFit
+residuals	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    def residuals(self, model, data):$/;"	member	line:202	class:PlaneFit
+generate_test_line_data	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def generate_test_line_data(point0, point1, samples=200):$/;"	function	line:208
+generate_test_plane_data	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def generate_test_plane_data(point0, point1, samples=20):$/;"	function	line:221
+test_fit_line	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def test_fit_line():$/;"	function	line:233
+test_fit_plane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^def test_fit_plane(filename='..\/data\/downsampled.xyz'):$/;"	function	line:242
+WHITE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    WHITE = (1, 1, 1)$/;"	variable	line:270
+RED	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    RED = (1, 0, 0)$/;"	variable	line:271
+BLUE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    BLUE = (0, 0, 1)$/;"	variable	line:272
+filename	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    filename = '..\/..\/..\/etna_cloud\/data\/downsampled.xyz'$/;"	variable	line:276
+filename	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    filename = '..\/..\/..\/etna_cloud\/data\/test4_downsampled.xyz'$/;"	variable	line:277
+cloud	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    cloud = np.loadtxt(filename)$/;"	variable	line:279
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    mplot3d = MPlot3D()$/;"	variable	line:281
+plane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    plane = PlaneFit()$/;"	variable	line:285
+models	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    models = plane.fit(cloud)$/;"	variable	line:286
+outliers	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    outliers = [k for k in range(len(cloud)) if k not in inliers]$/;"	variable	line:289
+plane_pose	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    plane_pose = get_plane_pose(plane_model)$/;"	variable	line:290
+mplane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    mplane = calc.pose_to_matrix(plane_pose)$/;"	variable	line:294
+implane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    implane = calc.matrix_invert(mplane)$/;"	variable	line:295
+tcloud	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    tcloud = calc.points_transformation(implane, cloud)$/;"	variable	line:296
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    mplot3d = MPlot3D(scale=0.0025)$/;"	variable	line:298
+points3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    points3d = tcloud[outliers]$/;"	variable	line:309
+point_min	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    point_min = np.min(points3d, axis=0)$/;"	variable	line:310
+points_0	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    points_0 = (np.round(points3d - point_min, 3) \/ 0.0001).astype(np.int32)$/;"	variable	line:311
+x_max	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    x_max = np.max(points_0[:, 0])$/;"	variable	line:315
+y_max	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    y_max = np.max(points_0[:, 1])$/;"	variable	line:316
+zmap	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/fitting.py	/^    zmap = np.zeros((int(x_max+1), int(y_max+1)))$/;"	variable	line:319
+BLACK	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^BLACK = (0, 0, 0)$/;"	variable	line:7
+WHITE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^WHITE = (255, 255, 255)$/;"	variable	line:8
+RED	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^RED = (0, 0, 255)$/;"	variable	line:9
+GREEN	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^GREEN = (0, 255, 0)$/;"	variable	line:10
+BLUE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^BLUE = (255, 0, 0)$/;"	variable	line:11
+YELLOW	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^YELLOW = (0, 255, 255)$/;"	variable	line:12
+ORANGE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^ORANGE = (0, 128, 255)$/;"	variable	line:13
+CYAN	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^CYAN = (255, 255, 0)$/;"	variable	line:14
+MAGENTA	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^MAGENTA = (255, 0, 255)$/;"	variable	line:15
+SILVER	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^SILVER = (192, 192, 192)$/;"	variable	line:16
+GRAY	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^GRAY = (128, 128, 128)$/;"	variable	line:17
+MAROON	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^MAROON = (0, 0, 128)$/;"	variable	line:18
+OLIVE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^OLIVE = (0, 128, 128)$/;"	variable	line:19
+LIME	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^LIME = (0, 128, 128)$/;"	variable	line:20
+PURPLE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^PURPLE = (128, 0, 128)$/;"	variable	line:21
+TEAL	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^TEAL = (128, 128, 0)$/;"	variable	line:22
+NAVY	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^NAVY = (128, 0, 0)$/;"	variable	line:23
+draw_line	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_line(image, line, color=WHITE, thickness=1):$/;"	function	line:26
+draw_box	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_box(image, box, color=WHITE, thickness=1):$/;"	function	line:33
+draw_rectangle	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_rectangle(image, rect, color=RED, size=None):$/;"	function	line:38
+draw_circle	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_circle(image, circle, color=WHITE, thickness=1):$/;"	function	line:45
+draw_ellipse	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_ellipse(image, rect, color=BLUE):$/;"	function	line:50
+draw_arrow	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_arrow(image, line, color=WHITE, thickness=1):$/;"	function	line:55
+draw_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_points(image, points, color=WHITE, thickness=1):$/;"	function	line:73
+draw_lines	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_lines(image, lines, color=WHITE, thickness=1):$/;"	function	line:83
+draw_boxes	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_boxes(image, boxes, color=WHITE, thickness=1):$/;"	function	line:88
+draw_rectangles	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_rectangles(image, rectangles, color=WHITE, thickness=1):$/;"	function	line:94
+draw_polygons	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_polygons(image, polygons, color=WHITE, thickness=1):$/;"	function	line:100
+draw_circles	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_circles(image, circles, color=WHITE, thickness=-1):$/;"	function	line:107
+draw_ellipses	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_ellipses(image, ellipses, color=WHITE, thickness=1):$/;"	function	line:112
+draw_contours	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_contours(image, contours, color=(255,0,0), size=None):$/;"	function	line:120
+draw_texts	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_texts(image, text, point, scale=1.0, color=WHITE, thickness=2):$/;"	function	line:129
+draw_text	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_text(image, text, pnt, color=LIME):$/;"	function	line:138
+draw_text	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_text(image, (x, y), text, color=(255, 255, 255)):$/;"	function	line:147
+draw_contours_mask	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_contours_mask(image, contours):$/;"	function	line:156
+draw_rectangle_mask	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_rectangle_mask(image, rect):$/;"	function	line:161
+draw_frame	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_frame(image, rect):$/;"	function	line:166
+draw_shape_model	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^def draw_shape_model(image, model, points=[(0,0)], color=RED):$/;"	function	line:182
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = np.zeros((480, 640, 3), np.uint8)$/;"	variable	line:191
+points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    points = np.array([[10, 20], [150, 100]])$/;"	variable	line:193
+line	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    line = np.float32([[0, 200], [800, 423]])$/;"	variable	line:194
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_line(image, line, color=BLUE, thickness=1)$/;"	variable	line:196
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_points(image, points, color=RED)$/;"	variable	line:197
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_lines(image, [points])$/;"	variable	line:198
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_arrow(image, points + np.array([30, 30]), color=YELLOW, thickness=1)$/;"	variable	line:199
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_circles(image, [[points[0], 3]], color=NAVY)$/;"	variable	line:200
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_boxes(image, [points], color=MAGENTA)$/;"	variable	line:201
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_ellipses(image, [[points[1], points[1], 45]], color=LIME)$/;"	variable	line:202
+points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    points = np.array([[100,50],[200,300],[70,200],[500,100]], np.int32)$/;"	variable	line:204
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_polygons(image, [points], color=GREEN)$/;"	variable	line:205
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/drawing.py	/^    image = draw_texts(image, 'OpenCV', points[0], color=PURPLE)$/;"	variable	line:207
+read_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def read_image(filename):$/;"	function	line:7
+read_images	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def read_images(pattern_name):$/;"	function	line:12
+write_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def write_image(filename, image):$/;"	function	line:18
+get_size	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def get_size(image):$/;"	function	line:22
+scale_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def scale_image(image, scale=1.0):$/;"	function	line:27
+rotate_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def rotate_image(image, angle, scale=1.0):$/;"	function	line:34
+flip_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def flip_image(image):$/;"	function	line:41
+_imshow	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def _imshow(image, cmap='gray'):$/;"	function	line:45
+show_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def show_image(image1, image2=None, cmap='gray'):$/;"	function	line:52
+_show_image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def _show_image(image, wait=0, scale=1.0):$/;"	function	line:65
+show_images	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def show_images(images, wait=500, scale=0.5):$/;"	function	line:70
+threshold	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def threshold(image, thr=39):$/;"	function	line:78
+normalize	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def normalize(image):$/;"	function	line:82
+erode	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def erode(image, size=3, itera=1):$/;"	function	line:89
+dilate	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def dilate(image, size=3, itera=1):$/;"	function	line:95
+close	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def close(image, size=3, itera=1):$/;"	function	line:101
+skeleton	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^def skeleton(gray, thr=127):$/;"	function	line:106
+img1	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^    img1 = read_image('..\/data\/frame0001.png')$/;"	variable	line:120
+img2	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^    img2 = read_image('..\/data\/frame0002.png')$/;"	variable	line:121
+image	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/image.py	/^    image = rotate_image(img1, 45)$/;"	variable	line:124
+__docformat__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^__docformat__ = "restructuredtext en"$/;"	variable	line:177
+identity_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def identity_matrix():$/;"	function	line:180
+translation_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def translation_matrix(direction):$/;"	function	line:195
+translation_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def translation_from_matrix(matrix):$/;"	function	line:208
+reflection_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def reflection_matrix(point, normal):$/;"	function	line:220
+reflection_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def reflection_from_matrix(matrix):$/;"	function	line:246
+rotation_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def rotation_matrix(angle, direction, point=None):$/;"	function	line:275
+rotation_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def rotation_from_matrix(matrix):$/;"	function	line:319
+scale_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def scale_matrix(factor, origin=None, direction=None):$/;"	function	line:359
+scale_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def scale_from_matrix(matrix):$/;"	function	line:396
+projection_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def projection_matrix(point, normal, direction=None,$/;"	function	line:437
+projection_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def projection_from_matrix(matrix, pseudo=False):$/;"	function	line:499
+clip_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def clip_matrix(left, right, bottom, top, near, far, perspective=False):$/;"	function	line:572
+shear_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def shear_matrix(angle, direction, point, normal):$/;"	function	line:624
+shear_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def shear_from_matrix(matrix):$/;"	function	line:655
+decompose_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def decompose_matrix(matrix):$/;"	function	line:700
+compose_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def compose_matrix(scale=None, shear=None, angles=None, translate=None,$/;"	function	line:785
+orthogonalization_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def orthogonalization_matrix(lengths, angles):$/;"	function	line:838
+superimposition_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def superimposition_matrix(v0, v1, scaling=False, usesvd=True):$/;"	function	line:866
+euler_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def euler_matrix(ai, aj, ak, axes='sxyz'):$/;"	function	line:968
+euler_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def euler_from_matrix(matrix, axes='sxyz'):$/;"	function	line:1031
+euler_from_quaternion	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def euler_from_quaternion(quaternion, axes='sxyz'):$/;"	function	line:1089
+quaternion_from_euler	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_from_euler(ai, aj, ak, axes='sxyz'):$/;"	function	line:1100
+quaternion_about_axis	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_about_axis(angle, axis):$/;"	function	line:1157
+quaternion_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_matrix(quaternion):$/;"	function	line:1174
+quaternion_from_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_from_matrix(matrix):$/;"	function	line:1196
+quaternion_multiply	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_multiply(quaternion1, quaternion0):$/;"	function	line:1228
+quaternion_conjugate	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_conjugate(quaternion):$/;"	function	line:1245
+quaternion_inverse	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_inverse(quaternion):$/;"	function	line:1258
+quaternion_slerp	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def quaternion_slerp(quat0, quat1, fraction, spin=0, shortestpath=True):$/;"	function	line:1270
+random_quaternion	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def random_quaternion(rand=None):$/;"	function	line:1311
+random_rotation_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def random_rotation_matrix(rand=None):$/;"	function	line:1341
+Arcball	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^class Arcball(object):$/;"	class	line:1356
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def __init__(self, initial=None):$/;"	member	line:1380	class:Arcball
+place	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def place(self, center, radius):$/;"	member	line:1407	class:Arcball
+setaxes	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def setaxes(self, *axes):$/;"	member	line:1420	class:Arcball
+setconstrain	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def setconstrain(self, constrain):$/;"	member	line:1427	class:Arcball
+getconstrain	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def getconstrain(self):$/;"	member	line:1431	class:Arcball
+down	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def down(self, point):$/;"	member	line:1435	class:Arcball
+drag	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def drag(self, point):$/;"	member	line:1446	class:Arcball
+next	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def next(self, acceleration=0.0):$/;"	member	line:1462	class:Arcball
+matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^    def matrix(self):$/;"	member	line:1467	class:Arcball
+arcball_map_to_sphere	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def arcball_map_to_sphere(point, center, radius):$/;"	function	line:1472
+arcball_constrain_to_axis	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def arcball_constrain_to_axis(point, axis):$/;"	function	line:1485
+arcball_nearest_axis	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def arcball_nearest_axis(point, axes):$/;"	function	line:1501
+_EPS	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^_EPS = numpy.finfo(float).eps * 4.0$/;"	variable	line:1515
+_NEXT_AXIS	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^_NEXT_AXIS = [1, 2, 0, 1]$/;"	variable	line:1518
+_AXES2TUPLE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^_AXES2TUPLE = {$/;"	variable	line:1521
+_TUPLE2AXES	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^_TUPLE2AXES = dict((v, k) for k, v in _AXES2TUPLE.items())$/;"	variable	line:1531
+vector_norm	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def vector_norm(data, axis=None, out=None):$/;"	function	line:1535
+unit_vector	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def unit_vector(data, axis=None, out=None):$/;"	function	line:1574
+random_vector	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def random_vector(size):$/;"	function	line:1618
+inverse_matrix	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def inverse_matrix(matrix):$/;"	function	line:1633
+concatenate_matrices	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def concatenate_matrices(*matrices):$/;"	function	line:1649
+is_same_transform	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def is_same_transform(matrix0, matrix1):$/;"	function	line:1665
+_import_module	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/transformations.py	/^def _import_module(module_name, warn=True, prefix='_py_', ignore='_'):$/;"	function	line:1681
+BLACK	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^BLACK = (0, 0, 0)$/;"	variable	line:9
+WHITE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^WHITE = (1, 1, 1)$/;"	variable	line:10
+RED	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^RED = (1, 0, 0)$/;"	variable	line:11
+GREEN	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^GREEN = (0, 1, 0)$/;"	variable	line:12
+BLUE	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^BLUE = (0, 0, 1)$/;"	variable	line:13
+MPlot3D	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^class MPlot3D():$/;"	class	line:16
+__init__	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def __init__(self, mlab=None, scale=1.0):$/;"	member	line:17	class:MPlot3D
+_new_figure	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def _new_figure(self):$/;"	member	line:22	class:MPlot3D
+draw_frame	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_frame(self, pose, scale=10, label=''):$/;"	member	line:27	class:MPlot3D
+draw_frames	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_frames(self, points, frames, scale=10):$/;"	member	line:37	class:MPlot3D
+draw_transformation	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_transformation(self, matrix1, matrix2, label1='', label2=''):$/;"	member	line:53	class:MPlot3D
+draw_plane	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_plane(self, plane, points3d, color=(1, 0.1, 0)):$/;"	member	line:59	class:MPlot3D
+draw_line	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_line(self, point0, point1, color=WHITE, scale=0.25):$/;"	member	line:74	class:MPlot3D
+draw_points	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_points(self, points3d, color=WHITE, scale=1):$/;"	member	line:79	class:MPlot3D
+draw_cloud	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_cloud(self, points3d, scale=1):$/;"	member	line:84	class:MPlot3D
+draw_lines	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_lines(self, points3d, color=WHITE, scale=0.1):$/;"	member	line:93	class:MPlot3D
+draw_camera	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_camera(self, camera_pose, color=(0.8, 0.8, 1), scale=0.5):$/;"	member	line:98	class:MPlot3D
+draw_layers	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_layers(self, layers, scale=1.5):$/;"	member	line:113	class:MPlot3D
+draw_slice	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_slice(self, slice, scale=0.3):$/;"	member	line:119	class:MPlot3D
+draw_slices	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_slices(self, slices):$/;"	member	line:125	class:MPlot3D
+draw_tools	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_tools(self, points, frames, scale=10):$/;"	member	line:130	class:MPlot3D
+draw_path_frames	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_path_frames(self, path):$/;"	member	line:141	class:MPlot3D
+draw_path_tools	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_path_tools(self, path):$/;"	member	line:150	class:MPlot3D
+_get_triangular_mesh	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def _get_triangular_mesh(self, mesh):$/;"	member	line:159	class:MPlot3D
+draw_mesh	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_mesh(self, mesh, color=WHITE, opacity=0.7):$/;"	member	line:169	class:MPlot3D
+draw_path	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_path(self, path):$/;"	member	line:180	class:MPlot3D
+draw_point_cloud	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_point_cloud(self, points3d):$/;"	member	line:201	class:MPlot3D
+draw_working_area	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def draw_working_area(self, width, height):$/;"	member	line:208	class:MPlot3D
+outline	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def outline(self):$/;"	member	line:215	class:MPlot3D
+clear	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def clear(self):$/;"	member	line:218	class:MPlot3D
+show	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    def show(self):$/;"	member	line:222	class:MPlot3D
+frame	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    frame = np.float32([[1, 0, 0],$/;"	variable	line:230
+point	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    point = np.float32([0, 0, 0])$/;"	variable	line:233
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    mplot3d = MPlot3D(scale=2)$/;"	variable	line:235
+cloud	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    cloud = np.loadtxt('..\/data\/test.xyz')$/;"	variable	line:240
+mplot3d	/home/jorge/catkin_ws/src/etna/etna_calib/src/icv/mlabplot.py	/^    mplot3d = MPlot3D(scale=0.002)$/;"	variable	line:241
