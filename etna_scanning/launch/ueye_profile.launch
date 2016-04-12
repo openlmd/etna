@@ -1,61 +1,16 @@
 <launch>
-  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen" />
+  <arg name="gui" default="true" />
+  <arg name="sim" default="false" />
 
-  <node pkg="nodelet" type="nodelet" name="ueye_cam_nodelet"
-        args="load ueye_cam/ueye_cam_nodelet nodelet_manager">
-    <param name="camera_name" type="str" value="camera" />
-    <param name="camera_topic" type="str" value="image" />
-    <param name="camera_id" type="int" value="1" />
-    <param name="camera_intrinsics_file" type="string" value="" /> <!-- default: ~/.ros/camera_info/<camera_name>.yaml -->
-    <param name="camera_parameters_file" type="string" value="" /> <!-- default: ~/.ros/camera_conf/<camera_name>.ini -->
+  <include file="$(find etna_scanning)/launch/ueye.launch" unless="$(arg sim)" />
 
-    <param name="ext_trigger_mode" type="bool" value="False" /> <!-- if False, then camera will operate in free-run mode; otherwise, frames need to be triggered by hardware signal (falling-edge) on digital input pin of camera -->
-
-    <!-- the following are optional camera configuration parameters:
-         they will be loaded on the camera after the .ini configuration
-         file, and before dynamic_reconfigure. That means that any
-         (lingering) dynamic parameters from dynamic_reconfigure will
-         override these values, and that these will override parameters
-         from the .ini file.
-         See http://www.ros.org/wiki/ueye_cam for more details. -->
-
-    <param name="color_mode" type="str" value="mono8" /> <!-- valid options: 'rgb8', 'mono8', 'bayer_rggb8' -->
-
-    <param name="image_width" type="int" value="1280" />
-    <param name="image_height" type="int" value="1024" />
-    <param name="image_top" type="int" value="0" /> <!-- -1: center -->
-    <param name="image_left" type="int" value="0" /> <!-- -1: center -->
-
-    <param name="subsampling" type="int" value="1" /> <!-- supported by only some UEye cameras -->
-    <param name="binning" type="int" value="4" /> <!-- supported by only some UEye cameras -->
-    <param name="sensor_scaling" type="double" value="1.0" /> <!-- supported by only some UEye cameras -->
-
-    <param name="auto_gain" type="bool" value="True" />
-    <param name="master_gain" type="int" value="0" />
-    <param name="red_gain" type="int" value="0" />
-    <param name="green_gain" type="int" value="1" />
-    <param name="blue_gain" type="int" value="16" />
-    <param name="gain_boost" type="bool" value="False" />
-
-    <param name="auto_exposure" type="bool" value="False" />
-    <param name="exposure" type="int" value="1" /> <!-- in ms -->
-
-    <param name="auto_white_balance" type="bool" value="True" />
-    <param name="white_balance_red_offset" type="int" value="0" />
-    <param name="white_balance_blue_offset" type="int" value="0" />
-
-    <param name="auto_frame_rate" type="bool" value="False" />
-    <param name="frame_rate" type="double" value="30.0" />
-    <param name="pixel_clock" type="int" value="68" />
-  </node>
-
-  <node name="viewer" pkg="image_view" type="image_view">
-    <remap from="image" to="/camera/image" />
+  <node name="viewer" pkg="image_view" type="image_view" if="$(arg gui)">
+    <remap from="image" to="/ueye/image" />
   </node>
 
   <node name="profile" pkg="etna_scanning" type="pub_profile3d.py">
-    <param name="image" type="str" value="/camera/image" />
-    <param name="cloud" type="str" value="/camera/cloud" />
+    <param name="image" type="str" value="/ueye/image" />
+    <param name="cloud" type="str" value="/ueye/cloud" />
     <param name="config" type="str" value="camera_profile3d.yaml" />
   </node>
 </launch>
