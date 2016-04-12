@@ -1,0 +1,6 @@
+<launch>
+  <node name="calibration" pkg="etna_calib" type="sub_viewer.py">
+    <param name="image" type="str" value="/ueye/image" />
+    <param name="config_file" type="str" value="camera_profile3d.yaml" />
+  </node>
+</launch>
