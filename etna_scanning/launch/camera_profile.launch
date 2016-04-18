@@ -12,6 +12,6 @@
   <node name="profile" pkg="etna_scanning" type="pub_profile3d.py">
     <param name="image" type="str" value="/camera/image" />
     <param name="cloud" type="str" value="/camera/cloud" />
-    <param name="config" type="str" value="camera_profile3d.yaml" />
+    <param name="config" type="str" value="$(find etna_scanning)/config/camera_profile3d.yaml" />
   </node>
 </launch>

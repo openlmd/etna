@@ -82,7 +82,7 @@ is used for reconstructing the 3D point cloud of the piece.
 To launch the on-line 3D scanning system:
 
 ```
-roslaunch etna_workcell etna_robscan.launch
+roslaunch etna_workcell etna_workcell.launch
 ```
 
 ## 3D calibration
