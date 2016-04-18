@@ -1,15 +1,23 @@
 <launch>
-    <arg name="gui" default="True" />
+  <arg name="gui" default="true" />
+  <arg name="sim" default="false" />
 
-    <arg name="model" value="$(find etna_workcell)/urdf/etna_workcell.xacro" />
-    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="/use_sim_time" value="$(arg sim)" />
 
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <arg name="model" value="$(find etna_workcell)/urdf/etna_workcell.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
-    <include file="$(find abb_driver)/launch/robot_interface.launch">
-        <arg name="robot_ip" value="192.168.30.4" />
-        <arg name="J23_coupled" value="true" />
-    </include>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find etna_workcell)/config/workcell.rviz" required="true" if="$(arg gui)" />
+  <include file="$(find abb_driver)/launch/robot_interface.launch" unless="$(arg sim)">
+    <arg name="robot_ip" value="192.168.30.4" />
+    <arg name="J23_coupled" value="true" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find etna_workcell)/config/workcell.rviz" required="true" if="$(arg gui)" />
+
+  <include file="$(find etna_scanning)/launch/ueye_profile.launch">
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="sim" value="$(arg sim)" />
+  </include>
 </launch>
