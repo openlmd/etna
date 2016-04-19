@@ -4,7 +4,7 @@
 
   <include file="$(find etna_scanning)/launch/ueye.launch" unless="$(arg sim)" />
 
-  <node name="viewer" pkg="image_view" type="image_view" if="$(arg gui)">
+  <node name="ueye_viewer" pkg="image_view" type="image_view" if="$(arg gui)">
     <remap from="image" to="/ueye/image" />
   </node>
 
