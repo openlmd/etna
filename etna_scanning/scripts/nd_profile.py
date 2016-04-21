@@ -55,13 +55,13 @@ class NdProfile():
             stamp = rospy.Time.now()
             image = self.bridge.imgmsg_to_cv2(data)
 
-            rospy.loginfo(stamp)
+            #rospy.loginfo(stamp)
             #stamp = data.header.stamp
             #rospy.loginfo(stamp)
             profile3d, profile2d = self.profile.points_profile(image)
             if len(profile3d) > 0:
                 self.pub_point_cloud(stamp, profile3d)
-
+            #print profile3d
             #if data.encoding == 'mono8':
             #    image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
             # if len(profile3d) > 0:
