@@ -64,6 +64,7 @@ class ImageViewer():
             cv2.imwrite(filename, self.frame)
             rospy.loginfo(filename)
             try:
+                #base_link
                 self.listener.waitForTransform("/world", "/tool0", self.stamp, rospy.Duration(1.0))
                 transform = self.listener.lookupTransform("/world", "/tool0", self.stamp) #(trans, rot)
                 filename = os.path.join(path, 'data', 'pose%04i.txt' %self.counter)
