@@ -505,15 +505,15 @@ if __name__ == '__main__':
     mplot3d = MPlot3D(scale=0.0025)
     pp = laser_calibration.pattern_points
     world_frame = calc.rpypose_to_matrix([0, 0, 0], [0, 0, 0])
-    #mplot3d.draw_frame(calc.matrix_to_pose(world_frame), label='world_frame')
+    mplot3d.draw_frame(calc.matrix_to_pose(world_frame), label='world_frame')
     for k, tool_frame in enumerate(poses_tool):
         WC = calc.matrix_compose((tool_frame, T2C))
-        #mplot3d.draw_transformation(world_frame, tool_frame)
-        #mplot3d.draw_transformation(tool_frame, WC, 'tool_pose%i' % k,
-        #                                            'camera_pose%i' % k)
+        mplot3d.draw_transformation(world_frame, tool_frame)
+        mplot3d.draw_transformation(
+            tool_frame, WC, 'tool_pose%i' % k, 'camera_pose%i' % k)
         WK = calc.matrix_compose((WC, poses_checker[k]))
-        print 'Checker %i ->' % k, WK
-        print np.allclose(W2K, WK, atol=0.0001)
+        # print 'Checker %i ->' % k, WK
+        # print np.allclose(W2K, WK, atol=0.0001)
         mplot3d.draw_frame(calc.matrix_to_pose(WK))
         mplot3d.draw_points(calc.points_transformation(WK, pp),
                             color=(1, 1, 0))
@@ -533,6 +533,6 @@ if __name__ == '__main__':
                 # print points3d, laser_profile.pose, laser_profile.homography
                 # mplot3d.draw_points(calc.points_transformation(WC, points3d[0:-1:50]), color=(1, 0, 0))
                 points3d = fit.apply_transformation(laser_profile.trans, profiles[k])
-                print points3d, laser_profile.trans
+                # print points3d, laser_profile.trans
                 mplot3d.draw_points(calc.points_transformation(WC, points3d[0:-1:25]), color=(0, 1, 0))
     mplot3d.show()

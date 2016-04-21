@@ -128,11 +128,11 @@ class Profile():
         """Gets the laser coordinate points in the camera frame from the peak
         profile detection in the image. Projects the laser profile on a plane.
         """
-        blur = cv2.blur(image, (3, 3))
-        gray = self.threshold_image(blur)
-        profile = self.peak_profile(gray)
+        profile = self.profile_points(image)
         if homography is None or pose is None:
-            points3d = self.transform_profile(profile)
+            #ERROR: transformation estimation
+            #points3d = self.transform_profile(profile)
+            points3d = self.profile_to_points3d(profile, self.homography, self.pose)
         else:
             points3d = self.profile_to_points3d(profile, homography, pose)
         return points3d, profile
