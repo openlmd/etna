@@ -65,8 +65,8 @@ class ImageViewer():
             rospy.loginfo(filename)
             try:
                 #base_link
-                self.listener.waitForTransform("/world", "/tool0", self.stamp, rospy.Duration(1.0))
-                transform = self.listener.lookupTransform("/world", "/tool0", self.stamp) #(trans, rot)
+                self.listener.waitForTransform("/base_link", "/tool0", self.stamp, rospy.Duration(1.0))
+                transform = self.listener.lookupTransform("/base_link", "/tool0", self.stamp) #(trans, rot)
                 filename = os.path.join(path, 'data', 'pose%04i.txt' %self.counter)
                 with open(filename, 'w') as f:
                     f.write(str(transform))
