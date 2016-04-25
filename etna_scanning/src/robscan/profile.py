@@ -130,9 +130,8 @@ class Profile():
         """
         profile = self.profile_points(image)
         if homography is None or pose is None:
-            #ERROR: transformation estimation
-            #points3d = self.transform_profile(profile)
-            points3d = self.profile_to_points3d(profile, self.homography, self.pose)
+            #points3d = self.profile_to_points3d(profile, self.homography, self.pose)
+            points3d = self.transform_profile(profile)
         else:
             points3d = self.profile_to_points3d(profile, homography, pose)
         return points3d, profile
