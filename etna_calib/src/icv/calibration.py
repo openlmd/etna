@@ -164,7 +164,7 @@ class CameraCalibration():
             cv2.drawChessboardCorners(image, (rows, cols), corners, True)
         return image
 
-    def draw_frame(self, img, pose, size=(30, 30, 30)):
+    def draw_frame(self, img, pose, size=(0.030, 0.030, 0.030)):
         sx, sy, sz = size
         corners = np.float32([[0, 0, 0], [sx, 0, 0], [0, sy, 0], [0, 0, sz]])
         imgpts = self.project_3d_points(corners, pose)
@@ -467,6 +467,9 @@ if __name__ == '__main__':
     for k, img in enumerate(images):
         grid = laser_calibration.grids[k]
         imgc = laser_calibration.draw_chessboard(img.copy(), grid)
+        pose = laser_calibration.get_chessboard_pose(grid)
+        print pose
+        imgc = laser_calibration.draw_frame(imgc, pose)
         if len(profiles[k]) > 0:
             line, inliers = lines[k]
             imgc = draw_points(imgc, profiles[k], color=PURPLE, thickness=2)
@@ -547,9 +550,12 @@ if __name__ == '__main__':
 
     imgname = '../../data/frame_checker.png'
     posname = '../../data/pose_checker.txt'
-    x, y, z = (1.481, -0.0042, 1.3263)
-    qx, qy, qz, qw = (-0.713177, -0.700929, -0.008464, 0.002235)
+    x, y, z = (1.6544, 0.0536, 0.9355) # ERROR in this measure (z aprox 1.0)
+    qx, qy, qz, qw = (0.002736, -0.004958, -0.004507, 0.999974)
     W2K = calc.quatpose_to_matrix(*(np.array([x, y, z]), np.array([qx, qy, qz, qw])))
+    # rot1 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, 0, -np.pi/2]))
+    # rot2 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, np.pi, 0]))
+    # W2K = calc.matrix_compose((W2K, rot1, rot2))
     W2T = read_pose(posname)
     img = read_image(imgname)
     grid = laser_calibration.find_chessboard(img)
@@ -571,10 +577,10 @@ if __name__ == '__main__':
     TF = W2T
     KF = W2K
     CF = W2C
-    mplot3d.draw_frame(calc.matrix_to_pose(WF), label='world')
-    mplot3d.draw_transformation(WF, TF)
+    #mplot3d.draw_frame(calc.matrix_to_pose(WF), label='world')
+    #mplot3d.draw_transformation(WF, TF)
     mplot3d.draw_frame(calc.matrix_to_pose(TF), label='tool')
-    mplot3d.draw_transformation(WF, KF)
+    #mplot3d.draw_transformation(WF, KF)
     mplot3d.draw_frame(calc.matrix_to_pose(KF), label='checker')
     mplot3d.draw_points(calc.points_transformation(W2K, pp), color=WHITE)
     mplot3d.draw_transformation(TF, CF)
