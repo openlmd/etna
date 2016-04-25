@@ -1,26 +1,25 @@
 # Etna
 
-Etna meta-package contains packages and libraries for supporting Laser Metal
-Deposition (LMD) automation based on  [ROS-Industrial](http://www.ros.org/wiki/Industrial).
-
-Laser Metal Deposition (LMD) is a direct laser deposition technique focused on
-direct manufacturing of metal parts. This is the direct manufacturing of metal
-parts through the successive deposition of melted tracks layer by layer,
-building the component directly from its CAD model.
+Laser Metal Deposition (LMD) is an additive laser deposition technique focused
+on direct manufacturing of metal parts, through the successive deposition of
+melted tracks layer by layer, building the component directly from its CAD
+model.
 
 Unlike Selective Laser Melting (SLM), mainly used for rapid prototyping,
 consisting on the deposition of powder layers and their subsequent laser melt,
 it only adds the required material. Moreover, this additive manufacturing (AM)
 technique works on current processing technology, known as Laser Cladding,
 commonly used for repair of metal components. This makes LMD a promising
-technique for retrofitting of current industrial facilities towards the digital factory (Industrie 4.0).
+technique for retrofitting of current industrial facilities towards the digital
+factory (Industrie 4.0).
 
 ## Approach
 
 Existing dimensional monitoring approaches are not suitable for on-line path
 control of LMD, because they do not resolve measurements in working coordinates
 without imposing restrictions in the movements. This enables the adaptation of
-laser paths to get the expected geometry. The geometrical control envisaged to guarantee LMD parts manufacturing requires two main developments:
+laser paths to get the expected geometry. The geometrical control envisaged to
+guarantee LMD parts manufacturing requires two main developments:
 
 - To develop a 3D geometrical monitoring system, intended to identify
 geometrical distortions and some superficial defects, where the deposited
