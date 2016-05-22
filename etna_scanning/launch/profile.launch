@@ -1,0 +1,16 @@
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="sim" default="false" />
+
+  <include file="$(find etna_scanning)/launch/ueye.launch" unless="$(arg sim)" />
+
+  <node name="ueye_viewer" pkg="image_view" type="image_view" if="$(arg gui)">
+    <remap from="image" to="/ueye/image" />
+  </node>
+
+  <node name="profile" pkg="etna_scanning" type="nd_profile.py">
+    <param name="image" type="str" value="/ueye/image" />
+    <param name="cloud" type="str" value="/ueye/cloud" />
+    <param name="config" type="str" value="$(find etna_scanning)/config/camera_profile3d.yaml" />
+  </node>
+</launch>
