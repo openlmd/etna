@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>etna_planning</name>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
   <description>The etna_planning package</description>
   <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</maintainer>
   <license>BSD</license>
@@ -15,5 +15,4 @@
   <run_depend>roscpp</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>std_msgs</run_depend>
-
 </package>
