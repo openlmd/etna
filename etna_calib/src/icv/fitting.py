@@ -69,22 +69,51 @@ def fit_plane(points3d):
     return normal
 
 
+def fit_homography(p1, p2):
+    A = []
+    for i in range(0, len(p1)):
+        x, y = p1[i][0], p1[i][1]
+        u, v = p2[i][0], p2[i][1]
+        A.append([x, y, 1, 0, 0, 0, -u*x, -u*y, -u])
+        A.append([0, 0, 0, x, y, 1, -v*x, -v*y, -v])
+    A = np.asarray(A)
+    U, S, Vh = np.linalg.svd(A)
+    L = Vh[-1, :] / Vh[-1, -1]
+    H = L.reshape(3, 3)
+    return H
+
+
+# def fit_transformation(points2d, points3d):
+#     u, v = points2d[:, 0], points2d[:, 1]
+#     X, Y, Z = points3d[:, 0], points3d[:, 1], points3d[:, 2]
+#     A1 = np.vstack((X, -u, -v, -p)).T
+#     B1 = best_fitSVD(A1)
+#     T1 = B1[1:] / B1[0]
+#     A2 = np.vstack((Y, -u, -v, -p)).T
+#     B2 = best_fitSVD(A2)
+#     T2 = B2[1:] / B2[0]
+#     A3 = np.vstack((Z, -u, -v, -p)).T
+#     B3 = best_fitSVD(A3)
+#     T3 = B3[1:] / B3[0]
+#     A4 = np.vstack((p, -u, -v, -p)).T
+#     B4 = best_fitSVD(A4)
+#     T4 = B4[1:] / B4[0]
+#     T = np.vstack((T1, T2, T3, T4))
+#     return T
+
+
 def fit_transformation(points2d, points3d):
-    u, v, p = points2d[:, 0], points2d[:, 1], np.ones(len(points2d))
-    X, Y, Z = points3d[:, 0], points3d[:, 1], points3d[:, 2]
-    A1 = np.vstack((X, -u, -v, -p)).T
-    B1 = best_fitSVD(A1)
-    T1 = B1[1:] / B1[0]
-    A2 = np.vstack((Y, -u, -v, -p)).T
-    B2 = best_fitSVD(A2)
-    T2 = B2[1:] / B2[0]
-    A3 = np.vstack((Z, -u, -v, -p)).T
-    B3 = best_fitSVD(A3)
-    T3 = B3[1:] / B3[0]
-    A4 = np.vstack((p, -u, -v, -p)).T
-    B4 = best_fitSVD(A4)
-    T4 = B4[1:] / B4[0]
-    T = np.vstack((T1, T2, T3, T4))
+    A = []
+    for i in np.random.choice(len(points2d), 300):
+        u, v = points2d[i][0], points2d[i][1]
+        X, Y, Z = points3d[i][0], points3d[i][1], points3d[i][2]
+        A.append([u, v, 1, 0, 0, 0, 0, 0, 0, -X*u, -X*v, -X])
+        A.append([0, 0, 0, u, v, 1, 0, 0, 0, -Y*u, -Y*v, -Y])
+        A.append([0, 0, 0, 0, 0, 0, u, v, 1, -Z*u, -Z*v, -Z])
+    A = np.asarray(A)
+    U, S, Vh = np.linalg.svd(A)
+    L = Vh[-1, :] / Vh[-1, -1]
+    T = L.reshape(4, 3)
     return T
 
 

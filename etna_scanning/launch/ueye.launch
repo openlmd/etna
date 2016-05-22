@@ -3,11 +3,11 @@
 
   <node pkg="nodelet" type="nodelet" name="ueye_cam_nodelet"
         args="load ueye_cam/ueye_cam_nodelet nodelet_manager">
-    <param name="camera_name" type="str" value="camera" />
+    <param name="camera_name" type="str" value="ueye" />
     <param name="camera_topic" type="str" value="image" />
     <param name="camera_id" type="int" value="1" />
-    <param name="camera_intrinsics_file" type="string" value="" /> <!-- default: ~/.ros/camera_info/<camera_name>.yaml -->
-    <param name="camera_parameters_file" type="string" value="" /> <!-- default: ~/.ros/camera_conf/<camera_name>.ini -->
+    <param name="camera_intrinsics_file" type="string" value="" />
+    <param name="camera_parameters_file" type="string" value="" />
 
     <param name="ext_trigger_mode" type="bool" value="False" /> <!-- if False, then camera will operate in free-run mode; otherwise, frames need to be triggered by hardware signal (falling-edge) on digital input pin of camera -->
 
@@ -15,9 +15,7 @@
          they will be loaded on the camera after the .ini configuration
          file, and before dynamic_reconfigure. That means that any
          (lingering) dynamic parameters from dynamic_reconfigure will
-         override these values, and that these will override parameters
-         from the .ini file.
-         See http://www.ros.org/wiki/ueye_cam for more details. -->
+         override these values. -->
 
     <param name="color_mode" type="str" value="mono8" /> <!-- valid options: 'rgb8', 'mono8', 'bayer_rggb8' -->
 
@@ -26,9 +24,9 @@
     <param name="image_top" type="int" value="0" /> <!-- -1: center -->
     <param name="image_left" type="int" value="0" /> <!-- -1: center -->
 
-    <param name="subsampling" type="int" value="1" /> <!-- supported by only some UEye cameras -->
-    <param name="binning" type="int" value="4" /> <!-- supported by only some UEye cameras -->
-    <param name="sensor_scaling" type="double" value="1.0" /> <!-- supported by only some UEye cameras -->
+    <param name="subsampling" type="int" value="1" />
+    <param name="binning" type="int" value="4" />
+    <param name="sensor_scaling" type="double" value="1.0" />
 
     <param name="auto_gain" type="bool" value="True" />
     <param name="master_gain" type="int" value="0" />
@@ -47,15 +45,5 @@
     <param name="auto_frame_rate" type="bool" value="False" />
     <param name="frame_rate" type="double" value="30.0" />
     <param name="pixel_clock" type="int" value="68" />
-  </node>
-
-  <node name="viewer" pkg="image_view" type="image_view">
-    <remap from="image" to="/camera/image" />
-  </node>
-
-  <node name="profile" pkg="etna_scanning" type="pub_profile3d.py">
-    <param name="image" type="str" value="/camera/image" />
-    <param name="cloud" type="str" value="/camera/cloud" />
-    <param name="config" type="str" value="camera_profile3d.yaml" />
   </node>
 </launch>

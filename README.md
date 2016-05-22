@@ -1,26 +1,25 @@
 # Etna
 
-Etna meta-package contains packages and libraries for supporting Laser Metal
-Deposition (LMD) automation based on  [ROS-Industrial](http://www.ros.org/wiki/Industrial).
-
-Laser Metal Deposition (LMD) is a direct laser deposition technique focused on
-direct manufacturing of metal parts. This is the direct manufacturing of metal
-parts through the successive deposition of melted tracks layer by layer,
-building the component directly from its CAD model.
+Laser Metal Deposition (LMD) is an additive laser deposition technique focused
+on direct manufacturing of metal parts, through the successive deposition of
+melted tracks layer by layer, building the component directly from its CAD
+model.
 
 Unlike Selective Laser Melting (SLM), mainly used for rapid prototyping,
 consisting on the deposition of powder layers and their subsequent laser melt,
 it only adds the required material. Moreover, this additive manufacturing (AM)
 technique works on current processing technology, known as Laser Cladding,
 commonly used for repair of metal components. This makes LMD a promising
-technique for retrofitting of current industrial facilities towards the digital factory (Industrie 4.0).
+technique for retrofitting of current industrial facilities towards the digital
+factory (Industrie 4.0).
 
 ## Approach
 
 Existing dimensional monitoring approaches are not suitable for on-line path
 control of LMD, because they do not resolve measurements in working coordinates
 without imposing restrictions in the movements. This enables the adaptation of
-laser paths to get the expected geometry. The geometrical control envisaged to guarantee LMD parts manufacturing requires two main developments:
+laser paths to get the expected geometry. The geometrical control envisaged to
+guarantee LMD parts manufacturing requires two main developments:
 
 - To develop a 3D geometrical monitoring system, intended to identify
 geometrical distortions and some superficial defects, where the deposited
@@ -33,7 +32,8 @@ A cost effective 3D robotized scanning solution can be successfully used for
 on-line LMD monitoring. The solution provides measurements resolved in the
 robot coordinates with no motion constraints (6-DoF). It is flexible in terms
 of setup, because a novel self-calibration method is provided, which
-simultaneously estimates all the calibration parameters. Moreover, this unified solution is suitable to automate the reparation of damaged parts.
+simultaneously estimates all the calibration parameters. Moreover, this unified
+solution is suitable to automate the reparation of damaged parts.
 
 This means a step forward on the state of the art, since to our knowledge
 existing methods not solve the point cloud in working coordinates with 6 DoF  
@@ -57,7 +57,7 @@ It contains four packages:
 - etna_calib: contains the 3D calibration tools required for scanning.
 - etna_planning: contains the off-line path planning tool for LMD automation.
 
-[![Robscan Video](./etna_scanning/media/robscan.png)](./etna_scanning/media/robscan.mp4)
+[![Robscan Video](./etna/media/robscan.png)](https://www.youtube.com/watch?v=Vx8_shJDxok)
 
 The video shows the system working in a typical industrial robot, with a clear  
 relaxation of requirements on the setup (without the need of complex and
@@ -82,7 +82,7 @@ is used for reconstructing the 3D point cloud of the piece.
 To launch the on-line 3D scanning system:
 
 ```
-roslaunch etna_workcell etna_robscan.launch
+roslaunch etna_workcell etna_workcell.launch
 ```
 
 ## 3D calibration
@@ -94,13 +94,14 @@ In this way, the system is calibrated in the robot coordinates, ensuring a prope
 correspondence between camera and robot coordinates and avoiding complex and
 accurate mechanical couplers.
 
-![Checkerboard in different robot positions](./etna_calib/media/checkerboards.jpg)
+![Checkerboard in different robot positions](./etna/media/checkerboards.jpg)
 
 *Automatic checkerboard detection in different robot positions for system calibration.*
 
-The calibration procedure consists in placing fixed the checkerboard and moving the
-robot at arbitrary orientations in front of the pattern. In each position, an image
-is acquired and its corresponding robot pose is recorded. For each image, the
-checkerboard pose is estimated and the laser intersection is determined. Thus, the
-estimated point cloud is used to find the best-fit laser plane. Different least-squares algorithms have been used to minimize errors in the calibration
-estimation problem.
+The calibration procedure consists in placing fixed the checkerboard and moving
+the robot at arbitrary orientations in front of the pattern. In each position,
+an image is acquired and its corresponding robot pose is recorded. For each
+image, the checkerboard pose is estimated and the laser intersection is
+determined. Thus, the estimated point cloud is used to find the best-fit laser
+plane. Different least-squares algorithms have been used to minimize errors in
+the calibration estimation problem.
