@@ -10,7 +10,7 @@
   <link name="head0">
   <visual>
     <geometry>
-      <mesh filename="package://etna_workcell/meshes/head/head.stl"/>
+      <mesh filename="package://etna_workcell/meshes/fiber_head/head.stl"/>
     </geometry>
     <material name="gray">
       <color rgba="0.6 0.5 0.4 0.7"/>

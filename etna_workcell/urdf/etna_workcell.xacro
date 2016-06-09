@@ -63,7 +63,7 @@
   <link name="walls">
   <visual>
     <geometry>
-      <mesh filename="package://etna_workcell/meshes/cell/cell.stl"/>
+      <mesh filename="package://aimen_workcell/meshes/cell/cell.stl"/>
     </geometry>
     <origin xyz="0 0 0" />
     <material name="white">
