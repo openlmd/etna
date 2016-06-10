@@ -52,7 +52,9 @@ class Mesh:
             self.bounding_box()
         if self.valid:
             self.translate(np.float32([0, 0, 0]))  # translates the piece to the origin
-            self.resort_triangles()
+            #TODO: Resort only for calculation
+            #self.resort_triangles()
+        print '> Load file:', filename
 
     def load_binary_mesh(self, filename):
         try:
@@ -324,17 +326,20 @@ class Mesh:
 
 
 if __name__ == '__main__':
-    import sys
+    import argparse
     from mlabplot import MPlot3D
 
-    if len(sys.argv) > 1:
-        filename = sys.argv[1]
-    else:
-        #filename = '../../data/models_stl/aimen.stl'
-        filename = '../../data/models_stl/piece0.stl'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--data', type=str,
+                        default='../../data/piece0.stl',
+                        help='path to input stl data file')
+    args = parser.parse_args()
+
+    filename = args.data
 
     # Triangle mesh is composed by a set of faces (triangles)
     mesh = Mesh(filename)
+    mesh.resort_triangles()
 
     t0 = time.time()
     slice = mesh.get_slice(0.1)

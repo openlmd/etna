@@ -24,6 +24,12 @@ class MPlot3D():
 
     #TODO: Add function to draw volume of work
 
+    def draw_arrow(self, arrow, color=RED, scale=10):
+        pnt, vec = arrow
+        # scale = self.scale * scale
+        mlab.quiver3d(pnt[0], pnt[1], pnt[2], vec[0], vec[1], vec[2],
+                      color=color, mode='arrow', scale_factor=self.scale)
+
     def draw_frame(self, pose, scale=10, label=''):
         R, t = pose
         scale = self.scale * scale
@@ -232,12 +238,32 @@ if __name__ == '__main__':
                         [0, 0, 1]])
     point = np.float32([0, 0, 0])
 
-    mplot3d = MPlot3D(scale=2)
-    mplot3d.draw_working_area(200, 100)
-    mplot3d.draw_frame((frame, point), label='frame')
-    mplot3d.show()
+    import calculate as calc
 
-    cloud = np.loadtxt('../data/test.xyz')
-    mplot3d = MPlot3D(scale=0.002)
-    mplot3d.draw_cloud(cloud)
+    arrow = np.float32([[0, 0, 0], [100, 0, 0]])
+
+    pose_arrow = calc.rpypose_to_pose((0, 0, 100), (0, np.deg2rad(90), 0))
+    trans_arrow = calc.matrix_invert(calc.pose_to_matrix(pose_arrow))
+    print 'arrow quat:', calc.matrix_to_quatpose(trans_arrow)
+    points = calc.transform_points(pose_arrow, arrow)
+    arrow2 = (points[0], points[1]-points[0])
+    print pose_arrow, points
+
+    position = ((0, 20, 0), (np.deg2rad(-45), np.deg2rad(45), np.deg2rad(0)))
+    pose = calc.rpypose_to_pose(*position)
+    print 'quat:', calc.rpypose_to_quatpose(*position)
+    trans = calc.matrix_compose([calc.pose_to_matrix(pose), calc.pose_to_matrix(pose_arrow)])
+    print 'final pose:', calc.matrix_to_quatpose(trans)
+    points = calc.transform_points(calc.matrix_to_pose(trans), arrow)
+    arrow3 = (points[0], points[1]-points[0])
+    print pose, points
+
+    mplot3d = MPlot3D()
+    mplot3d.draw_working_area(100, 100)
+    mplot3d.draw_frame((frame, point), label='frame')
+    mplot3d.draw_arrow(arrow)
+    #mplot3d.draw_arrow(arrow2)
+    mplot3d.draw_frame(calc.matrix_to_pose(trans_arrow))
+    mplot3d.draw_arrow(arrow3)
+    #mplot3d.draw_frame(calc.matrix_to_pose(calc.matrix_invert(trans)))
     mplot3d.show()
