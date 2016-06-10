@@ -1,6 +1,0 @@
-<launch>
-    <include file="$(find etna_workcell)/launch/workcell4.launch" />
-    <include file="$(find etna_triangulation)/launch/camera_profile.launch" />
-    <node name="robviz" pkg="etna_planning" type="robviz.py"/>
-</launch>
-

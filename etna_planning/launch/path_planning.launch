@@ -1,6 +1,0 @@
-<launch>
-    <include file="$(find etna_workcell)/launch/load_cell4.launch" />
-        
-    <node name="path" pkg="etna_planning" type="path_publisher.py"/>
-</launch>
-
