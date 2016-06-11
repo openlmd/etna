@@ -47,7 +47,7 @@ class ABB_Robot():
         RAPID_TEMPLATE += '    WaitDI DI_RF_LaserBeamReady,1;\n'
         RAPID_TEMPLATE += '    WaitDI DI_RF_GeneralFault,0;\n'
         RAPID_TEMPLATE += '\n'
-        RAPID_TEMPLATE += '    SetGO GO_Program_Rf, 0;\n' # set the program for control of laser power - prog 5    
+        RAPID_TEMPLATE += '    SetGO GO_Program_Rf, 0;\n' # set the program for control of laser power - prog 5
         RAPID_TEMPLATE += '    WaitTime 1;\n'
         RAPID_TEMPLATE += '    !SetGO GoLDL_Pwr3, %(power)i;\n' # set the laser power - 2200 W
         RAPID_TEMPLATE += '\n'
@@ -129,7 +129,6 @@ class ABB_Robot():
             ftp.quit()
         except IOError:
             print 'File transfered to the robot.'
-
 
 
 if __name__ == '__main__':

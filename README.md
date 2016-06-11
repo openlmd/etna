@@ -1,9 +1,9 @@
 # Etna
 
+
 Laser Metal Deposition (LMD) is an additive laser deposition technique focused
 on direct manufacturing of metal parts, through the successive deposition of
-melted tracks layer by layer, building the component directly from its CAD
-model.
+melted tracks layer by layer, building the component directly from its CAD model.
 
 Unlike Selective Laser Melting (SLM), mainly used for rapid prototyping,
 consisting on the deposition of powder layers and their subsequent laser melt,
@@ -44,10 +44,10 @@ different requirement.
 
 ## Contents
 
-This meta-package currently contains packages that provide nodes and libraries for
-on-line 3D scanning and off-line 3D path programming for ABB industrial robots. It
-also includes the required utility for the scanning calibration, which was presented
- in IEEE INDIN 2015.
+This meta-package currently contains packages that provide nodes and libraries
+for on-line 3D scanning and off-line 3D path programming for ABB industrial
+robots. It also includes the required utility for the scanning calibration,
+which was presented in IEEE INDIN 2015.
 
 [INDIN 2015 presentation](./etna_scanning/doc/RobEyeEtna.pdf)
 
@@ -82,7 +82,7 @@ is used for reconstructing the 3D point cloud of the piece.
 To launch the on-line 3D scanning system:
 
 ```
-roslaunch etna_workcell etna_workcell.launch
+roslaunch etna_workcell etna_robscan.launch
 ```
 
 ## 3D calibration

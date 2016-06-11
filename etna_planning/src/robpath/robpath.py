@@ -48,16 +48,16 @@ class RobPath():
         self.path = []
         self.slices = []
         self.pair = False
-        self.levels = mesh.get_range_values(self.mesh.z_min,
-                                            self.mesh.z_max,
-                                            self.track_height)
+        self.levels = mesh.get_range_values(
+            self.mesh.z_min, self.mesh.z_max, self.track_height)
 
     def update_process(self):
+        if self.k == 0:
+            self.mesh.resort_triangles()
         slice = self.mesh.get_slice(self.levels[self.k])
         if slice is not None:
             if self.filled:
                 fill_lines = self.mesh.get_grated(slice, self.track_distance)
-
                 # Reverse the order of the slicer fill lines
                 if self.pair:
                     fill_lines.reverse()
@@ -89,3 +89,7 @@ class RobPath():
         self.rob_parser.save_file(filename, routine)
         self.rob_parser.upload_file(filename, directory)
         print routine
+
+
+if __name__ == "__main__":
+    robpath = RobPath()
