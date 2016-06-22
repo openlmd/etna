@@ -277,13 +277,13 @@ class Mesh:
                 if len(tool_path):
                     last_point = tool_path[-1][0]
                     if np.all(last_point == pnt1):
-                        tool_path[-1] = [pnt2, orientation, True]
+                        tool_path[-1] = [pnt2, orientation, False]
                     else:
-                        tool_path.append([pnt1, orientation, False])
-                        tool_path.append([pnt2, orientation, True])
+                        tool_path.append([pnt1, orientation, True])
+                        tool_path.append([pnt2, orientation, False])
                 else:
-                    tool_path.append([pnt1, orientation, False])
-                    tool_path.append([pnt2, orientation, True])
+                    tool_path.append([pnt1, orientation, True])
+                    tool_path.append([pnt2, orientation, False])
             # Adds the offset path
             #last_point = tool_path[-1][0]
             #tool_path.append([last_point + np.float32([0, offset, 0]), orientation, False])

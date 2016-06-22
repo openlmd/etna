@@ -92,4 +92,15 @@ class RobPath():
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-m', '--mesh', type=str,
+                        default='../../data/piece0.stl',
+                        help='path to input stl data file')
+    args = parser.parse_args()
+
+    filename = args.mesh
+
     robpath = RobPath()
+    robpath.load_mesh(filename)
