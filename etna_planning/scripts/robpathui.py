@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import os
 os.environ['QT_API'] = 'pyqt'
 os.environ['ETS_TOOLKIT'] = 'qt4'
@@ -19,7 +18,7 @@ from PyQt4 import uic
 
 import numpy as np
 
-from robpath.robpath import RobPath
+from robpath import RobPath
 from robpath.mlabplot import MPlot3D
 
 
@@ -157,9 +156,8 @@ class RobPathUI(QtGui.QMainWindow):
     def btnLoadMeshClicked(self):
         self.blockSignals(True)
         try:
-            filename = QtGui.QFileDialog.getOpenFileName(self.plot,
-                                                         'Open file', './',
-                                                         'Mesh Files (*.stl)')
+            filename = QtGui.QFileDialog.getOpenFileName(
+                self.plot, 'Open file', './', 'Mesh Files (*.stl)')
             print filename
             self.setWindowTitle('Mesh Viewer: %s' % filename)
             self.robpath.load_mesh(filename)
