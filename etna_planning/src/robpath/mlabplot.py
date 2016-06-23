@@ -185,23 +185,22 @@ class MPlot3D():
 
     def draw_path(self, path):
         points, vectors, processes = [], [], []
-        for k in range(1, len(path)):
+        for k in range(len(path)-1):
             points.append(path[k][0])
-            vectors.append(path[k-1][0] - path[k][0])
+            vectors.append(path[k+1][0] - path[k][0])
             processes.append(path[k][2])
         points, vectors = np.array(points), np.array(vectors)
         processes = np.array(processes)
         pnts, vctrs = points[processes], vectors[processes]
         mlab.quiver3d(pnts[:, 0], pnts[:, 1], pnts[:, 2],
                       vctrs[:, 0], vctrs[:, 1], vctrs[:, 2],
-                      color=(0.3, 0.5, 0.7), mode='2ddash',
+                      color=(0.7, 0.5, 0.3), mode='2ddash',
                       scale_factor=1, line_width=5.0)
-                      #mode='2ddash', 'arrow', 'cylinder'
         pnts = points[np.bitwise_not(processes)]
         vctrs = vectors[np.bitwise_not(processes)]
         mlab.quiver3d(pnts[:, 0], pnts[:, 1], pnts[:, 2],
                       vctrs[:, 0], vctrs[:, 1], vctrs[:, 2],
-                      color=(0.8, 0.6, 0.2), mode='2ddash',
+                      color=(0.2, 0.4, 0.6), mode='2ddash',
                       scale_factor=1, line_width=2.0)
 
     def draw_point_cloud(self, points3d):
