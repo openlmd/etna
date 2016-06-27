@@ -337,7 +337,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--data', type=str,
-                        default='../../data/snake.stl',
+                        default='../../data/piece8.stl',
                         help='path to input stl data file')
     args = parser.parse_args()
     filename = args.data

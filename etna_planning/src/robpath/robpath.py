@@ -7,7 +7,6 @@ from rapid import ABB_Robot
 class RobPath():
     def __init__(self):
         self.mesh = None
-        self.filled = True
         self.rob_parser = ABB_Robot()
 
     def load_mesh(self, filename):
@@ -52,28 +51,21 @@ class RobPath():
         self.mesh.resort_triangles()
         return self.levels
 
-    def update_process(self):
+    def update_process(self, filled=True, contour=False):
         slice = self.mesh.get_slice(self.levels[self.k])
         if slice is not None:
-            if self.filled:
-                tool_path = self.mesh.get_path_from_slice(slice, self.track_distance, self.pair)
-                self.pair = not self.pair
-            else:
-                tool_path = self.mesh.get_path_from_slices([slice])
             self.slices.append(slice)
-            self.path.extend(tool_path)
+            if filled:
+                tool_path = self.mesh.get_path_from_slice(
+                    slice, self.track_distance, self.pair)
+                self.pair = not self.pair
+                self.path.extend(tool_path)
+            if contour:
+                tool_path = self.mesh.get_path_from_slices([slice])
+                self.path.extend(tool_path)
         self.k = self.k + 1
         print 'k, levels:', self.k, len(self.levels)
-
-    def get_contours_path(self):
-        self.k = 0
-        self.path = []
-        self.slices = []
-        self.levels = mesh.get_range_values(self.mesh.z_min,
-                                            self.mesh.z_max,
-                                            self.track_height)
-        slices = [self.mesh.get_slice(level) for level in self.levels]
-        self.path = self.mesh.get_path_from_slices(slices)
+        return tool_path
 
     def save_rapid(self, filename='etna.mod', directory='ETNA'):
         routine = self.rob_parser.path2rapid(self.path)
@@ -99,7 +91,7 @@ if __name__ == "__main__":
     robpath.set_track(0.5, 2.5, 0.4)
     levels = robpath.init_process()
     for k, level in enumerate(levels):
-        robpath.update_process()
+        robpath.update_process(filled=False)
 
     mplot3d = MPlot3D()
     #mplot3d.draw_mesh(robpath.mesh)

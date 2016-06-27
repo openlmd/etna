@@ -106,6 +106,7 @@ class RobPathUI(QtGui.QMainWindow):
         self.timer.timeout.connect(self.updateProcess)
 
         self.robpath = RobPath()
+        self.filled = True
 
     def changePosition(self):
         x = self.sbPositionX.value()
@@ -135,7 +136,8 @@ class RobPathUI(QtGui.QMainWindow):
 
     def updateProcess(self):
         if self.robpath.k < len(self.robpath.levels):
-            self.robpath.update_process()
+            self.robpath.update_process(
+                filled=self.filled, contour=not self.filled)
             #self.plot.drawSlice(self.robpath.slices, self.robpath.path)
             self.plot.drawPath(self.robpath.path)
             self.plot.progress.setValue(100.0 * self.robpath.k / len(self.robpath.levels))
@@ -171,8 +173,6 @@ class RobPathUI(QtGui.QMainWindow):
             self.btnProcessMesh.setEnabled(True)
             self.btnProcessContours.setEnabled(True)
         except:
-            #self.btnProcessMesh.setEnabled(False)
-            #self.btnProcessContours.setEnabled(False)
             pass
         self.blockSignals(False)
         self.plot.drawMesh(self.robpath.mesh)
@@ -207,18 +207,12 @@ class RobPathUI(QtGui.QMainWindow):
             self.timer.start(100)
 
     def btnProcessMeshClicked(self):
-        self.robpath.filled = True
+        self.filled = True
         self.__process_shape()
 
     def btnProcessContoursClicked(self):
-        self.robpath.filled = False
+        self.filled = False
         self.__process_shape()
-        # self.btnSaveRapid.setEnabled(False)
-        # self.plot.drawWorkingArea()
-        # self.update_parameters()
-        # self.robpath.get_contours_path()
-        # self.plot.drawPath(self.robpath.path)
-        # self.btnSaveRapid.setEnabled(True)
 
     def btnSaveRapidClicked(self):
         self.robpath.save_rapid()
