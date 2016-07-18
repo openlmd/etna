@@ -4,7 +4,7 @@
 
   <param name="/use_sim_time" value="$(arg sim)" />
 
-  <arg name="model" value="$(find etna_workcell)/urdf/etna_workcell.xacro" />
+  <arg name="model" value="$(find etna_workcell)/urdf/workcell.xacro" />
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
@@ -16,7 +16,7 @@
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find etna_workcell)/config/workcell.rviz" required="true" if="$(arg gui)" />
 
-  <include file="$(find etna_scanning)/launch/ueye_profile.launch">
+  <include file="$(find etna_scanning)/launch/profile.launch">
     <arg name="gui" value="$(arg gui)" />
     <arg name="sim" value="$(arg sim)" />
   </include>
