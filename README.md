@@ -55,7 +55,6 @@ It contains four packages:
 - etna_workcell: contains the working cell description files.
 - etna_scanning: contains the on-line scanning tool for LMD monitoring.
 - etna_calib: contains the 3D calibration tools required for scanning.
-- etna_planning: contains the off-line path planning tool for LMD automation.
 
 [![Robscan Video](./etna/media/robscan.png)](https://www.youtube.com/watch?v=Vx8_shJDxok)
 
@@ -82,7 +81,7 @@ is used for reconstructing the 3D point cloud of the piece.
 To launch the on-line 3D scanning system:
 
 ```
-roslaunch etna_workcell etna_robscan.launch
+roslaunch etna_workcell workcell.launch
 ```
 
 ## 3D calibration
