@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>etna_workcell</name>
-  <version>0.4.0</version>
+  <version>0.4.5</version>
   <description>The etna_workcell package.</description>
   <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</maintainer>
   <license>BSD</license>
