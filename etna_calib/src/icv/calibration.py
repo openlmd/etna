@@ -551,8 +551,8 @@ if __name__ == '__main__':
     imgname = '../../data/fchecker.png'
     posname = '../../data/pchecker.txt'
     # Workobject
-    x, y, z = (1.6584, 0.05207465, 0.937937) # ERROR in this measure (z aprox 1.0)
-    qx, qy, qz, qw = (0.002393586, 0.00884363, -0.004250817, 0.99998635)
+    x, y, z = (1.596609, 0.101342, 0.936394) # ERROR in this measure (z aprox 1.0)
+    qx, qy, qz, qw = (0.00185993, -0.00245949, -0.01122562, 0.99994981)
     W2K = calc.quatpose_to_matrix(*(np.array([x, y, z]), np.array([qx, qy, qz, qw])))
     # rot1 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, 0, -np.pi/2]))
     # rot2 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, np.pi, 0]))
