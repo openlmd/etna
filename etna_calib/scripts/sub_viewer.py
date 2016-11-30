@@ -31,7 +31,7 @@ class ImageViewer():
 
         config_file = rospy.get_param('~config', 'profile3d.yaml')
 
-        rospy.Subscriber(image_topic, Image, self.callback, queue_size=10)
+        rospy.Subscriber(image_topic, Image, self.callback, queue_size=1)
         rospy.on_shutdown(self.on_shutdown_hook)
 
         self.counter = 0
@@ -90,7 +90,6 @@ class ImageViewer():
             cv2.waitKey(1)
         except CvBridgeError, e:
             print e
-
 
 
 if __name__ == '__main__':

@@ -157,13 +157,16 @@ class Profile():
 
 
 if __name__ == '__main__':
-    import image
+    import matplotlib.pyplot as plt
 
-    img = image.read_image('../data/utest9.png')
+    img = cv2.imread('../../../etna_calib/data/frame0001.png')
     profile0 = Profile(axis=1, thr=180, method='pcog')
-    image.show_image(profile0.profile_measurement(img))
+    profile0.load_configuration('../../config/profile3d.yaml')
+
+    plt.figure()
+    plt.imshow(profile0.profile_measurement(img))
+    plt.show()
     #cv2.imwrite('peak.png', profile0.profile_measurement(img))
-    #profile0.load_configuration('triangulation0.yml')
 
     # Camera test
     #from webcam import Webcam
