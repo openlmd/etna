@@ -95,23 +95,23 @@ class Profile():
         elif self.method == 'peak':
             return self.peak_diff_profile(img)
 
-    def profile_points(self, image):
+    def get_profile2d(self, image):
         blur = cv2.blur(image, (3, 3))
         gray = self.threshold_image(blur)
         profile = self.peak_profile(gray)
         return profile
 
-    def profile_to_points3d(self, profile, homography, pose, minz=0, maxz=1000):
+    def project_profile(self, profile, homography, pose, minz=0, maxz=1000):
         """Transforms the profile image points of the laser using the
         homography and the pose of the laser plane to get the points
         in the camera frame."""
         points3d = []
         if len(profile) > 0:
-            pnts = np.float32([np.dot(homography,
-                                      np.float32([x, y, 1])) for x, y in profile])
+            pnts = np.float32([np.dot(
+                homography, np.float32([x, y, 1])) for x, y in profile])
             points = np.float32([pnt / pnt[2] for pnt in pnts])
-            points3d = np.float32([np.dot(pose[0],
-                                   np.float32([x, y, 0])) + pose[1] for x, y in points[:, :2]])
+            points3d = np.float32([np.dot(
+                pose[0], np.float32([x, y, 0])) + pose[1] for x, y, w in points])
             #points3d = points3d[points3d[:, 2] > minz]
             #points3d = points3d[points3d[:, 2] < maxz]
         return points3d
@@ -124,16 +124,15 @@ class Profile():
             points3d = pnts3d[:, :3] / pnts3d[:, 3].reshape(len(pnts3d), 1)
         return points3d
 
-    def points_profile(self, image, homography=None, pose=None):
+    def get_profile(self, image, homography=None, pose=None):
         """Gets the laser coordinate points in the camera frame from the peak
-        profile detection in the image. Projects the laser profile on a plane.
-        """
-        profile = self.profile_points(image)
+        profile detected in the image."""
+        profile = self.get_profile2d(image)
         if homography is None or pose is None:
-            #points3d = self.profile_to_points3d(profile, self.homography, self.pose)
+            # points3d = self.project_profile(profile, self.homography, self.pose)
             points3d = self.transform_profile(profile)
         else:
-            points3d = self.profile_to_points3d(profile, homography, pose)
+            points3d = self.project_profile(profile, homography, pose)
         return points3d, profile
 
     def draw_points(self, image, points, color=(0, 0, 0), thickness=1):
@@ -144,11 +143,11 @@ class Profile():
         return image
 
     def profile_measurement(self, frame):
-        points3d, profile = self.points_profile(frame)
+        points3d, profile = self.get_profile(frame)
+        print profile, points3d
         frame = self.draw_points(frame, profile,
                                  color=(0, 0, 255), thickness=2)
         if len(points3d) > 0:
-            print points3d
             point3d = points3d[len(points3d)/5]
             cv2.putText(frame, '%s' % point3d, (11, 22),
                         cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 255, 255),

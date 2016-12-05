@@ -23,7 +23,7 @@ class ImageViewer():
     def __init__(self):
         rospy.init_node('viewer', anonymous=True)
 
-        image_topic = rospy.get_param('~image', '/camera/image')
+        image_topic = rospy.get_param('~image', '/ueye/image')
         # Pattern parameters
         pattern_rows = rospy.get_param('~pattern_rows', 7)
         pattern_cols = rospy.get_param('~pattern_cols', 8)

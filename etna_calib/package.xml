@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>etna_calib</name>
-  <version>0.4.0</version>
+  <version>0.4.5</version>
   <description>The calibration package.</description>
   <author email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</author>
   <maintainer email="jorge.rodriguez@aimen.es">Jorge Rodríguez-Araújo</maintainer>
