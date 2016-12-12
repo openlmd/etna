@@ -130,8 +130,8 @@ class Profile():
         """
         profile = self.profile_points(image)
         if homography is None or pose is None:
-            #points3d = self.profile_to_points3d(profile, self.homography, self.pose)
-            points3d = self.transform_profile(profile)
+            points3d = self.profile_to_points3d(profile, self.homography, self.pose)
+            #points3d = self.transform_profile(profile)
         else:
             points3d = self.profile_to_points3d(profile, homography, pose)
         return points3d, profile
@@ -148,7 +148,6 @@ class Profile():
         frame = self.draw_points(frame, profile,
                                  color=(0, 0, 255), thickness=2)
         if len(points3d) > 0:
-            print points3d
             point3d = points3d[len(points3d)/5]
             cv2.putText(frame, '%s' % point3d, (11, 22),
                         cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 255, 255),

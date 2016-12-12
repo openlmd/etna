@@ -548,10 +548,11 @@ if __name__ == '__main__':
     mplot3d.show()
 
 
-    imgname = '../../data/frame_checker.png'
-    posname = '../../data/pose_checker.txt'
-    x, y, z = (1.6544, 0.0536, 0.9355) # ERROR in this measure (z aprox 1.0)
-    qx, qy, qz, qw = (0.002736, -0.004958, -0.004507, 0.999974)
+    imgname = '../../data/fchecker.png'
+    posname = '../../data/pchecker.txt'
+    # Workobject
+    x, y, z = (1.596609, 0.101342, 0.936394) # ERROR in this measure (z aprox 1.0)
+    qx, qy, qz, qw = (0.00185993, -0.00245949, -0.01122562, 0.99994981)
     W2K = calc.quatpose_to_matrix(*(np.array([x, y, z]), np.array([qx, qy, qz, qw])))
     # rot1 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, 0, -np.pi/2]))
     # rot2 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, np.pi, 0]))
@@ -570,6 +571,22 @@ if __name__ == '__main__':
     print K2C
     print T2C
     print 'Camera frame:', calc.matrix_to_rpypose(T2C)
+
+    for k in range(len(tool_poses)):
+        W2T = read_pose(posname)
+        img = read_image(imgname)
+        grid = laser_calibration.find_chessboard(img)
+        pose = laser_calibration.get_chessboard_pose(grid)
+        C2K = calc.pose_to_matrix(pose)
+        K2C = calc.matrix_invert(C2K)
+        W2C = calc.matrix_compose((W2K, K2C))
+        T2W = calc.matrix_invert(W2T)
+        T2C = calc.matrix_compose((T2W, W2C))
+        #print W2K
+        #print W2T
+        #print K2C
+        #print T2C
+        print 'Camera frame:', calc.matrix_to_rpypose(T2C)
 
     mplot3d = MPlot3D(scale=0.0025)
     pp = laser_calibration.pattern_points
