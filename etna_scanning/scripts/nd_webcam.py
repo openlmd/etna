@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import cv2
 import rospy
 from robscan.webcam import Webcam
 from sensor_msgs.msg import Image
@@ -29,7 +28,6 @@ def camera():
             image_pub.publish(image_msg)
         except CvBridgeError, e:
             print e
-
 
 
 if __name__ == '__main__':

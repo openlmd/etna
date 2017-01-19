@@ -13,7 +13,7 @@
     <param name="autosize" value="true" />
   </node>
 
-  <node name="profile" pkg="etna_scanning" type="pub_profile3d.py">
+  <node name="profile" pkg="etna_scanning" type="nd_profile.py">
     <param name="image" type="str" value="/usb_cam/image_raw" />
     <param name="cloud" type="str" value="/usb_cam/cloud" />
     <param name="config" type="str" value="$(find etna_scanning)/config/webcam_profile3d.yaml" />
