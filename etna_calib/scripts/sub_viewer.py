@@ -83,7 +83,7 @@ class ImageViewer():
                 self.frame = cv2.cvtColor(self.frame, cv2.COLOR_GRAY2BGR)
             #TODO: Show chessboard and line detection.
             frame = cv2.resize(self.frame, (self.frame.shape[1]/2, self.frame.shape[0]/2))
-            grid = self.camera_calibration.find_chessboard(frame)
+            grid = self.camera_calibration.get_chessboard_grid(frame)
             if grid is not None:
                 self.camera_calibration.draw_chessboard(frame, grid)
             cv2.imshow("viewer", frame)
