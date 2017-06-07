@@ -45,6 +45,7 @@ class CameraCalibration():
                                           for point in self.targets])
 
     def get_pattern_points(self):
+        """Return an array representing the 2D points of the grid"""
         points = np.indices(self.grid_size, np.float32).T.reshape(-1, 2)
         points = np.fliplr(points) * self.square_size
         #points += self.grid_orig
@@ -67,6 +68,7 @@ class CameraCalibration():
         return data
 
     def get_chessboard_grid(self, img):
+        """Return array of grid corners"""
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         h, w = gray.shape[:2]
         gray = cv2.resize(gray, (w / 2, h / 2))
@@ -533,9 +535,9 @@ if __name__ == '__main__':
     imgname = '../../data/fchecker.png'
     posname = '../../data/pchecker.txt'
     # Workobject
-    x, y, z = (1.596609, 0.101342, 0.936394)  # ERROR in this measure (z aprox 1.0)
-    qx, qy, qz, qw = (0.00185993, -0.00245949, -0.01122562, 0.99994981)
-    W2K = calc.quatpose_to_matrix(*(np.array([x, y, z]), np.array([qx, qy, qz, qw])))
+    x, y, z = (1.543705, 0.127066, 0.9449431)  # ERROR in this measure (z aprox 1.0)
+    qx, qy, qz, qw = (0.009568178, -0.0011419146, -0.001199158, 0.9998817)
+    # W2K = calc.quatpose_to_matrix(*(np.array([x, y, z]), np.array([qx, qy, qz, qw])))
     # rot1 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, 0, -np.pi/2]))
     # rot2 = calc.rpypose_to_matrix(np.array([0, 0, 0]), np.array([0, np.pi, 0]))
     # W2K = calc.matrix_compose((W2K, rot1, rot2))
@@ -552,11 +554,11 @@ if __name__ == '__main__':
     print W2T
     print K2C
     print T2C
-    print 'Camera frame:', calc.matrix_to_rpypose(T2C)
+    print 'Camera frame check:', calc.matrix_to_rpypose(T2C)
 
     for k in range(len(tool_poses)):
-        W2T = read_pose(posname)
-        img = read_image(imgname)
+        W2T = tool_poses[k]
+        img = images[k]
         grid = laser_calibration.get_chessboard_grid(img)
         pose = laser_calibration.get_chessboard_pose(grid)
         C2K = calc.pose_to_matrix(pose)
@@ -568,7 +570,7 @@ if __name__ == '__main__':
         #print W2T
         #print K2C
         #print T2C
-        print 'Camera frame:', calc.matrix_to_rpypose(T2C)
+        print 'Camera frame '+str(k)+':', calc.matrix_to_rpypose(T2C)
 
     mplot3d = MPlot3D(scale=0.0025)
     pp = laser_calibration.pattern_points

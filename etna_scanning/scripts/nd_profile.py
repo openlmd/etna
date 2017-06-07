@@ -30,7 +30,7 @@ class NdProfile():
         self.pcloud = PointCloud2()
 
         self.cloud_pub = rospy.Publisher(
-            cloud_topic, PointCloud2, queue_size=10)
+            cloud_topic, PointCloud2, queue_size=1)
 
         self.profile = Profile()
         self.profile.load_configuration(config_file)
